@@ -18,6 +18,7 @@ const Home = () => {
   return (
     <Wrapper>
       <Title>Hello World!</Title>
+      
     </Wrapper>
   );
 };
