@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { Component } from "react";
 import {
   Menu as M,
   Image as Im,
@@ -31,7 +31,7 @@ const Image = styled(Im)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 15rem;
+  left: 13rem;
 `;
 
 const Input = styled(In)`
@@ -47,12 +47,12 @@ const DropDown = () => {
       style={{
         position: "absolute",
         top: "40%",
-        left: "20rem",
+        left: "18rem",
         textAlign: "center"
       }}
     >
       <Drp.Menu style={{ background: "white !important" }}>
-        <Drp.Header content="Tag Label" />
+        <Drp.Header content="categories" />
         <Drp.Menu scrolling>
           {TagOptions.map(option => (
             <Drp.Item key={option.value} {...option} />
@@ -63,31 +63,57 @@ const DropDown = () => {
   );
 };
 
-function Navbar({ transparent }) {
-  return (
-    <Menu
-      size="massive"
-      transparent={transparent}
-      secondary
-      className="large-navbar"
-    >
-      <Menu.Menu position="left">
-        <Image avatar src={imgSrc} />
-        <DropDown />
-      </Menu.Menu>
-      <Menu.Menu position="right">
-        <Menu.Item>
-          <Input size="mini" placeholder="Search..." />
-          <Im src={notifImg} size="mini" style={{ marginLeft: "2rem" }} />
-          <Im
-            src={avatarImg}
-            avatar
-            style={{ marginLeft: "2rem", marginRight: "10rem" }}
-          />
-        </Menu.Item>
-      </Menu.Menu>
-    </Menu>
-  );
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { notifOpacity: "0.65" };
+    this.hoverNotifEnter = this.hoverNotifEnter.bind(this);
+    this.hoverNotifExit = this.hoverNotifExit.bind(this);
+  }
+
+  hoverNotifEnter() {
+    this.setState({ notifOpacity: "1" });
+  }
+
+  hoverNotifExit() {
+    this.setState({ notifOpacity: "0.65" });
+  }
+
+  render() {
+    const { transparent } = this.props;
+    const { notifOpacity } = this.state;
+    return (
+      <Menu
+        size="massive"
+        transparent={transparent}
+        secondary
+        className="large-navbar"
+      >
+        <Menu.Menu position="left">
+          <Image avatar src={imgSrc} />
+          <DropDown />
+        </Menu.Menu>
+        <Menu.Menu position="right">
+          <Menu.Item>
+            <Input size="mini" placeholder="Search..." />
+            <Im
+              src={notifImg}
+              size="mini"
+              style={{ marginLeft: "2rem", opacity: notifOpacity }}
+              className="notifications"
+              onMouseEnter={this.hoverNotifEnter}
+              onMouseOut={this.hoverNotifExit}
+            />
+            <Im
+              src={avatarImg}
+              avatar
+              style={{ marginLeft: "2rem", marginRight: "10rem" }}
+            />
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+    );
+  }
 }
 
-export default Navbar;
+export default NavBar;
