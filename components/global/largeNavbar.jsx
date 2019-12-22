@@ -66,7 +66,7 @@ const DropDown = () => {
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { notifOpacity: "0.65" };
+    this.state = { notifOpacity: "0.7" };
     this.hoverNotifEnter = this.hoverNotifEnter.bind(this);
     this.hoverNotifExit = this.hoverNotifExit.bind(this);
   }
@@ -76,7 +76,7 @@ class NavBar extends Component {
   }
 
   hoverNotifExit() {
-    this.setState({ notifOpacity: "0.65" });
+    this.setState({ notifOpacity: "0.7" });
   }
 
   render() {
