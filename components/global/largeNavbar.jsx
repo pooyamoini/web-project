@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import React from "react";
 import {
-  Button,
   Menu as M,
   Image as Im,
   Input as In,
-  Icon,
   Dropdown as Drp
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
@@ -13,6 +11,7 @@ import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
+const notifImg = "/bell.png";
 
 const Menu = styled(M)`
   position: ${props =>
@@ -32,11 +31,11 @@ const Image = styled(Im)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 28rem;
+  left: 15rem;
 `;
 
 const Input = styled(In)`
-  min-width: 39rem;
+  min-width: 30rem;
 `;
 
 const DropDown = () => {
@@ -48,7 +47,7 @@ const DropDown = () => {
       style={{
         position: "absolute",
         top: "40%",
-        left: "33rem",
+        left: "20rem",
         textAlign: "center"
       }}
     >
@@ -69,7 +68,7 @@ function Navbar({ transparent }) {
     <Menu
       size="massive"
       transparent={transparent}
-      primary
+      secondary
       className="large-navbar"
     >
       <Menu.Menu position="left">
@@ -79,6 +78,7 @@ function Navbar({ transparent }) {
       <Menu.Menu position="right">
         <Menu.Item>
           <Input size="mini" placeholder="Search..." />
+          <Im src={notifImg} size="mini" style={{ marginLeft: "2rem" }} />
           <Im
             src={avatarImg}
             avatar
