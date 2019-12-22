@@ -1,0 +1,26 @@
+[
+  {
+    "key": "Important",
+    "text": "HOT",
+    "value": "Important",
+    "label": { "color": "red", "empty": true, "circular": true }
+  },
+  {
+    "key": "Announcement",
+    "text": "NEW",
+    "value": "Announcement",
+    "label": { "color": "blue", "empty": true, "circular": true }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "FOLLOWED",
+    "value": "Cannot Fix",
+    "label": { "color": "black", "empty": true, "circular": true }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "YOU INTEREST",
+    "value": "Cannot Fix",
+    "label": { "color": "gold", "empty": true, "circular": true }
+  }
+]

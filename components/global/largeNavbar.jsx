@@ -9,66 +9,10 @@ import {
   Dropdown as Drp
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
-
-const tagOptions = [
-  {
-    key: "Important",
-    text: "Important",
-    value: "Important",
-    label: { color: "red", empty: true, circular: true }
-  },
-  {
-    key: "Announcement",
-    text: "Announcement",
-    value: "Announcement",
-    label: { color: "blue", empty: true, circular: true }
-  },
-  {
-    key: "Cannot Fix",
-    text: "Cannot Fix",
-    value: "Cannot Fix",
-    label: { color: "black", empty: true, circular: true }
-  },
-  {
-    key: "News",
-    text: "News",
-    value: "News",
-    label: { color: "purple", empty: true, circular: true }
-  },
-  {
-    key: "Enhancement",
-    text: "Enhancement",
-    value: "Enhancement",
-    label: { color: "orange", empty: true, circular: true }
-  },
-  {
-    key: "Change Declined",
-    text: "Change Declined",
-    value: "Change Declined",
-    label: { empty: true, circular: true }
-  },
-  {
-    key: "Off Topic",
-    text: "Off Topic",
-    value: "Off Topic",
-    label: { color: "yellow", empty: true, circular: true }
-  },
-  {
-    key: "Interesting",
-    text: "Interesting",
-    value: "Interesting",
-    label: { color: "pink", empty: true, circular: true }
-  },
-  {
-    key: "Discussion",
-    text: "Discussion",
-    value: "Discussion",
-    label: { color: "green", empty: true, circular: true }
-  }
-];
 
 const Menu = styled(M)`
   position: ${props =>
@@ -88,11 +32,11 @@ const Image = styled(Im)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 15rem;
+  left: 28rem;
 `;
 
 const Input = styled(In)`
-  min-width: 25rem;
+  min-width: 39rem;
 `;
 
 const DropDown = () => {
@@ -101,19 +45,17 @@ const DropDown = () => {
       text="Filter Posts"
       labeled
       button
-      className="filter-categories icon"
       style={{
         position: "absolute",
-        top: "25%",
-        left: "25rem",
-        width: "15rem",
+        top: "40%",
+        left: "33rem",
         textAlign: "center"
       }}
     >
-      <Drp.Menu>
+      <Drp.Menu style={{ background: "white !important" }}>
         <Drp.Header content="Tag Label" />
         <Drp.Menu scrolling>
-          {tagOptions.map(option => (
+          {TagOptions.map(option => (
             <Drp.Item key={option.value} {...option} />
           ))}
         </Drp.Menu>
@@ -127,7 +69,7 @@ function Navbar({ transparent }) {
     <Menu
       size="massive"
       transparent={transparent}
-      secondary
+      primary
       className="large-navbar"
     >
       <Menu.Menu position="left">
@@ -136,8 +78,12 @@ function Navbar({ transparent }) {
       </Menu.Menu>
       <Menu.Menu position="right">
         <Menu.Item>
-          <Input size="mini" focus placeholder="Search..." />
-          <Im src={avatarImg} avatar style={{ marginLeft: "10rem" }} />
+          <Input size="mini" placeholder="Search..." />
+          <Im
+            src={avatarImg}
+            avatar
+            style={{ marginLeft: "2rem", marginRight: "10rem" }}
+          />
         </Menu.Item>
       </Menu.Menu>
     </Menu>
