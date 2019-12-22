@@ -1,6 +1,7 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.h1`
