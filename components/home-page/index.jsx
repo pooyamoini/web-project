@@ -50,7 +50,7 @@ class GridExampleColumnWidth extends Component {
                 onUnstick={this.handleUnStick}
               >
                 <RightContainer marginTop={marginTop} />
-                <RightContainer  />
+                <RightContainer />
               </Sticky>
             </Rail>
           </Ref>
