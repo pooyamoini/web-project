@@ -1,51 +1,15 @@
-import _ from "lodash";
-import styled from "styled-components";
-import React, { Component } from "react";
-import {
-  Grid,
-  Header,
-  Image,
-  Rail,
-  Ref,
-  Segment,
-  Sticky
-} from "semantic-ui-react";
+import React from "react";
+import { Grid, Image } from "semantic-ui-react";
 
-const Placeholder = () => (
-  <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+const GridExampleColumnWidth = () => (
+  <Grid centered style={{ marginTop: "5rem", width: '85%', marginLeft: '7.5%', marginRight: '7.5%', }} >
+    <Grid.Column width={10}>
+      <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" style={{minWidth: '100%'}}/>
+    </Grid.Column>
+    <Grid.Column width={4}>
+      <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
+    </Grid.Column>
+  </Grid>
 );
 
-export default class StickyExamplePushing extends Component {
-  render() {
-    return (
-      <Grid centered columns={3}>
-        <Grid.Column>
-          <Ref innerRef={React.contextRef}>
-            <Segment>
-              {_.times(10, i => (
-                <Placeholder key={i} />
-              ))}
-
-              <Rail position="left">
-                <Sticky context={React.contextRef} pushing>
-                  <Header as="h3">Stuck Content</Header>
-                  <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                </Sticky>
-              </Rail>
-              <Rail position="right">
-                {_.times(3, i => (
-                  <Placeholder key={i} />
-                ))}
-
-                <Sticky context={React.contextRef} pushing>
-                  <Header as="h3">Stuck Content</Header>
-                  <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                </Sticky>
-              </Rail>
-            </Segment>
-          </Ref>
-        </Grid.Column>
-      </Grid>
-    );
-  }
-}
+export default GridExampleColumnWidth;
