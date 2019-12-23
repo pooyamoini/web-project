@@ -6,7 +6,6 @@ import {
   Input as In,
   Dropdown as Drp
 } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 
 const imgSrc = "/Images/global/logo1.png";
@@ -15,7 +14,7 @@ const notifImg = "/bell.png";
 
 const Menu = styled(M)`
   position: ${props =>
-    props.transparent ? "absolute" : "relative"} !important;
+    props.transparent ? "fixed" : "relative"} !important;
   margin: 0 !important;
   border-radius: 0 !important;
   border: 0 !important;
