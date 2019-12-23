@@ -9,6 +9,12 @@
     "watch": "./node_modules/.bin/webpack --watch --config webpack.dev.js"
   },
   "dependencies": {
+    "@bit/semantic-org.semantic-ui-react.icon": "^0.86.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-regular-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@types/node": "^12.12.21",
     "@zeit/next-css": "^1.0.1",
     "createref": "^0.5.0",
@@ -22,6 +28,7 @@
     "webpack": "^4.41.4"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "babel-plugin-styled-components": "^1.10.6",
     "css-loader": "^3.4.0",
     "eslint": "^6.8.0",
