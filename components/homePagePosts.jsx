@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import image from '../public/Images/global/post.jpg'
 import {
   Container as Ctr,
   Grid,
@@ -28,8 +29,20 @@ const Column = styled(Grid.Column)`
   margin: 10px;
 `;
 
+function getImage(source){
+  if(source == "")
+    return
+  return(
+    <Image
+          src={image}
+          wrapped
+          ui={false}       
+    />
+  );
+}
+
 function Post(props) {
-  let contextRef = createRef()
+  let contextRef = createRef();
   return (
     <Grid columns={2}>
       <Column width={1}>
@@ -46,6 +59,7 @@ function Post(props) {
       </Column>
       <Column width={8}>
         <Card fluid>
+          {getImage(props.image)}
           <Card.Content>
             <Card.Header>{props.title}</Card.Header>
             <Card.Meta>{props.date}</Card.Meta>
@@ -71,6 +85,7 @@ export default class homePagePosts extends Component {
     const postsList = posts.map(post => (
       <Post
         title={post.title}
+        image={post.image}
         date={post.date}
         content={post.content}
         votes={post.votes}
