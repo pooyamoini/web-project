@@ -3,8 +3,8 @@ import image from '../public/Images/global/post.jpg'
 import {
   Container as Ctr,
   Grid,
-  Image as Im,
-  Card,
+  Image,
+  Card as Ca,
   Icon as Ic,
   Sticky,
   Rail,
@@ -21,12 +21,14 @@ const Icon = styled(Ic)`
   margin: 5px;
 `;
 
-const Image = styled(Im)`
-  marign: 10px;
+const Column = styled(Grid.Column)`
+  margin-left: 20px;
 `;
 
-const Column = styled(Grid.Column)`
-  margin: 10px;
+const Card = styled(Ca)`
+  padding: 10px !important;
+  margin-top: -35px !important;
+  border-radius: 0 !important;
 `;
 
 function getImage(source){
@@ -35,6 +37,10 @@ function getImage(source){
   return(
     <Image
           src={image}
+          style={{
+            'border-radius':'0 !important;'
+          }}
+          size={"medium"}
           wrapped
           ui={false}       
     />
