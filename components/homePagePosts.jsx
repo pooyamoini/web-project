@@ -44,8 +44,8 @@ function Post(props) {
           </Rail>
         </Ref>
       </Column>
-      <Column width={6}>
-        <Card>
+      <Column width={8}>
+        <Card fluid>
           <Card.Content>
             <Card.Header>{props.title}</Card.Header>
             <Card.Meta>{props.date}</Card.Meta>
