@@ -17,7 +17,7 @@ const Menu = styled(M)`
   position: fixed !important;
   border-bottom: ${props =>
     props.transparent ? "0" : "1px solid #e2e2e2"} !important;
-  background-color: #fff !important;
+  background: #fff !important;
   z-index: 10000000000000 !important;
   width: 100%;
   top: 0 !important;
@@ -85,7 +85,6 @@ class NavBar extends Component {
           transparent={transparent}
           secondary
           className="large-navbar"
-          style={{ visibility: "hidden" }}
         >
           <Menu.Menu position="left">
             <Image avatar src={imgSrc} />

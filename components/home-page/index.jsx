@@ -1,8 +1,129 @@
 import React, { Component, createRef } from "react";
-import { Grid, Rail, Sticky, Ref, Container } from "semantic-ui-react";
+import {
+  Grid,
+  Rail,
+  Sticky,
+  Ref,
+  Container,
+  Icon as Ic,
+  Card as Ca,
+  Segment,
+  Image
+} from "semantic-ui-react";
 import RightContainer from "./rightContainer";
-import HomePagePosts from "../homePagePosts";
 import homePagePostsJson from "../../public/home-page-posts.json";
+import styled from "styled-components";
+import image from "../../public/Images/global/post.jpg";
+
+const ContainerC = styled(Container)`
+  width: 85%;
+  margin: 10px auto;
+`;
+
+const Icon = styled(Ic)`
+  margin: 5px;
+`;
+
+const Column = styled(Grid.Column)`
+  margin-left: 20px;
+`;
+
+const Card = styled(Ca)`
+  padding: 10px !important;
+  margin-top: -35px !important;
+  border-radius: 0 !important;
+`;
+
+function getImage(source) {
+  if (source == "") return;
+  return (
+    <Image
+      src={image}
+      style={{
+        "border-radius": "0 !important;"
+      }}
+      size={"medium"}
+      wrapped
+      ui={false}
+    />
+  );
+}
+
+class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { contextRef } = this.props;
+    return (
+      <Grid columns={2}>
+        <Column width={1}>
+          <Ref innerRef={contextRef}>
+            <Rail>
+              <Segment basic>
+                <Sticky context={contextRef} offset={35}>
+                  <Image
+                    size="tiny"
+                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                    style={{
+                      left: "-8rem",
+                      zIndex: "999999",
+                      marginTop: "2.5rem"
+                    }}
+                  ></Image>
+                </Sticky>
+              </Segment>
+            </Rail>
+          </Ref>
+        </Column>
+        <Column width={16} style={{ padding: "0 !important" }}>
+          <Card fluid>
+            {getImage(this.props.image)}
+            <Card.Content>
+              <Card.Header>{this.props.title}</Card.Header>
+              <Card.Meta>{this.props.date}</Card.Meta>
+              <Card.Description>{this.props.content}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <p>
+                <Icon name="thumbs up" />
+                {this.props.votes} Votes
+                <Icon name="thumbs up" />
+                {this.props.comments} Comments
+              </p>
+            </Card.Content>
+          </Card>
+        </Column>
+      </Grid>
+    );
+  }
+}
+
+class HomePagePosts extends Component {
+  makePostsList() {
+    const posts = this.props.posts;
+    const { contextRef } = this.props;
+    const postsList = posts.map(post => (
+      <Post
+        title={post.title}
+        image={post.image}
+        date={post.date}
+        content={post.content}
+        votes={post.votes}
+        comments={post.comments}
+        key={post.title}
+        contextRef={contextRef}
+      ></Post>
+    ));
+    return postsList;
+  }
+
+  render() {
+    const postsList = this.makePostsList();
+    return <ContainerC>{postsList}</ContainerC>;
+  }
+}
 
 class HomePageDesktop extends Component {
   constructor(props) {
@@ -13,7 +134,7 @@ class HomePageDesktop extends Component {
   }
 
   handleStick() {
-    this.setState({ marginTop: "10rem" });
+    this.setState({ marginTop: "5rem" });
   }
 
   handleUnStick() {
@@ -37,12 +158,14 @@ class HomePageDesktop extends Component {
           width={8}
           style={{
             marginLeft: "11rem",
-            position: "absolte",
-            border: "1px solid red"
+            position: "absolte"
           }}
         >
           <Container>
-            <HomePagePosts posts={homePagePostsJson}></HomePagePosts>
+            <HomePagePosts
+              contextRef={this.contextRef}
+              posts={homePagePostsJson}
+            ></HomePagePosts>
           </Container>
         </Grid.Column>
         <Grid.Column width={4} style={{ marginLeft: "10.5rem" }}>
