@@ -56,6 +56,7 @@ class Post extends Component {
 
   render() {
     const { contextRef } = this.props;
+    const src = this.props.src;
     return (
       <Grid columns={2}>
         <Column width={1}>
@@ -65,7 +66,7 @@ class Post extends Component {
                 <Sticky context={contextRef} offset={35}>
                   <Image
                     size="tiny"
-                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                    src={src}
                     style={{
                       left: "-8rem",
                       zIndex: "999999",
@@ -104,18 +105,21 @@ class HomePagePosts extends Component {
   makePostsList() {
     const posts = this.props.posts;
     const { contextRef } = this.props;
-    const postsList = posts.map(post => (
-      <Post
-        title={post.title}
-        image={post.image}
-        date={post.date}
-        content={post.content}
-        votes={post.votes}
-        comments={post.comments}
-        key={post.title}
-        contextRef={contextRef}
-      ></Post>
-    ));
+    const postsList = posts.map(post => {
+      return (
+        <Post
+          title={post.title}
+          image={post.image}
+          date={post.date}
+          content={post.content}
+          votes={post.votes}
+          comments={post.comments}
+          key={post.title}
+          src={post.src}
+          contextRef={contextRef}
+        ></Post>
+      );
+    });
     return postsList;
   }
 
