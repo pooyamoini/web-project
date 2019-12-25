@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import image from '../public/Images/global/post.jpg'
+import image from "../public/Images/global/post.jpg";
 import {
   Container as Ctr,
   Grid,
@@ -8,7 +8,8 @@ import {
   Icon as Ic,
   Sticky,
   Rail,
-  Ref
+  Ref,
+  Segment
 } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -31,58 +32,66 @@ const Card = styled(Ca)`
   border-radius: 0 !important;
 `;
 
-function getImage(source){
-  if(source == "")
-    return
-  return(
+function getImage(source) {
+  if (source == "") return;
+  return (
     <Image
-          src={image}
-          style={{
-            'border-radius':'0 !important;'
-          }}
-          size={"medium"}
-          wrapped
-          ui={false}       
+      src={image}
+      style={{
+        "border-radius": "0 !important;"
+      }}
+      size={"medium"}
+      wrapped
+      ui={false}
     />
   );
 }
 
-function Post(props) {
-  let contextRef = createRef();
-  return (
-    <Grid columns={2}>
-      <Column width={1}>
-        <Ref innerRef={contextRef}>
-          <Rail>
-            <Sticky context={contextRef} offset={20}>
-              <Image
-                size="tiny"
-                src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-              ></Image>
-            </Sticky>
-          </Rail>
-        </Ref>
-      </Column>
-      <Column width={8}>
-        <Card fluid>
-          {getImage(props.image)}
-          <Card.Content>
-            <Card.Header>{props.title}</Card.Header>
-            <Card.Meta>{props.date}</Card.Meta>
-            <Card.Description>{props.content}</Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <p>
-              <Icon name="thumbs up" />
-              {props.votes} Votes
-              <Icon name="thumbs up" />
-              {props.comments} Comments
-            </p>
-          </Card.Content>
-        </Card>
-      </Column>
-    </Grid>
-  );
+class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let contextRef = createRef();
+    return (
+      <Grid columns={2}>
+        <Column width={1}>
+          <Ref innerRef={contextRef}>
+            <Rail>
+              <Segment basic>
+                <Sticky context={contextRef} active={true} pushing>
+                  <Image
+                    size="tiny"
+                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                    style={{ left: "-100px", zIndex: "999999" }}
+                  ></Image>
+                </Sticky>
+              </Segment>
+            </Rail>
+          </Ref>
+        </Column>
+        <Column width={16}>
+          <Card fluid>
+            {getImage(this.props.image)}
+            <Card.Content>
+              <Card.Header>{this.props.title}</Card.Header>
+              <Card.Meta>{this.props.date}</Card.Meta>
+              <Card.Description>{this.props.content}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <p>
+                <Icon name="thumbs up" />
+                {this.props.votes} Votes
+                <Icon name="thumbs up" />
+                {this.props.comments} Comments
+              </p>
+            </Card.Content>
+          </Card>
+        </Column>
+      </Grid>
+    );
+  }
 }
 
 export default class homePagePosts extends Component {
@@ -96,6 +105,7 @@ export default class homePagePosts extends Component {
         content={post.content}
         votes={post.votes}
         comments={post.comments}
+        key={post.title}
       ></Post>
     ));
     return postsList;
@@ -103,7 +113,6 @@ export default class homePagePosts extends Component {
 
   render() {
     const postsList = this.makePostsList();
-
     return <Container>{postsList}</Container>;
   }
 }

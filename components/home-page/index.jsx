@@ -1,6 +1,8 @@
 import React, { Component, createRef } from "react";
-import { Grid, Rail, Sticky, Ref } from "semantic-ui-react";
+import { Grid, Rail, Sticky, Ref, Container } from "semantic-ui-react";
 import RightContainer from "./rightContainer";
+import HomePagePosts from "../homePagePosts";
+import homePagePostsJson from "../../public/home-page-posts.json";
 
 class HomePageDesktop extends Component {
   constructor(props) {
@@ -11,7 +13,6 @@ class HomePageDesktop extends Component {
   }
 
   handleStick() {
-    console.log("STICK");
     this.setState({ marginTop: "10rem" });
   }
 
@@ -35,11 +36,15 @@ class HomePageDesktop extends Component {
         <Grid.Column
           width={8}
           style={{
-            minHeight: "5000px",
-            border: "1px solid #e6e6e6E6",
-            marginLeft: "11rem"
+            marginLeft: "11rem",
+            position: "absolte",
+            border: "1px solid red"
           }}
-        ></Grid.Column>
+        >
+          <Container>
+            <HomePagePosts posts={homePagePostsJson}></HomePagePosts>
+          </Container>
+        </Grid.Column>
         <Grid.Column width={4} style={{ marginLeft: "10.5rem" }}>
           <Ref innerRef={this.contextRef}>
             <Rail style={{ position: "absolute" }}>

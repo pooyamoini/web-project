@@ -17,10 +17,10 @@ const Menu = styled(M)`
   position: fixed !important;
   border-bottom: ${props =>
     props.transparent ? "0" : "1px solid #e2e2e2"} !important;
-  background-color: ${props =>
-    props.transparent ? "transparent" : "white"} !important;
+  background-color: #fff !important;
   z-index: 10000000000000 !important;
   width: 100%;
+  top: 0 !important;
 `;
 
 const Image = styled(Im)`
@@ -79,12 +79,13 @@ class NavBar extends Component {
     const { transparent } = this.props;
     const { notifOpacity } = this.state;
     return (
-      <Segment>
+      <Segment basic>
         <Menu
           size="massive"
           transparent={transparent}
           secondary
           className="large-navbar"
+          style={{ visibility: "hidden" }}
         >
           <Menu.Menu position="left">
             <Image avatar src={imgSrc} />
