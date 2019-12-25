@@ -3,9 +3,8 @@ import { Container as Co, Transition, Card, Image, Icon } from "semantic-ui-reac
 import styled from 'styled-components'
 
 const Container = styled(Co)`
-    width: 60% !important;
+    width: 70% !important;
     margin: 20px auto !important;
-    background-color: red !important;
 `;
 
 
@@ -20,7 +19,7 @@ export default class HomePageHeaderPhone extends Component {
 
   getCard(type, title, date, votes, image) {
     return (
-      <Card fluid>
+      <Card centered>
         <Image
           src={image}
           wrapped
