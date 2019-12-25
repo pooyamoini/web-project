@@ -7,11 +7,11 @@ const Grid = styled(Gr)`
   margin: 30px auto !important;
 `;
 export default class Header extends Component {
-  getCard(type, title, date, votes) {
+  getCard(type, title, date, votes, image) {
     return (
       <Card>
         <Image
-          src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+          src={image}
           wrapped
           ui={false}
         />
@@ -38,7 +38,8 @@ export default class Header extends Component {
             "Hot",
             this.props.data.Hot.Title,
             this.props.data.Hot.Date,
-            this.props.data.Hot.Votes
+            this.props.data.Hot.Votes,
+            this.props.data.Hot.Image
           )}
         </GridColumn>
         <GridColumn>
@@ -46,7 +47,8 @@ export default class Header extends Component {
             "New",
             this.props.data.New.Title,
             this.props.data.New.Date,
-            this.props.data.New.Votes
+            this.props.data.New.Votes,
+            this.props.data.New.Image
           )}
         </GridColumn>
         <GridColumn>
@@ -54,7 +56,8 @@ export default class Header extends Component {
             "Followed",
             this.props.data.Followed.Title,
             this.props.data.Followed.Date,
-            this.props.data.Followed.Votes
+            this.props.data.Followed.Votes,
+            this.props.data.Followed.Image
           )}
         </GridColumn>
         <GridColumn>
@@ -62,7 +65,8 @@ export default class Header extends Component {
             "Your Interest",
             this.props.data.YourInterest.Title,
             this.props.data.YourInterest.Date,
-            this.props.data.YourInterest.Votes
+            this.props.data.YourInterest.Votes,
+            this.props.data.YourInterest.Image
           )}
         </GridColumn>
       </Grid>
