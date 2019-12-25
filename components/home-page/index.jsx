@@ -1,16 +1,8 @@
 import React, { Component, createRef } from "react";
-import {
-  Grid,
-  Image,
-  Rail,
-  Sticky,
-  Header,
-  Segment,
-  Ref
-} from "semantic-ui-react";
+import { Grid, Rail, Sticky, Ref } from "semantic-ui-react";
 import RightContainer from "./rightContainer";
 
-class GridExampleColumnWidth extends Component {
+class HomePageDesktop extends Component {
   constructor(props) {
     super(props);
     this.handleStick = this.handleStick.bind(this);
@@ -40,8 +32,15 @@ class GridExampleColumnWidth extends Component {
           marginRight: "7.5%"
         }}
       >
-        <Grid.Column width={12} style={{ minHeight: "5000px" }}></Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column
+          width={8}
+          style={{
+            minHeight: "5000px",
+            border: "1px solid #e6e6e6E6",
+            marginLeft: "11rem"
+          }}
+        ></Grid.Column>
+        <Grid.Column width={4} style={{ marginLeft: "10.5rem" }}>
           <Ref innerRef={this.contextRef}>
             <Rail style={{ position: "absolute" }}>
               <Sticky
@@ -49,8 +48,12 @@ class GridExampleColumnWidth extends Component {
                 onStick={this.handleStick}
                 onUnstick={this.handleUnStick}
               >
-                <RightContainer marginTop={marginTop} />
-                <RightContainer />
+                <RightContainer
+                  marginTop={marginTop}
+                  content="Suggestion for Accounts"
+                  type="account"
+                />
+                <RightContainer content="Suggestion for Channel" />
               </Sticky>
             </Rail>
           </Ref>
@@ -60,4 +63,4 @@ class GridExampleColumnWidth extends Component {
   }
 }
 
-export default GridExampleColumnWidth;
+export default HomePageDesktop;
