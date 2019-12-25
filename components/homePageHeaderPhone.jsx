@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container as Co, Transition, Card, Image, Icon, Button } from "semantic-ui-react";
 import styled from 'styled-components'
-import { toUnicode } from "punycode";
 
 const Container = styled(Co)`
     width: 70% !important;
@@ -24,7 +23,6 @@ export default class HomePageHeaderPhone extends Component {
         "YourInterest": false
       }
     };
-    this.getVisibleCard = this.getVisibleCard.bind(this);
     this.isVisible = this.isVisible.bind(this);
     this.changeVisibleCard = this.changeVisibleCard.bind(this);
     this.showNextCard = this.showNextCard.bind(this);
@@ -51,45 +49,6 @@ export default class HomePageHeaderPhone extends Component {
         </Card.Content>
       </Card>
     );
-  }
-
-  getVisibleCard(){
-    if(this.state.visibleCard == 'Hot'){
-        return this.getCard(
-            "Hot",
-            this.props.data.Hot.Title,
-            this.props.data.Hot.Date,
-            this.props.data.Hot.Votes,
-            this.props.data.Hot.Image
-          )
-    }
-    if(this.state.visibleCard == 'New'){
-        return this.getCard(
-            "New",
-            this.props.data.New.Title,
-            this.props.data.New.Date,
-            this.props.data.New.Votes,
-            this.props.data.New.Image
-            )
-    }
-    if(this.state.visibleCard == 'Followed'){
-        return this.getCard(
-            "Followed",
-            this.props.data.Followed.Title,
-            this.props.data.Followed.Date,
-            this.props.data.Followed.Votes,
-            this.props.data.Followed.Image
-            )
-    }
-    if(this.state.visibleCard == 'YourInterest'){
-        return this.getCard(
-            "Your Interest",
-            this.props.data.YourInterest.Title,
-            this.props.data.YourInterest.Date,
-            this.props.data.YourInterest.Votes,
-            this.props.data.YourInterest.Image
-            )
-    }
   }
 
   isVisible(name){
@@ -121,7 +80,7 @@ export default class HomePageHeaderPhone extends Component {
   componentDidMount(){
       this.timer = setInterval(
           () => this.changeVisibleCard(),
-          5000
+          2000
       );
   }
 
