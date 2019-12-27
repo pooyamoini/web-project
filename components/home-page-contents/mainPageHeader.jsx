@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { Component } from "react";
 import { Grid as Gr, GridColumn, Card, Image, Icon } from "semantic-ui-react";
-
+import imageSample from "../../public/Images/global/post.jpg";
 const Grid = styled(Gr)`
   width: 80%;
   margin: 30px auto !important;
@@ -16,7 +16,11 @@ export default class Header extends Component {
   getCard(type, title, date, votes, comments, image) {
     return (
       <Card>
-        <Image src={image} wrapped ui={false} />
+        <Image src={image} wrapped ui={false}
+        style={{
+          'height' : 'auto !important;',
+          'width' : '100% !important;',
+        }} />
         <Card.Content>
           <Card.Header>{type}</Card.Header>
           <Card.Meta>{date}</Card.Meta>

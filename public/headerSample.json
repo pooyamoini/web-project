@@ -1,27 +1,27 @@
 {
   "Hot": {
-    "Image": "https://react.semantic-ui.com/images/avatar/large/matthew.png",
+    "Image": "Images/global/channel2.jpg",
     "Title": "belabelabela",
     "Date": "2019 sep 11",
     "Votes": 57,
     "Comments": 57
   },
   "New": {
-    "Image": "https://react.semantic-ui.com/images/avatar/large/steve.jpg",
+    "Image": "Images/global/channel1.jpeg",
     "Title": "belabelabela",
     "Date": "2019 sep 11",
     "Votes": 57,
     "Comments": 57
   },
   "Followed": {
-    "Image": "https://react.semantic-ui.com/images/avatar/large/jenny.jpg",
+    "Image": "Images/global/channel3.jpg",
     "Title": "belabelabela",
     "Date": "2019 sep 11",
     "Votes": 57,
     "Comments": 57
   },
   "YourInterest": {
-    "Image": "https://react.semantic-ui.com/images/avatar/large/molly.png",
+    "Image": "Images/global/channel4.jpg",
     "Title": "belabelabela",
     "Date": "2019 sep 11",
     "Votes": 57,
