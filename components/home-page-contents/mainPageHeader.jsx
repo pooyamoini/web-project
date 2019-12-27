@@ -13,19 +13,21 @@ export default class Header extends Component {
     this.getCard = this.getCard.bind(this);
   }
 
-  getCard(type, title, date, votes, image) {
+  getCard(type, title, date, votes, comments, image) {
     return (
       <Card>
         <Image src={image} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{type}</Card.Header>
-          <Card.Meta>{title}</Card.Meta>
-          <Card.Description>{date}</Card.Description>
+          <Card.Meta>{date}</Card.Meta>
+          <Card.Description>{title}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           <p>
             <Icon name="thumbs up" />
             {votes} Votes
+            <Icon name="thumbs up" />
+            {comments} Comments
           </p>
         </Card.Content>
       </Card>
@@ -41,6 +43,7 @@ export default class Header extends Component {
             this.props.data.Hot.Title,
             this.props.data.Hot.Date,
             this.props.data.Hot.Votes,
+            this.props.data.Hot.Comments,
             this.props.data.Hot.Image
           )}
         </GridColumn>
@@ -50,6 +53,7 @@ export default class Header extends Component {
             this.props.data.New.Title,
             this.props.data.New.Date,
             this.props.data.New.Votes,
+            this.props.data.New.Comments,
             this.props.data.New.Image
           )}
         </GridColumn>
@@ -59,6 +63,7 @@ export default class Header extends Component {
             this.props.data.Followed.Title,
             this.props.data.Followed.Date,
             this.props.data.Followed.Votes,
+            this.props.data.Followed.Comments,
             this.props.data.Followed.Image
           )}
         </GridColumn>
@@ -68,6 +73,7 @@ export default class Header extends Component {
             this.props.data.YourInterest.Title,
             this.props.data.YourInterest.Date,
             this.props.data.YourInterest.Votes,
+            this.props.data.YourInterest.Comments,
             this.props.data.YourInterest.Image
           )}
         </GridColumn>
