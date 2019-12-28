@@ -8,6 +8,8 @@ import {
   Segment
 } from "semantic-ui-react";
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
+import Theme from "../../public/theme";
+import theme from "../../public/theme";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
@@ -16,11 +18,12 @@ const notifImg = "/bell.png";
 const Menu = styled(M)`
   position: fixed !important;
   border-bottom: ${props =>
-    props.transparent ? "0" : "1px solid #e2e2e2"} !important;
+    props.transparent ? "0" : "1px solid "} !important;
   background: #fff !important;
   z-index: 10000000000000 !important;
   width: 100%;
   top: 0 !important;
+  background-color: ${Theme.navbar.backgroundColor} !important;
 `;
 
 const Image = styled(Im)`
@@ -32,6 +35,8 @@ const Image = styled(Im)`
 
 const Input = styled(In)`
   min-width: 30rem;
+  background-color: ${Theme.navbar.menuColor} !important;
+  color: ${Theme.navbar.textColor} !important;
 `;
 
 const DropDown = () => {
@@ -44,14 +49,38 @@ const DropDown = () => {
         position: "absolute",
         top: "40%",
         left: "18rem",
-        textAlign: "center"
+        textAlign: "center",
+        color: theme.navbar.textColor
       }}
     >
-      <Drp.Menu style={{ background: "white !important" }}>
-        <Drp.Header content="categories" />
-        <Drp.Menu scrolling>
+      <Drp.Menu
+        style={{
+          "background-color": theme.navbar.menuColor,
+          color: theme.navbar.textColor
+        }}
+      >
+        <Drp.Header
+          content="categories"
+          style={{
+            "background-color": theme.navbar.menuColor,
+            color: theme.navbar.textColor
+          }}
+        />
+        <Drp.Menu
+          scrolling
+          style={{
+            "background-color": theme.navbar.menuColor,
+            color: theme.navbar.textColor
+          }}
+        >
           {TagOptions.map(option => (
-            <Drp.Item key={option.value} {...option} />
+            <Drp.Item
+              key={option.value}
+              {...option}
+              style={{
+                color: theme.navbar.textColor
+              }}
+            />
           ))}
         </Drp.Menu>
       </Drp.Menu>
