@@ -1,8 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-const color = "rgb(21, 32, 43)";
-const secondColor = "#24292e";
-
 const GlobalStyle = createGlobalStyle`
   html {
     width: 100%;
