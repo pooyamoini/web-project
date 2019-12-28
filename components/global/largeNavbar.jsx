@@ -90,9 +90,24 @@ const DropDown = () => {
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { notifOpacity: "0.7" };
+    this.state = { notifOpacity: "0.7", offset: 0, visibility: "visible" };
     this.hoverNotifEnter = this.hoverNotifEnter.bind(this);
     this.hoverNotifExit = this.hoverNotifExit.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const offsetNow = window.pageYOffset;
+    const { offset } = this.state;
+    if (offsetNow > offset && offsetNow >= window.innerHeight) {
+      this.setState({ offset: offsetNow, visibility: "hidden" });
+      return;
+    }
+    this.setState({ visibility: "visible", offset: offsetNow });
   }
 
   hoverNotifEnter() {
@@ -106,6 +121,7 @@ class NavBar extends Component {
   render() {
     const { transparent } = this.props;
     const { notifOpacity } = this.state;
+    const { visibility } = this.state;
     return (
       <Segment basic>
         <Menu
@@ -113,6 +129,7 @@ class NavBar extends Component {
           transparent={transparent}
           secondary
           className="large-navbar"
+          style={{ visibility }}
         >
           <Menu.Menu position="left">
             <Image avatar src={imgSrc} />

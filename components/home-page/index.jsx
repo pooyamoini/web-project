@@ -1,20 +1,11 @@
 import React, { Component, createRef } from "react";
-import {
-  Grid,
-  Rail,
-  Sticky,
-  Ref,
-  Container,
-  Icon as Ic,
-  Card as Ca,
-  Segment,
-  Image
-} from "semantic-ui-react";
+import { Grid, Rail, Sticky, Ref, Container } from "semantic-ui-react";
 import RightContainer from "./rightContainer";
 import homePagePostsJson from "../../public/home-page-posts.json";
 import styled from "styled-components";
 import image from "../../public/Images/global/post.jpg";
 import Theme from '../../public/theme';
+import Post from "./post-desktop";
 
 const ContainerC = styled(Container)`
   width: 85%;
