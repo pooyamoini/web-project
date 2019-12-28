@@ -10,7 +10,6 @@ import {
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 import Theme from "../../public/theme";
 import theme from "../../public/theme";
-import { throws } from "assert";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
