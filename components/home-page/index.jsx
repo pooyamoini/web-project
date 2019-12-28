@@ -138,7 +138,7 @@ class HomePageDesktop extends Component {
   }
 
   handleStick() {
-    this.setState({ marginTop: "5rem" });
+    this.setState({ marginTop: "12rem" });
   }
 
   handleUnStick() {
@@ -172,7 +172,7 @@ class HomePageDesktop extends Component {
             ></HomePagePosts>
           </Container>
         </Grid.Column>
-        <Grid.Column width={4} style={{ marginLeft: "10.5rem" }}>
+        <Grid.Column width={4} style={{ marginLeft: "5rem" }}>
           <Ref innerRef={this.contextRef}>
             <Rail style={{ position: "absolute" }}>
               <Sticky
