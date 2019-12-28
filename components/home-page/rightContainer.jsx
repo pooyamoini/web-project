@@ -31,15 +31,17 @@ const Suggest = ({ src, name }) => {
   return (
     <>
       <Image src={src} avatar style={{ marginLeft: "0.1rem" }} />
-      <p
+      <a
         style={{
           display: "inline",
           marginLeft: "1rem",
           opacity: "0.75",
+          color: "white"
         }}
+        href="."
       >
         {name}
-      </p>
+      </a>
       <br />
       <br />
     </>

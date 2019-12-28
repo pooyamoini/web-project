@@ -1,12 +1,23 @@
-import styled from "styled-components";
 import React, { Component } from "react";
-import { Grid as Gr, GridColumn, Card, Image, Icon } from "semantic-ui-react";
+import styled from "styled-components";
+import {
+  Grid as Gr,
+  GridColumn,
+  Card,
+  Image,
+  Icon as Ic
+} from "semantic-ui-react";
 import Theme from "../../public/theme";
 const Grid = styled(Gr)`
   width: 80%;
   margin: 30px auto !important;
   margin-top: 6rem !important;
 `;
+
+const Icon = styled(Ic)`
+  visibility: hidden;
+`;
+
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +29,7 @@ export default class Header extends Component {
       <Card
         style={{
           "background-color": Theme.post.backgroundColor,
-          'box-shadow': 'none;'
+          "box-shadow": "none;"
         }}
       >
         <Image
