@@ -8,8 +8,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
-import Theme from "../../public/theme";
-import theme from "../../public/theme";
+import Theme from "../../public/Theme";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
@@ -50,27 +49,27 @@ const DropDown = () => {
         top: "40%",
         left: "18rem",
         textAlign: "center",
-        color: theme.navbar.textColor
+        color: Theme.navbar.textColor
       }}
     >
       <Drp.Menu
         style={{
-          "background-color": theme.navbar.menuColor,
-          color: theme.navbar.textColor
+          "background-color": Theme.navbar.menuColor,
+          color: Theme.navbar.textColor
         }}
       >
         <Drp.Header
           content="categories"
           style={{
-            "background-color": theme.navbar.menuColor,
-            color: theme.navbar.textColor
+            "background-color": Theme.navbar.menuColor,
+            color: Theme.navbar.textColor
           }}
         />
         <Drp.Menu
           scrolling
           style={{
-            "background-color": theme.navbar.menuColor,
-            color: theme.navbar.textColor
+            "background-color": Theme.navbar.menuColor,
+            color: Theme.navbar.textColor
           }}
         >
           {TagOptions.map(option => (
@@ -78,7 +77,7 @@ const DropDown = () => {
               key={option.value}
               {...option}
               style={{
-                color: theme.navbar.textColor
+                color: Theme.navbar.textColor
               }}
             />
           ))}

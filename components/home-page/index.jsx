@@ -35,6 +35,7 @@ const Card = styled(Ca)`
   border-radius: 0 !important;
   background-color: ${Theme.post.backgroundColor} !important;
   border-color: ${Theme.post.backgroundColor} !important;
+  box-shadow: none !important;
 `;
 
 function getImage(source) {
