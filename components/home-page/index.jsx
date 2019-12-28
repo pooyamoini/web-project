@@ -3,12 +3,106 @@ import { Grid, Rail, Sticky, Ref, Container } from "semantic-ui-react";
 import RightContainer from "./rightContainer";
 import homePagePostsJson from "../../public/home-page-posts.json";
 import styled from "styled-components";
+import image from "../../public/Images/global/post.jpg";
+import Theme from '../../public/theme';
 import Post from "./post-desktop";
 
 const ContainerC = styled(Container)`
   width: 85%;
   margin: 10px auto;
 `;
+
+const Icon = styled(Ic)`
+  margin: 5px;
+`;
+
+const Column = styled(Grid.Column)`
+  margin-left: 20px;
+`;
+
+const Card = styled(Ca)`
+  padding: 10px !important;
+  margin-top: -35px !important;
+  border-radius: 0 !important;
+  background-color: ${Theme.post.backgroundColor} !important;
+  border-color: ${Theme.post.backgroundColor} !important;
+  box-shadow: none !important;
+`;
+
+function getImage(source) {
+  if (source == "") return;
+  return (
+    <Image
+      src={image}
+      style={{
+        "border-radius": "0 !important;"
+      }}
+      size={"medium"}
+      wrapped
+      ui={false}
+    />
+  );
+}
+
+class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { contextRef } = this.props;
+    const src = this.props.src;
+    return (
+      <Grid columns={2}>
+        <Column width={1}>
+          <Ref innerRef={contextRef}>
+            <Rail>
+              <Segment basic>
+                <Sticky context={contextRef} offset={35}>
+                  <Image
+                    size="tiny"
+                    src={src}
+                    style={{
+                      left: "-8rem",
+                      zIndex: "999999",
+                      marginTop: "2.5rem"
+                    }}
+                  ></Image>
+                </Sticky>
+              </Segment>
+            </Rail>
+          </Ref>
+        </Column>
+        <Column width={16} style={{ padding: "0 !important" }}>
+          <Card fluid>
+            {getImage(this.props.image)}
+            <Card.Content>
+              <Card.Header style ={{
+                color : Theme.post.headarColor,
+              }}>{this.props.title}</Card.Header>
+              <Card.Meta style ={{
+                color: Theme.post.dateColor
+              }}>{this.props.date}</Card.Meta>
+              <Card.Description style={{
+                color: Theme.post.textColor
+              }}>{this.props.content}</Card.Description>
+            </Card.Content>
+            <Card.Content extra style={{
+              color : Theme.post.dateColor,
+            }}>
+              <p>
+                <Icon name="thumbs up" />
+                {this.props.votes} Votes
+                <Icon name="thumbs up" />
+                {this.props.comments} Comments
+              </p>
+            </Card.Content>
+          </Card>
+        </Column>
+      </Grid>
+    );
+  }
+}
 
 class HomePagePosts extends Component {
   makePostsList() {
