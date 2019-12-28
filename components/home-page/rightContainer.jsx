@@ -26,7 +26,7 @@ const Advertisement = styled(Ad)`
 const Suggest = ({ src, name }) => {
   return (
     <>
-      <Image src={src} avatar style={{ marginLeft: "0.5rem" }} />
+      <Image src={src} avatar style={{ marginLeft: "0.1rem" }} />
       <p style={{ display: "inline", marginLeft: "1rem", opacity: "0.75" }}>
         {name}
       </p>
