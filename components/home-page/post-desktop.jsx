@@ -24,6 +24,7 @@ const Card = styled(Ca)`
 
 const Icon = styled(Ic)`
   margin: 5px;
+  visibility: hidden;
 `;
 
 function getImage(source) {
@@ -34,7 +35,7 @@ function getImage(source) {
       style={{
         "border-radius": "0 !important;"
       }}
-      size={"medium"}
+      size="medium"
       wrapped
       ui={false}
     />
