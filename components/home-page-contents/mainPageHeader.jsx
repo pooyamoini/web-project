@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { Component } from "react";
 import { Grid as Gr, GridColumn, Card, Image, Icon } from "semantic-ui-react";
-import imageSample from "../../public/Images/global/post.jpg";
+import Theme from '../../public/theme';
 const Grid = styled(Gr)`
   width: 80%;
   margin: 30px auto !important;
@@ -15,18 +15,29 @@ export default class Header extends Component {
 
   getCard(type, title, date, votes, comments, image) {
     return (
-      <Card>
+      <Card style ={{
+        'background-color' : Theme.post.backgroundColor,
+        'border-color' : Theme.post.backgroundColor,
+      }}>
         <Image src={image} wrapped ui={false}
         style={{
           'height' : 'auto !important;',
           'width' : '100% !important;',
         }} />
         <Card.Content>
-          <Card.Header>{type}</Card.Header>
-          <Card.Meta>{date}</Card.Meta>
-          <Card.Description>{title}</Card.Description>
+          <Card.Header style ={{
+            color : Theme.post.headarColor,
+          }}>{type}</Card.Header>
+          <Card.Meta style ={{
+            color : Theme.post.dateColor,
+          }}>{date}</Card.Meta>
+          <Card.Description style ={{
+            color : Theme.post.textColor,
+          }}>{title}</Card.Description>
         </Card.Content>
-        <Card.Content extra>
+        <Card.Content extra style={{
+          color : Theme.post.dateColor,
+        }}>
           <p>
             <Icon name="thumbs up" />
             {votes} Votes
