@@ -10,6 +10,7 @@ import {
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 import Theme from "../../public/theme";
 import theme from "../../public/theme";
+import { throws } from "assert";
 
 const imgSrc = "/Images/global/logo1.png";
 const avatarImg = "/Images/global/avatar.jpg";
@@ -91,9 +92,24 @@ const DropDown = () => {
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { notifOpacity: "0.7" };
+    this.state = { notifOpacity: "0.7", offset: 0, visibility: "visible" };
     this.hoverNotifEnter = this.hoverNotifEnter.bind(this);
     this.hoverNotifExit = this.hoverNotifExit.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const offsetNow = window.pageYOffset;
+    const { offset } = this.state;
+    if (offsetNow > offset) {
+      this.setState({ offset: offsetNow, visibility: "hidden" });
+      return;
+    }
+    this.setState({ visibility: "visible", offset: offsetNow });
   }
 
   hoverNotifEnter() {
@@ -107,6 +123,7 @@ class NavBar extends Component {
   render() {
     const { transparent } = this.props;
     const { notifOpacity } = this.state;
+    const { visibility } = this.state;
     return (
       <Segment basic>
         <Menu
@@ -114,6 +131,7 @@ class NavBar extends Component {
           transparent={transparent}
           secondary
           className="large-navbar"
+          style={{ visibility }}
         >
           <Menu.Menu position="left">
             <Image avatar src={imgSrc} />
