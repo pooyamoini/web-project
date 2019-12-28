@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 import image from "../../public/Images/global/post.jpg";
+import Theme from '../../public/theme';
 
 const Column = styled(Grid.Column)`
   margin-left: 20px;
@@ -20,6 +21,8 @@ const Card = styled(Ca)`
   padding: 10px !important;
   margin-top: -35px !important;
   border-radius: 0 !important;
+  background-color: ${Theme.post.backgroundColor} !important;
+  box-shadow: none !important;
 `;
 
 const Icon = styled(Ic)`
@@ -70,11 +73,19 @@ const Post = props => {
         <Card fluid>
           {getImage(props.image)}
           <Card.Content>
-            <Card.Header>{props.title}</Card.Header>
-            <Card.Meta>{props.date}</Card.Meta>
-            <Card.Description>{props.content}</Card.Description>
+            <Card.Header style={{
+              color: Theme.post.headarColor
+            }}>{props.title}</Card.Header>
+            <Card.Meta style={{
+              color: Theme.post.dateColor
+            }}>{props.date}</Card.Meta>
+            <Card.Description style={{
+              color: Theme.post.textColor
+            }}>{props.content}</Card.Description>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra style={{
+            color: Theme.post.dateColor
+          }}>
             <p>
               <Icon name="thumbs up" />
               {props.votes} Votes
