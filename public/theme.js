@@ -2,7 +2,7 @@ const theme = {
     backgroundColor: 'rgb(39, 50, 73);',
     navbar: {
         backgroundColor: 'rgb(31, 39, 56)',
-        textColor: 'rgb(184, 184, 184)',
+        textColor: 'rgb(184, 184, 184) !important',
         menuColor: 'rgb(24, 26, 27)',
     },
     post: {
