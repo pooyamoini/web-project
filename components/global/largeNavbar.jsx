@@ -104,7 +104,7 @@ class NavBar extends Component {
   handleScroll() {
     const offsetNow = window.pageYOffset;
     const { offset } = this.state;
-    if (offsetNow > offset) {
+    if (offsetNow > offset && offsetNow >= window.innerHeight) {
       this.setState({ offset: offsetNow, visibility: "hidden" });
       return;
     }
