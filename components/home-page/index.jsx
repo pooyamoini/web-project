@@ -14,6 +14,7 @@ import RightContainer from "./rightContainer";
 import homePagePostsJson from "../../public/home-page-posts.json";
 import styled from "styled-components";
 import image from "../../public/Images/global/post.jpg";
+import Theme from '../../public/theme';
 
 const ContainerC = styled(Container)`
   width: 85%;
@@ -32,6 +33,8 @@ const Card = styled(Ca)`
   padding: 10px !important;
   margin-top: -35px !important;
   border-radius: 0 !important;
+  background-color: ${Theme.post.backgroundColor} !important;
+  border-color: ${Theme.post.backgroundColor} !important;
 `;
 
 function getImage(source) {
@@ -82,11 +85,19 @@ class Post extends Component {
           <Card fluid>
             {getImage(this.props.image)}
             <Card.Content>
-              <Card.Header>{this.props.title}</Card.Header>
-              <Card.Meta>{this.props.date}</Card.Meta>
-              <Card.Description>{this.props.content}</Card.Description>
+              <Card.Header style ={{
+                color : Theme.post.headarColor,
+              }}>{this.props.title}</Card.Header>
+              <Card.Meta style ={{
+                color: Theme.post.dateColor
+              }}>{this.props.date}</Card.Meta>
+              <Card.Description style={{
+                color: Theme.post.textColor
+              }}>{this.props.content}</Card.Description>
             </Card.Content>
-            <Card.Content extra>
+            <Card.Content extra style={{
+              color : Theme.post.dateColor,
+            }}>
               <p>
                 <Icon name="thumbs up" />
                 {this.props.votes} Votes

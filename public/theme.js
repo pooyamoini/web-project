@@ -11,6 +11,11 @@ const theme = {
         dateColor: 'rgb(99, 99, 99)',
         textColor: 'rgb(184, 184, 184)',
     },
+    sidebar: {
+        backgroundColor:  'rgb(24, 26, 27)',
+        headarColor: 'rgb(210, 210, 210)',
+        textColor: 'rgb(184, 184, 184)',
+    }
 
 }
 
