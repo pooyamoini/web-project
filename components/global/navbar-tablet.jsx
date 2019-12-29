@@ -20,7 +20,8 @@ const Menu = styled(M)`
     props.transparent ? '0' : '1px solid '} !important;
   background: #fff !important;
   z-index: 10000000000000 !important;
-  width: 100%;
+  width: 102%;
+  left: 0;
   top: 0 !important;
   background-color: ${Theme.navbar.backgroundColor} !important;
 `

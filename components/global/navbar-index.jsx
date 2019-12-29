@@ -1,7 +1,7 @@
 import React from 'react'
 import { Responsive, Segment } from 'semantic-ui-react'
 import Tablet from './navbar-tablet'
-import Computer from './largeNavbar'
+import Computer from './navbar-computer'
 import NoSSR from 'react-no-ssr'
 
 const Navbar = () => (
