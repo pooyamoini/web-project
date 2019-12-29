@@ -8,6 +8,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 import Theme from '../../public/Theme'
+import TagOptions from '../../public/json-files/nav-bar/navbar-tags.json'
 
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
@@ -36,6 +37,55 @@ const Input = styled(In)`
   background-color: ${Theme.navbar.menuColor} !important;
   color: ${Theme.navbar.textColor} !important;
 `
+
+const DropDown = () => {
+  return (
+    <Drp
+      text='Filter Posts'
+      labeled
+      button
+      style={{
+        position: 'absolute',
+        top: '40%',
+        left: '6rem',
+        textAlign: 'center',
+        color: Theme.navbar.textColor
+      }}
+    >
+      <Drp.Menu
+        style={{
+          'background-color': Theme.navbar.menuColor,
+          color: Theme.navbar.textColor
+        }}
+      >
+        <Drp.Header
+          content='categories'
+          style={{
+            'background-color': Theme.navbar.menuColor,
+            color: Theme.navbar.textColor
+          }}
+        />
+        <Drp.Menu
+          scrolling
+          style={{
+            'background-color': Theme.navbar.menuColor,
+            color: Theme.navbar.textColor
+          }}
+        >
+          {TagOptions.map(option => (
+            <Drp.Item
+              key={option.value}
+              {...option}
+              style={{
+                color: Theme.navbar.textColor
+              }}
+            />
+          ))}
+        </Drp.Menu>
+      </Drp.Menu>
+    </Drp>
+  )
+}
 
 class NavBar extends Component {
   constructor (props) {
@@ -83,6 +133,7 @@ class NavBar extends Component {
         >
           <Menu.Menu position='left'>
             <Image avatar src={imgSrc} />
+            <DropDown />
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item>

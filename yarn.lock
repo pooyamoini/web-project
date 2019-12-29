@@ -881,6 +881,187 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bit/semantic-org.semantic-ui-react.icon@^0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.icon/-/semantic-org.semantic-ui-react.icon-0.86.0.tgz#cc9136f29d70da62f3a04644c168a458280569f6"
+  integrity sha1-zJE28p1w2mLzoEZEwWikWCgFafY=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.internal.genericd" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.internal.utils.index" "0.86.0"
+    classnames "^2.2.6"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+
+"@bit/semantic-org.semantic-ui-react.internal.genericd@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.internal.genericd/-/semantic-org.semantic-ui-react.internal.genericd-0.86.0.tgz#2c2a9929abe4994b9ac7d4e9e172e02b2e536cf2"
+  integrity sha1-LCqZKavkmUuax9Tp4XLgKy5TbPI=
+
+"@bit/semantic-org.semantic-ui-react.internal.utils.index@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.internal.utils.index/-/semantic-org.semantic-ui-react.internal.utils.index-0.86.0.tgz#68034b672659e393185cb1c4a7f6a51457deaa3c"
+  integrity sha1-aANLZyZZ45MYXLHEp/alFFfeqjw=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.utils.auto-controlled-component" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.child-mapping" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.children-utils" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.class-name-builders" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.create-pagination-items" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.custom-prop-types" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.does-node-contain-click" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.event-stack" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.factories" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.get-element-type" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.get-unhandled-props" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.html-props-utils" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.is-browser" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.leven" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.make-debugger" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.normalize-offset" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.normalize-transition-duration" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.number-to-word" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.object-diff" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.ref-utils" "0.86.0"
+    "@bit/semantic-org.semantic-ui-react.utils.sui" "0.86.0"
+
+"@bit/semantic-org.semantic-ui-react.utils.auto-controlled-component@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.auto-controlled-component/-/semantic-org.semantic-ui-react.utils.auto-controlled-component-0.86.0.tgz#9ca63d87b756b88bd6c9e7b8a7e93f04b02d78ba"
+  integrity sha1-nKY9h7dWuIvWyee4p+k/BLAteLo=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.child-mapping@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.child-mapping/-/semantic-org.semantic-ui-react.utils.child-mapping-0.86.0.tgz#9dc64f90531911d8f9135832c6bb4b2970130838"
+  integrity sha1-ncZPkFMZEdj5E1gyxrtLKXATCDg=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.children-utils@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.children-utils/-/semantic-org.semantic-ui-react.utils.children-utils-0.86.0.tgz#b8f250c5ea13fdf3086d9e6c3ffe11ea20f13fd1"
+  integrity sha1-uPJQxeoT/fMIbZ5sP/4R6iDxP9E=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.class-name-builders@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.class-name-builders/-/semantic-org.semantic-ui-react.utils.class-name-builders-0.86.0.tgz#a9ead89a0a98fa634137001084413b738ee0c9c6"
+  integrity sha1-qerYmgqY+mNBNwAQhEE7c47gycY=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.utils.number-to-word" "0.86.0"
+
+"@bit/semantic-org.semantic-ui-react.utils.create-pagination-items@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.create-pagination-items/-/semantic-org.semantic-ui-react.utils.create-pagination-items-0.86.0.tgz#007742536701af43913368a97ec4bb20b84cde74"
+  integrity sha1-AHdCU2cBr0ORM2ipfsS7ILhM3nQ=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.custom-prop-types@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.custom-prop-types/-/semantic-org.semantic-ui-react.utils.custom-prop-types-0.86.0.tgz#0896117078df3906bfd4aacba25ad88918bfbc4a"
+  integrity sha1-CJYRcHjfOQa/1KrLolrYiRi/vEo=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.utils.leven" "0.86.0"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+
+"@bit/semantic-org.semantic-ui-react.utils.does-node-contain-click@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.does-node-contain-click/-/semantic-org.semantic-ui-react.utils.does-node-contain-click-0.86.0.tgz#e0721d44de56937e912c3168951c259a92de3e73"
+  integrity sha1-4HIdRN5Wk36RLDFolRwlmpLePnM=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.event-stack@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.event-stack/-/semantic-org.semantic-ui-react.utils.event-stack-0.86.0.tgz#b0ef1be44387f230b30101e00e4a59eb0aff6d7b"
+  integrity sha1-sO8b5EOH8jCzAQHgDkpZ6wr/bXs=
+  dependencies:
+    "@semantic-ui-react/event-stack" "^3.1.0"
+
+"@bit/semantic-org.semantic-ui-react.utils.factories@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.factories/-/semantic-org.semantic-ui-react.utils.factories-0.86.0.tgz#660952ad295048e78fefd88cad198174fbbbc2e1"
+  integrity sha1-ZglSrSlQSOeP79iMrRmBdPu7wuE=
+  dependencies:
+    classnames "^2.2.6"
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.get-element-type@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.get-element-type/-/semantic-org.semantic-ui-react.utils.get-element-type-0.86.0.tgz#1a5e552038db5627938a28919154742214e3fb05"
+  integrity sha1-Gl5VIDjbVieTiiiRkVR0IhTj+wU=
+
+"@bit/semantic-org.semantic-ui-react.utils.get-unhandled-props@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.get-unhandled-props/-/semantic-org.semantic-ui-react.utils.get-unhandled-props-0.86.0.tgz#8221bebf1f5d94bf7d842c3a1874c8ab8ad58a08"
+  integrity sha1-giG+vx9dlL99hCw6GHTIq4rVigg=
+
+"@bit/semantic-org.semantic-ui-react.utils.html-props-utils@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.html-props-utils/-/semantic-org.semantic-ui-react.utils.html-props-utils-0.86.0.tgz#49ebfaf0a742df3c7a8e6e8e73bfe716ff7391ba"
+  integrity sha1-Sev68KdC3zx6jm6Oc7/nFv9zkbo=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.is-browser@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.is-browser/-/semantic-org.semantic-ui-react.utils.is-browser-0.86.0.tgz#5c673ae4396c0929c46b15d049e46ea794e5428c"
+  integrity sha1-XGc65DlsCSnEaxXQSeRup5TlQow=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.leven@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.leven/-/semantic-org.semantic-ui-react.utils.leven-0.86.0.tgz#8b741ad11ed0e619ba44c7e2beddb76a89703f1b"
+  integrity sha1-i3Qa0R7Q5hm6RMfivt23aolwPxs=
+
+"@bit/semantic-org.semantic-ui-react.utils.make-debugger@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.make-debugger/-/semantic-org.semantic-ui-react.utils.make-debugger-0.86.0.tgz#c6f6ee50a7c137bd677f9e1a782efeb5ded358ea"
+  integrity sha1-xvbuUKfBN71nf54aeC7+td7TWOo=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.utils.is-browser" "0.86.0"
+    debug "^4.1.1"
+
+"@bit/semantic-org.semantic-ui-react.utils.normalize-offset@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.normalize-offset/-/semantic-org.semantic-ui-react.utils.normalize-offset-0.86.0.tgz#8376de01de792db42523a19740fab258e5b5360f"
+  integrity sha1-g3beAd55LbQlI6GXQPqyWOW1Ng8=
+
+"@bit/semantic-org.semantic-ui-react.utils.normalize-transition-duration@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.normalize-transition-duration/-/semantic-org.semantic-ui-react.utils.normalize-transition-duration-0.86.0.tgz#56e57a3b35636f3c8cd92b08daaa8e4545ed692c"
+  integrity sha1-VuV6OzVjbzyM2SsI2qqORUXtaSw=
+
+"@bit/semantic-org.semantic-ui-react.utils.number-to-word@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.number-to-word/-/semantic-org.semantic-ui-react.utils.number-to-word-0.86.0.tgz#276ca8e4dbd57c0179b10aa7b1ab78441991fac4"
+  integrity sha1-J2yo5NvVfAF5sQqnsat4RBmR+sQ=
+
+"@bit/semantic-org.semantic-ui-react.utils.object-diff@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.object-diff/-/semantic-org.semantic-ui-react.utils.object-diff-0.86.0.tgz#b99d26a22a9ce73df2b7eef9312dcb4f2975a966"
+  integrity sha1-uZ0moiqc5z3yt+75MS3LTyl1qWY=
+  dependencies:
+    lodash "^4.17.11"
+
+"@bit/semantic-org.semantic-ui-react.utils.ref-utils@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.ref-utils/-/semantic-org.semantic-ui-react.utils.ref-utils-0.86.0.tgz#5c904598ebcd7fc92d394e2745197c93af74be79"
+  integrity sha1-XJBFmOvNf8ktOU4nRRl8k690vnk=
+
+"@bit/semantic-org.semantic-ui-react.utils.sui@0.86.0":
+  version "0.86.0"
+  resolved "https://node.bit.dev/semantic-org.semantic-ui-react.utils.sui/-/semantic-org.semantic-ui-react.utils.sui-0.86.0.tgz#0ca9b0c3eb36b37831dbec6bd666b2a566525ed7"
+  integrity sha1-DKmww+s2s3gx2+xr1maypWZSXtc=
+  dependencies:
+    "@bit/semantic-org.semantic-ui-react.utils.number-to-word" "0.86.0"
+    lodash "^4.17.11"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -1468,7 +1649,7 @@ babel-plugin-transform-react-remove-prop-types@0.4.24:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
   integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
-babel-runtime@^6.26.0:
+babel-runtime@6.x.x, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -2160,6 +2341,11 @@ create-react-context@^0.3.0:
     gud "^1.0.0"
     warning "^4.0.3"
 
+createref@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/createref/-/createref-0.5.0.tgz#53cd150a438f7bd8b81808324c11627aedf53f6a"
+  integrity sha512-ScNZ9ARFm52O6d5A8J068bKlUrm8ZKkFYWfi7lk9T4E0o1mViSYtOtkt/h1CwSQTU33b80XCB74uwUdANKQboA==
+
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -2366,7 +2552,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
-debug@^4.0.1, debug@^4.1.0:
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -4458,7 +4644,7 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-next@9.1.6:
+next@^9.1.6:
   version "9.1.6"
   resolved "https://registry.yarnpkg.com/next/-/next-9.1.6.tgz#b3ede59d9069214807d9bde7d05b42e7fabcae51"
   integrity sha512-sqvEZBEirXQhDPOsHTLka0swKjp8KB3PmNnX9iWn5nPdOFw0/CIlfa0hFl6aAQY0bP6ucKRQqtwGY4D8mKtM2g==
@@ -5755,6 +5941,13 @@ react-is@^16.6.0, react-is@^16.6.3, react-is@^16.8.1, react-is@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+
+react-no-ssr@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-no-ssr/-/react-no-ssr-1.1.0.tgz#313b48d2e26020f969ed98e472f10481604e3cc8"
+  integrity sha1-MTtI0uJgIPlp7ZjkcvEEgWBOPMg=
+  dependencies:
+    babel-runtime "6.x.x"
 
 react-popper@^1.3.4:
   version "1.3.7"
