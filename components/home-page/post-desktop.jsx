@@ -54,14 +54,13 @@ const Post = props => {
         <Ref innerRef={contextRef}>
           <Rail>
             <Segment basic>
-              <Sticky context={contextRef} offset={35}>
+              <Sticky context={contextRef} offset={65}>
                 <Image
                   size="tiny"
                   src={props.src}
                   style={{
                     left: "-8rem",
                     zIndex: "999999",
-                    marginTop: "2.5rem"
                   }}
                 ></Image>
               </Sticky>
