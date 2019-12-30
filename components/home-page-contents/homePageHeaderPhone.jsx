@@ -1,26 +1,32 @@
 import React, { Component } from "react";
-import { Container as Co, Transition, Card, Image, Icon, Button } from "semantic-ui-react";
-import styled from 'styled-components'
+import {
+  Container as Co,
+  Transition,
+  Card,
+  Image,
+  Icon,
+  Button
+} from "semantic-ui-react";
+import styled from "styled-components";
 
 const Container = styled(Co)`
-    width: 70% !important;
-    margin: 20px auto !important;
+  width: 70% !important;
+  margin: 20px auto !important;
 `;
-
 
 const cardType = ["Hot", "New", "Followed", "YourInterest"];
 
 export default class HomePageHeaderPhone extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      visibleCard: cardType[0], 
+    this.state = {
+      visibleCard: cardType[0],
       duration: 1000,
       visibility: {
-        "Hot": true,
-        "New": false,
-        "Followed": false,
-        "YourInterest": false
+        Hot: true,
+        New: false,
+        Followed: false,
+        YourInterest: false
       }
     };
     this.isVisible = this.isVisible.bind(this);
@@ -30,18 +36,51 @@ export default class HomePageHeaderPhone extends Component {
 
   getCard(type, title, date, votes, image) {
     return (
-      <Card centered>
+      <Card
+        centered
+        style={{
+          "background-color": Theme.post.backgroundColor,
+          "box-shadow": "none;"
+        }}
+      >
         <Image
           src={image}
           wrapped
           ui={false}
+          style={{
+            height: "auto !important;",
+            width: "100% !important;"
+          }}
         />
         <Card.Content>
-          <Card.Header>{type}</Card.Header>
-          <Card.Meta>{title}</Card.Meta>
-          <Card.Description>{date}</Card.Description>
+          <Card.Header
+            style={{
+              color: Theme.post.headarColor
+            }}
+          >
+            {type}
+          </Card.Header>
+          <Card.Meta
+            style={{
+              color: Theme.post.dateColor
+            }}
+          >
+            {title}
+          </Card.Meta>
+          <Card.Description
+            style={{
+              color: Theme.post.textColor
+            }}
+          >
+            {date}
+          </Card.Description>
         </Card.Content>
-        <Card.Content extra>
+        <Card.Content
+          extra
+          style={{
+            color: Theme.post.dateColor
+          }}
+        >
           <p>
             <Icon name="thumbs up" />
             {votes} Votes
@@ -51,47 +90,48 @@ export default class HomePageHeaderPhone extends Component {
     );
   }
 
-  isVisible(name){
+  isVisible(name) {
     return this.state.visibility[name];
   }
 
-  changeVisibleCard(){
+  changeVisibleCard() {
     let dic = this.state.visibility;
     let i = cardType.indexOf(this.state.visibleCard);
-    if(++i > 3){
-        i = 0;
+    if (++i > 3) {
+      i = 0;
     }
     dic[this.state.visibleCard] = false;
     this.setState({
       visibleCard: cardType[i],
       visibility: dic
-    })
-    setTimeout(this.showNextCard, this.state.duration)
+    });
+    setTimeout(this.showNextCard, this.state.duration);
   }
 
-  showNextCard(){
-      let dic = this.state.visibility;
-      dic[this.state.visibleCard] = true;
-      this.setState({
-        visibility: dic
-      })
+  showNextCard() {
+    let dic = this.state.visibility;
+    dic[this.state.visibleCard] = true;
+    this.setState({
+      visibility: dic
+    });
   }
 
-  componentDidMount(){
-      this.timer = setInterval(
-          () => this.changeVisibleCard(),
-          2000
-      );
+  componentDidMount() {
+    this.timer = setInterval(() => this.changeVisibleCard(), 2000);
   }
 
-  componentWillUnmount(){
-      clearInterval(this.timer)
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {
     return (
       <Container>
-        <Transition visible = {this.isVisible('Hot')} animation="fade up" duration={this.state.duration}>
+        <Transition
+          visible={this.isVisible("Hot")}
+          animation="fade up"
+          duration={this.state.duration}
+        >
           {this.getCard(
             "Hot",
             this.props.data.Hot.Title,
@@ -100,7 +140,11 @@ export default class HomePageHeaderPhone extends Component {
             this.props.data.Hot.Image
           )}
         </Transition>
-        <Transition visible = {this.isVisible('New')} animation="fade up" duration={this.state.duration}>
+        <Transition
+          visible={this.isVisible("New")}
+          animation="fade up"
+          duration={this.state.duration}
+        >
           {this.getCard(
             "New",
             this.props.data.New.Title,
@@ -109,7 +153,11 @@ export default class HomePageHeaderPhone extends Component {
             this.props.data.New.Image
           )}
         </Transition>
-        <Transition visible = {this.isVisible('Followed')} animation="fade up" duration={this.state.duration}>
+        <Transition
+          visible={this.isVisible("Followed")}
+          animation="fade up"
+          duration={this.state.duration}
+        >
           {this.getCard(
             "Followed",
             this.props.data.Followed.Title,
@@ -118,7 +166,11 @@ export default class HomePageHeaderPhone extends Component {
             this.props.data.Followed.Image
           )}
         </Transition>
-        <Transition visible = {this.isVisible('YourInterest')} animation="fade up" duration={this.state.duration}>
+        <Transition
+          visible={this.isVisible("YourInterest")}
+          animation="fade up"
+          duration={this.state.duration}
+        >
           {this.getCard(
             "Your Interest",
             this.props.data.YourInterest.Title,

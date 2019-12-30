@@ -49,6 +49,7 @@ const DropDown = () => {
         top: "40%",
         left: "18rem",
         textAlign: "center",
+        "background-color": Theme.navbar.menuColor,
         color: Theme.navbar.textColor
       }}
     >
