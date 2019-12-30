@@ -9,7 +9,6 @@
     "watch": "./node_modules/.bin/webpack --watch --config webpack.dev.js"
   },
   "dependencies": {
-    "@bit/semantic-org.semantic-ui-react.icon": "^0.86.0",
     "@types/node": "^12.12.21",
     "@zeit/next-css": "^1.0.1",
     "createref": "^0.5.0",
