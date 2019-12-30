@@ -22,7 +22,7 @@ class Post extends Component {
 
   render () {
     return (
-      <Grid>
+      <Grid style={{marginBottom: '5rem'}}>
         <Grid.Row textAlign='left' style={{ padding: '0' }}>
           <Segment
             basic
@@ -35,9 +35,11 @@ class Post extends Component {
         </Grid.Row>
         <Grid.Row centered>
           <Card style={{ width: '90vw', padding: '0 !important' }}>
-            <Image src='/static/Images/global/avatar1.jpg' wrapped ui={false} />
+            <Image src={this.props.image} wrapped ui={false} style={{display: this.props.image === '' ? 'hidden' : 'visible'}}/>
             <Card.Content>
-              <Card.Description>{this.props.desc}</Card.Description>
+              <Card.Description>
+                {this.props.desc.substr(0, 100)}
+              </Card.Description>
             </Card.Content>
           </Card>
         </Grid.Row>

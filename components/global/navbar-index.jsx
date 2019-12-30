@@ -19,7 +19,7 @@ const Navbar = () => (
       </Responsive>
       <Responsive
         minWidth={Responsive.onlyComputer.minWidth}
-        minWidth={Responsive.onlyComputer.minWidth}
+        maxWidth={Responsive.onlyComputer.maxWidth}
       >
         <Computer />
       </Responsive>
