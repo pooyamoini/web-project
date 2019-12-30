@@ -4,7 +4,7 @@ import {
   Transition,
   Card,
   Image,
-  Icon,
+  Icon
 } from 'semantic-ui-react'
 import styled from 'styled-components'
 
@@ -37,7 +37,7 @@ export default class HomePageHeaderPhone extends Component {
     return (
       <Card
         centered
-        style={{ width: '95vw', marginTop: '8rem' }}
+        style={{ width: '95vw', marginTop: '8rem', marginBottom: '8rem' }}
       >
         <Image src={image} wrapped ui={false} size='big' />
         <Card.Content>
