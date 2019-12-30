@@ -5,14 +5,15 @@ import GloBalStyle from "../components/global/globalStyle";
 import MainContainer from "../components/home-page/index";
 import Header from "../components/home-page-contents/mainPageHeader";
 import HeaderData from "../public/headerSample";
+import ProfileHeader from '../components/profile-page/profile-header'
+import ProfileData from "../public/json-files/profile"
 
 const Home = () => {
   return (
     <>
       <GloBalStyle />
       <Navbar />
-      <Header data={HeaderData} />
-      <MainContainer />
+      <ProfileHeader data = {ProfileData}></ProfileHeader>
     </>
   );
 };
