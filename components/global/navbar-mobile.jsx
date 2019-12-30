@@ -39,7 +39,7 @@ export default class MenuExampleVerticalText extends Component {
     const { open, display, openI, displayI } = this.state
     return (
       <>
-        <Menu text widths={5} style={{position: 'fixed'}}>
+        <Menu text widths={5}>
           <Menu.Item>
             <Image src='/static/Images/global/logo1.png' avatar />
           </Menu.Item>
