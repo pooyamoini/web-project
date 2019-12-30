@@ -4,6 +4,7 @@ import RightContainer from "./rightContainer";
 import homePagePostsJson from "../../public/home-page-posts.json";
 import styled from "styled-components";
 import Post from "./post-desktop";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const ContainerC = styled(Container)`
   width: 85%;
