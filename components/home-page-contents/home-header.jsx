@@ -1,30 +1,23 @@
 import React from 'react'
 import { Responsive, Segment } from 'semantic-ui-react'
-import Tablet from './navbar-tablet'
-import Computer from './navbar-computer'
-import Mobile from './navbar-mobile'
+import Computer from './mainPageHeader'
+import Mobile from './homePageHeaderPhone'
 import NoSSR from 'react-no-ssr'
 
-const Navbar = () => (
+const HomePageHeaders = props => (
   <Segment.Group basic>
     <NoSSR>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Mobile />
+        <Mobile data={props.data} />
       </Responsive>
       <Responsive
         minWidth={Responsive.onlyTablet.minWidth}
-        maxWidth={Responsive.onlyTablet.maxWidth}
-      >
-        <Tablet />
-      </Responsive>
-      <Responsive
-        minWidth={Responsive.onlyComputer.minWidth}
         maxWidth={Responsive.onlyComputer.maxWidth}
       >
-        <Computer />
+        <Computer data={props.data} />
       </Responsive>
     </NoSSR>
   </Segment.Group>
 )
 
-export default Navbar
+export default HomePageHeaders
