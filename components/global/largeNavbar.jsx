@@ -22,6 +22,7 @@ const Menu = styled(M)`
   z-index: 10000000000000 !important;
   width: 100%;
   top: 0 !important;
+  border-color: ${Theme.navbar.borderColor} !important;
   background-color: ${Theme.navbar.backgroundColor} !important;
 `;
 
@@ -69,17 +70,13 @@ const DropDown = () => {
         <Drp.Menu
           scrolling
           style={{
-            "background-color": Theme.navbar.menuColor,
-            color: Theme.navbar.textColor
+            "background-color": "white",
           }}
         >
           {TagOptions.map(option => (
             <Drp.Item
               key={option.value}
               {...option}
-              style={{
-                color: Theme.navbar.textColor
-              }}
             />
           ))}
         </Drp.Menu>
