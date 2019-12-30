@@ -11,7 +11,7 @@ const Name = styled.span`
 const Meta = styled.span`
   float: right;
   margin-left: auto;
-  margin-right: 3rem;
+  margin-right: 7rem;
   color: white;
 `
 
@@ -26,7 +26,7 @@ class Post extends Component {
         <Grid.Row textAlign='left' style={{ padding: '0' }}>
           <Segment
             basic
-            style={{ padding: '0', marginLeft: '2rem', width: '100%' }}
+            style={{ padding: '0', marginLeft: '6.5rem', width: '100%' }}
           >
             <Image src={this.props.src} avatar />
             <Name>{this.props.name}</Name>
@@ -34,17 +34,11 @@ class Post extends Component {
           </Segment>
         </Grid.Row>
         <Grid.Row centered>
-          <Card style={{ width: '90vw', padding: '0 !important' }}>
-            <Image
-              src={this.props.image}
-              wrapped
-              ui={false}
-              style={{
-                display: this.props.image === '' ? 'hidden' : 'visible'
-              }}
-            />
+          <Card style={{ width: '80vw', padding: '0 !important' }}>
+            <Image src={this.props.image} wrapped ui={false} />
             <Card.Content>
-              <Card.Description>
+              <Card.Description style={{fontSize: '20px'}}>
+                {' '}
                 {this.props.desc.substr(0, 100)}
               </Card.Description>
             </Card.Content>

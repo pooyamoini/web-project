@@ -4,6 +4,7 @@ import NoSSR from 'react-no-ssr'
 import homePagePostsJson from '../../public/home-page-posts.json'
 import Mobile from './mobile'
 import Computer from './desktop'
+import Tablet from './tablet'
 
 const HomePageContents = () => {
   return (
@@ -11,6 +12,12 @@ const HomePageContents = () => {
       <NoSSR>
         <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
           <Mobile posts={homePagePostsJson} />
+        </Responsive>
+        <Responsive
+          minWidth={Responsive.onlyTablet.minWidth}
+          maxWidth={Responsive.onlyTablet.maxWidth}
+        >
+          <Tablet posts={homePagePostsJson} />
         </Responsive>
         <Responsive
           minWidth={Responsive.onlyComputer.minWidth}
