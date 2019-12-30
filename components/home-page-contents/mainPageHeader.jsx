@@ -29,7 +29,7 @@ export default class Header extends Component {
       <Card
         style={{
           'background-color': Theme.post.backgroundColor,
-          'box-shadow': 'none;'
+          'box-shadow': 'none'
         }}
       >
         <Image
