@@ -6,8 +6,9 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { Grid as Gr, Segment as Seg, Card, Image } from "semantic-ui-react";
 
 const Grid = styled(Gr)`
-  width: 100%;
-  margin: 5rem auto !important;
+  width: 80%;
+  margin: 5rem auto 0 !important;
+  border-bottom: 2.5px solid rgb(102, 102, 102);
 `;
 
 const Segment = styled(Seg)`
