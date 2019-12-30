@@ -37,7 +37,7 @@ export default class ProfileHeader extends Component {
           <SegmentGroup>
             <SegmentGroup horizontal>
               <Segment>{this.props.data.userName}</Segment>
-              <Segment>
+              <Segment textAlign='center'>
                 <SettingsIcon centered fontSize="large"></SettingsIcon>
               </Segment>
             </SegmentGroup>
