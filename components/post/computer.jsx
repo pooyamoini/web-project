@@ -30,12 +30,19 @@ const Card = styled(Crd)`
 const ImageAvatar = styled(Image)`
   border-radius: 50% !important;
   display: inline !important;
-  margin-right: 1.5rem;
-  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
 `
 
-const Text = styled.span`
-  font-size: 1.25rem;
+const Text = styled.a`
+  font-size: 1rem;
+  display: inline;
+`
+
+const Info = styled.p`
+  float: right;
+  margin-top: 0.6 rem;
+  opacity: 0.6;
 `
 
 const Menu = styled(Men)`
@@ -49,8 +56,15 @@ const Icon = styled(Menu.Item)`
   }
 `
 
+const Data = styled.p`
+  font-size: 1rem;
+  color: white;
+  margin-right: 1rem !important;
+  margin-top: 0.5rem !important;
+`
+
 const handleStyle = {
-  marginRight: '1rem',
+  marginRight: '.5rem',
   color: 'white'
 }
 
@@ -80,6 +94,7 @@ class Post extends Component {
                   size='mini'
                 />
                 <Text>Kian Bakhtari</Text>
+                <Info>3 hours ago</Info>
               </Segment>
               <Card.Description style={{ color: Theme.post.textColor }}>
                 {Content}
@@ -94,15 +109,20 @@ class Post extends Component {
               floated='right'
               style={{ backgroundColor: Theme.post.backgroundColor }}
             >
-              <Icon>
-                <CommentIcon
-                  fontSize='large'
-                  style={handleStyle}
-                  onClick={this.handleCommentClick}
-                />
-                <ThumbUpAltIcon fontSize='large' style={handleStyle} />
-                <ShareIcon fontSize='large' style={handleStyle} />
-              </Icon>
+              <Menu.Menu>
+                {' '}
+                <Icon>
+                  <CommentIcon
+                    fontSize='large'
+                    style={handleStyle}
+                    onClick={this.handleCommentClick}
+                  />
+                  <Data>12 comments</Data>
+                  <ThumbUpAltIcon fontSize='large' style={handleStyle} />
+                  <Data>123 Likes</Data>
+                  <ShareIcon fontSize='large' style={handleStyle} />
+                </Icon>
+              </Menu.Menu>
             </Menu>
             <Comments display={display} />
           </Card>
