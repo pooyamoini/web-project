@@ -9,6 +9,7 @@ import {
   Input,
   Form as Fo,
   TextArea,
+  Grid,
 } from "semantic-ui-react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
@@ -39,7 +40,10 @@ class NewPost extends Component {
       };
   }
 
-  handleClose = () => this.setState({ modalOpen: false });
+  handleClose = () => {
+    this.setState({title: '', image: '', content: ''})
+    this.setState({ modalOpen: false })
+  };
 
   handleOpen = () => this.setState({ modalOpen: true });
 
@@ -53,6 +57,10 @@ class NewPost extends Component {
         return;
     this.setState({ submittedTitle: title, submittedImage: image, submittedConent: content })
     this.handleClose();
+  }
+
+  makePostsFirstColumn(postsList){
+    
   }
 
   render() {
@@ -123,13 +131,14 @@ export default class ProfilePosts extends Component {
 
   render() {
     const { activeSection } = this.state;
+    const postsList = activeSection == 'your posts' ? this.props.yourPosts : this.props.followedPosts
 
     return (
       <Container
         textAlign="center"
         style={{
           width: "70%;",
-          margin: "1rem auto !important;"
+          margin: "1rem auto !important;",
         }}
       >
         <NewPost
@@ -158,6 +167,9 @@ export default class ProfilePosts extends Component {
             onClick={this.handleItemClick}
           />
         </Menu>
+        <Grid columns = {3}>
+
+        </Grid>
       </Container>
     );
   }
