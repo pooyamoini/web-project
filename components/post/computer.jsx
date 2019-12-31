@@ -10,7 +10,7 @@ import Content from '../../public/post-content'
 import Comments from './comments/computer'
 import styled from 'styled-components'
 import Theme from '../../public/theme'
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
+import LikesIcon from '@material-ui/icons/ThumbUpAlt'
 import CommentIcon from '@material-ui/icons/ChatBubble'
 import ShareIcon from '@material-ui/icons/Share'
 
@@ -63,16 +63,19 @@ const Data = styled.p`
   margin-top: 0.5rem !important;
 `
 
-const handleStyle = {
-  marginRight: '.5rem',
-  color: 'white'
-}
+const handleStyle = color => ({
+  marginRight: '.75rem !important',
+  color: color === undefined ? 'white' : color
+})
 
 class Post extends Component {
   constructor (props) {
     super(props)
-    this.state = { display: 'none' }
+    const { likes } = this.props
+    this.state = { display: 'none', likes, color: 'white' }
     this.handleCommentClick = this.handleCommentClick.bind(this)
+    this.handleLike = this.handleLike.bind(this)
+    this.handleDisLike = this.handleDisLike.bind(this)
   }
 
   handleCommentClick () {
@@ -81,8 +84,22 @@ class Post extends Component {
     this.setState({ display: next })
   }
 
+  handleLike () {
+    const { likes, color } = this.state
+    if (color === '#4267b2') {
+      this.handleDisLike()
+      return
+    }
+    this.setState({ likes: likes + 1, color: '#4267b2' })
+  }
+
+  handleDisLike () {
+    const { likes } = this.state
+    this.setState({ likes: likes - 1, color: '#fff' })
+  }
+
   render () {
-    const { display } = this.state
+    const { display, color, likes } = this.state
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
         <Grid.Column centered width={7}>
@@ -114,13 +131,17 @@ class Post extends Component {
                 <Icon>
                   <CommentIcon
                     fontSize='large'
-                    style={handleStyle}
+                    style={handleStyle()}
                     onClick={this.handleCommentClick}
                   />
                   <Data>12 comments</Data>
-                  <ThumbUpAltIcon fontSize='large' style={handleStyle} />
-                  <Data>123 Likes</Data>
-                  <ShareIcon fontSize='large' style={handleStyle} />
+                  <LikesIcon
+                    fontSize='large'
+                    style={handleStyle(color)}
+                    onClick={this.handleLike}
+                  />
+                  <Data>{likes} Likes</Data>
+                  <ShareIcon fontSize='large' style={handleStyle()} />
                 </Icon>
               </Menu.Menu>
             </Menu>
