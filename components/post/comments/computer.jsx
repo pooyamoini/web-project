@@ -45,6 +45,24 @@ class CommentsPage extends Component {
   constructor (props) {
     super(props)
     this.state = { comments: Samples }
+    this.addComment = this.addComment.bind(this)
+  }
+
+  addComment () {
+    const name = 'Luis Suarez'
+    const src = '/static/Images/global/me.jpg'
+    const content = document.getElementById('comtextfield').value
+    document.getElementById('comtextfield').value = '';
+    let time = new Date
+    const { comments } = this.state
+    time = time.getHours().toString().concat(' hours ago');
+    comments.push({
+      name,
+      src,
+      content,
+      time
+    })
+    this.setState({ comments })
   }
 
   render () {
@@ -56,8 +74,12 @@ class CommentsPage extends Component {
           Comments
         </Header>
         <GenerateComments data={comments} />
-        <Form reply>
-          <Form.TextArea style={{ opacity: '0.65' }} />
+        <Form reply onSubmit={this.addComment}>
+          <Form.TextArea
+            style={{ opacity: '0.65' }}
+            name='textfield'
+            id='comtextfield'
+          />
           <Button secondary positive style={{ marginBottom: '1rem' }}>
             Add Reply
           </Button>
