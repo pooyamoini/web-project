@@ -9,10 +9,11 @@ import {
   Input,
   Form as Fo,
   TextArea,
-  Grid,
+  Grid
 } from "semantic-ui-react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
+import Post from "../home-page/post-tablet";
 
 const Menu = styled(Me)`
   color: white !important;
@@ -20,6 +21,11 @@ const Menu = styled(Me)`
   border-right: none !important;
   border-left: none !important;
   border-color: rgb(102, 102, 102) !important;
+`;
+
+const GridColumn = styled(Grid.Column)`
+  width: 30% !important; 
+  margin: 1rem !important;
 `;
 
 const Form = styled(Fo)``;
@@ -30,38 +36,37 @@ class NewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       modalOpen: false,
-       title: '',
-       image: '',
-       content: '',
-       submittedTitle: '',
-       submittedImage: '',
-       submittedContent: '',
-      };
+      modalOpen: false,
+      title: "",
+      image: "",
+      content: "",
+      submittedTitle: "",
+      submittedImage: "",
+      submittedContent: ""
+    };
   }
 
   handleClose = () => {
-    this.setState({title: '', image: '', content: ''})
-    this.setState({ modalOpen: false })
+    this.setState({ title: "", image: "", content: "" });
+    this.setState({ modalOpen: false });
   };
 
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleChange = (e, { name, value }) => {
-    this.setState({ [name]: value })
-  }
+    this.setState({ [name]: value });
+  };
 
   handleSubmit = () => {
-    const { title, image, content } = this.state
-      if(title == '' || content == '')
-        return;
-    this.setState({ submittedTitle: title, submittedImage: image, submittedConent: content })
+    const { title, image, content } = this.state;
+    if (title == "" || content == "") return;
+    this.setState({
+      submittedTitle: title,
+      submittedImage: image,
+      submittedConent: content
+    });
     this.handleClose();
-  }
-
-  makePostsFirstColumn(postsList){
-    
-  }
+  };
 
   render() {
     return (
@@ -89,22 +94,33 @@ class NewPost extends Component {
       >
         <Header content="Create New Post" />
         <Modal.Content>
-          <Form inverted size='large'>
-            <Form.Field control={Input} label="Title" name = 'title' placeholder="Title" required
-              onChange = {this.handleChange}
-              error = {this.state.title == '' ? 'Title Can\'t Be Empty' : false}
+          <Form inverted size="large">
+            <Form.Field
+              control={Input}
+              label="Title"
+              name="title"
+              placeholder="Title"
+              required
+              onChange={this.handleChange}
+              error={this.state.title == "" ? "Title Can't Be Empty" : false}
             />
-            <Form.Field control={Input} label="Image" name= ' image' placeholder="Url" 
-              onChange = {this.handleChange}
+            <Form.Field
+              control={Input}
+              label="Image"
+              name=" image"
+              placeholder="Url"
+              onChange={this.handleChange}
             />
             <Form.Field
               control={TextArea}
               label="Content"
-              name = 'content'
+              name="content"
               placeholder="..."
               required
-              onChange = {this.handleChange}
-              error = {this.state.content == '' ? 'Content Can\'t Be Empty' : false}
+              onChange={this.handleChange}
+              error={
+                this.state.content == "" ? "Content Can't Be Empty" : false
+              }
             />
           </Form>
         </Modal.Content>
@@ -129,16 +145,36 @@ export default class ProfilePosts extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeSection: name });
 
+  makePosts(postsList, row) {
+
+    const list = [];
+    postsList.forEach(function(post, index) {
+      if (index % 3 != row) return;
+      list.push(
+        <Post
+          name={post.title}
+          src={post.src}
+          key={post.title}
+          desc={post.content}
+          image={post.image}
+        ></Post>
+      );
+    });
+    return list;
+  }
+
   render() {
     const { activeSection } = this.state;
-    const postsList = activeSection == 'your posts' ? this.props.yourPosts : this.props.followedPosts
-
+    const postsList =
+      activeSection == "your posts"
+        ? this.props.data.yourPosts
+        : this.props.data.followedPosts;
     return (
       <Container
         textAlign="center"
         style={{
-          width: "70%;",
-          margin: "1rem auto !important;",
+          width: "90%;",
+          margin: "1rem auto !important;"
         }}
       >
         <NewPost
@@ -167,8 +203,13 @@ export default class ProfilePosts extends Component {
             onClick={this.handleItemClick}
           />
         </Menu>
-        <Grid columns = {3}>
-
+        <Grid columns={3} style={{
+          width: '100%',
+          margin: '3rem'
+        }}>
+          <GridColumn>{this.makePosts(postsList, 0)}</GridColumn>
+          <GridColumn>{this.makePosts(postsList, 1)}</GridColumn>
+          <GridColumn>{this.makePosts(postsList, 2)}</GridColumn>
         </Grid>
       </Container>
     );

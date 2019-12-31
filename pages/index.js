@@ -15,7 +15,7 @@ const Home = () => {
       <GloBalStyle />
       <Navbar />
       <ProfileHeader data = {ProfileData}></ProfileHeader>
-      <ProfilePosts></ProfilePosts>
+      <ProfilePosts data = {ProfileData}></ProfilePosts>
     </>
   )
 }
