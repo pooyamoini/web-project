@@ -4,11 +4,7 @@ import {
   Image,
   Grid,
   Segment as Seg,
-  Menu as Men,
-  Button,
-  Comment,
-  Form,
-  Header
+  Menu as Men
 } from 'semantic-ui-react'
 import Content from '../../public/post-content'
 import Comments from './comments/computer'
@@ -51,7 +47,7 @@ const handleStyle = {
 
 const CardExampleCard = () => (
   <Grid centered style={{ marginTop: '7rem' }}>
-    <Grid.Column centered width={8}>
+    <Grid.Column centered width={9}>
       <Card style={{ width: '100%' }}>
         <Segment basic>
           <ImageAvatar src='/static/Images/global/avatar2.jpg' size='tiny' />

@@ -6,7 +6,6 @@ const CommentExampleComment = () => (
     <Header as='h3' dividing>
       Comments
     </Header>
-
     <Comment>
       <Comment.Avatar src='/static/Images/global/avater3.jpg' />
       <Comment.Content>
