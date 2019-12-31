@@ -52,10 +52,13 @@ class CommentsPage extends Component {
     const name = 'Luis Suarez'
     const src = '/static/Images/global/me.jpg'
     const content = document.getElementById('comtextfield').value
-    document.getElementById('comtextfield').value = '';
-    let time = new Date
+    document.getElementById('comtextfield').value = ''
+    let time = new Date()
     const { comments } = this.state
-    time = time.getHours().toString().concat(' hours ago');
+    time = time
+      .getHours()
+      .toString()
+      .concat(' hours ago')
     comments.push({
       name,
       src,
