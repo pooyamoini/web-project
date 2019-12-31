@@ -7,8 +7,8 @@ import {
   Dropdown as Drp,
   Segment
 } from 'semantic-ui-react'
-import Theme from '../../public/Theme'
 import TagOptions from '../../public/json-files/nav-bar/navbar-tags.json'
+import Theme from '../../public/Theme'
 
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
@@ -20,7 +20,7 @@ const Menu = styled(M)`
     props.transparent ? '0' : '1px solid '} !important;
   background: #fff !important;
   z-index: 10000000000000 !important;
-  width: 102%;
+  width: 110% !important;
   left: 0;
   top: 0 !important;
   background-color: ${Theme.navbar.backgroundColor} !important;
@@ -30,11 +30,11 @@ const Image = styled(Im)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 2rem;
+  left: 13rem;
 `
 
 const Input = styled(In)`
-  min-width: 25rem;
+  min-width: 30rem;
   background-color: ${Theme.navbar.menuColor} !important;
   color: ${Theme.navbar.textColor} !important;
 `
@@ -48,7 +48,7 @@ const DropDown = () => {
       style={{
         position: 'absolute',
         top: '40%',
-        left: '6rem',
+        left: '18rem',
         textAlign: 'center',
         color: Theme.navbar.textColor
       }}
@@ -129,7 +129,7 @@ class NavBar extends Component {
           size='massive'
           transparent={transparent}
           secondary
-          className='tablet-navbar'
+          className='large-navbar'
           style={{ visibility }}
         >
           <Menu.Menu position='left'>
@@ -150,7 +150,7 @@ class NavBar extends Component {
               <Im
                 src={avatarImg}
                 avatar
-                style={{ marginLeft: '2rem', marginRight: '1rem' }}
+                style={{ marginLeft: '2rem', marginRight: '10rem' }}
               />
             </Menu.Item>
           </Menu.Menu>

@@ -8,6 +8,7 @@ import HeaderData from "../public/headerSample";
 import ProfileHeader from '../components/profile-page/profile-header'
 import ProfileData from "../public/json-files/profile"
 import ProfilePosts from "../components/profile-page/profile-posts"
+
 const Home = () => {
   return (
     <>
@@ -16,7 +17,7 @@ const Home = () => {
       <ProfileHeader data = {ProfileData}></ProfileHeader>
       <ProfilePosts></ProfilePosts>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
