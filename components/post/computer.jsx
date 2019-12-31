@@ -16,7 +16,7 @@ import ShareIcon from '@material-ui/icons/Share'
 
 const Segment = styled(Seg)`
   padding: 0 !important;
-  background: ${Theme.backgroundColor} !important;
+  background: ${Theme.post.backgroundColor} !important;
   margin-bottom: 0 !important;
   color: white !important;
 `
@@ -71,25 +71,25 @@ class Post extends Component {
     const { display } = this.state
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
-        <Grid.Column centered width={9}>
+        <Grid.Column centered width={7}>
           <Card>
-            <Segment basic>
-              <ImageAvatar
-                src='/static/Images/global/avatar2.jpg'
-                size='tiny'
-              />
-              <Text>Kian Bakhtari</Text>
-            </Segment>
+            <Card.Content>
+              <Segment basic>
+                <ImageAvatar
+                  src='/static/Images/global/avatar2.jpg'
+                  size='mini'
+                />
+                <Text>Kian Bakhtari</Text>
+              </Segment>
+              <Card.Description style={{ color: Theme.post.textColor }}>
+                {Content}
+              </Card.Description>
+            </Card.Content>
             <Image
               src='/static/Images/global/post-page.jpg'
               wrapped
               ui={false}
             />
-            <Card.Content>
-              <Card.Description style={{ color: Theme.post.textColor }}>
-                {Content}
-              </Card.Description>
-            </Card.Content>
             <Menu
               floated='right'
               style={{ backgroundColor: Theme.post.backgroundColor }}
