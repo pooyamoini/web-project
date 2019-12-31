@@ -1,0 +1,41 @@
+[
+    {
+        "src": "/static/Images/global/avatar.jpg",
+        "name": "Lionel messi",
+        "time": "just now",
+        "content": "Its Amazing!"
+    },
+    {
+        "src": "/static/Images/global/avatar0.jpg",
+        "name": "Ahmadi Nezhad",
+        "time": "12 mins ago",
+        "content": "You look awfull !"
+    },
+    {
+        "src": "/static/Images/global/avater3.jpg",
+        "name": "Ahmad Nosratbakhsh",
+        "time": "3 hours ago",
+        "content": "Dawshami !",
+        "reply": [
+            {
+                "src": "/static/Images/global/avatar.jpg",
+                "name": "Lionel messi",
+                "time": "just now",
+                "content": "Its Amazing!"
+            },
+            {
+                "src": "/static/Images/global/avatar0.jpg",
+                "name": "Ahmadi Nezhad",
+                "time": "12 mins ago",
+                "content": "You look awfull !"
+            }
+        ]
+
+    },
+    {
+        "src": "/static/Images/global/profile.jpg",
+        "name": "Pooya Moini",
+        "time": "5 hours ago",
+        "content": "There are multiple modules with names that only differ in casing."
+    }
+]
