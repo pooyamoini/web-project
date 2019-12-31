@@ -3,7 +3,6 @@ import {
   Card,
   Image,
   Grid,
-  Divider,
   Segment as Seg,
   Menu as Men,
   Button,
@@ -12,12 +11,12 @@ import {
   Header
 } from 'semantic-ui-react'
 import Content from '../../public/post-content'
+import Comments from './comments/computer'
 import styled from 'styled-components'
 import Theme from '../../public/theme'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import CommentIcon from '@material-ui/icons/ChatBubble'
 import ShareIcon from '@material-ui/icons/Share'
-import Done from '@material-ui/icons/DoneOutline';
 
 const Segment = styled(Seg)`
   padding: 0 !important;
@@ -69,52 +68,7 @@ const CardExampleCard = () => (
             <ShareIcon fontSize='large' style={handleStyle} />
           </Icon>
         </Menu>
-        <Comment.Group>
-          <Header as='h3' dividing>
-            Comments
-          </Header>
-          <Comment>
-            <Comment.Avatar src='/static/Images/global/avatar2.jpg' />
-            <Comment.Content>
-              <Comment.Author as='a'>Elliot Fu</Comment.Author>
-              <Comment.Metadata>
-                <div>Yesterday at 12:30AM</div>
-              </Comment.Metadata>
-              <Comment.Text>
-                <p>
-                  This has been very useful for my research. Thanks as well!
-                </p>
-              </Comment.Text>
-              <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
-              </Comment.Actions>
-            </Comment.Content>
-            <Comment.Group>
-              <Comment>
-                <Comment.Avatar src='/static/Images/global/avatar1.jpg' />
-                <Comment.Content>
-                  <Comment.Author as='a'>Jenny Hess</Comment.Author>
-                  <Comment.Metadata>
-                    <div>Just now</div>
-                  </Comment.Metadata>
-                  <Comment.Text>Elliot you are always so right :)</Comment.Text>
-                  <Comment.Actions>
-                    <Comment.Action>Reply</Comment.Action>
-                  </Comment.Actions>
-                </Comment.Content>
-              </Comment>
-            </Comment.Group>
-          </Comment>
-          <Form reply>
-            <Form.TextArea />
-            <Done fontSize="large" style={{color : 'green'}}/>
-            <Button
-              content='Add Reply'
-              labelPosition='left'
-              primary
-            />
-          </Form>
-        </Comment.Group>
+        <Comments />
       </Card>
     </Grid.Column>
   </Grid>
