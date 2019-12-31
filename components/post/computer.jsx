@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Card,
+  Card as Crd,
   Image,
   Grid,
   Segment as Seg,
@@ -20,10 +20,18 @@ const Segment = styled(Seg)`
   margin-bottom: 0 !important;
   color: white !important;
 `
+
+const Card = styled(Crd)`
+  width: 100% !important;
+  box-shadow: none !important;
+  background-color: ${Theme.post.backgroundColor} !important;
+`
+
 const ImageAvatar = styled(Image)`
   border-radius: 50% !important;
   display: inline !important;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
 `
 
 const Text = styled.span`
@@ -42,22 +50,28 @@ const Icon = styled(Menu.Item)`
 `
 
 const handleStyle = {
-  marginRight: '1rem'
+  marginRight: '1rem',
+  color: 'white'
 }
 
-const CardExampleCard = () => (
+const Post = () => (
   <Grid centered style={{ marginTop: '7rem' }}>
     <Grid.Column centered width={9}>
-      <Card style={{ width: '100%' }}>
+      <Card>
         <Segment basic>
           <ImageAvatar src='/static/Images/global/avatar2.jpg' size='tiny' />
           <Text>Kian Bakhtari</Text>
         </Segment>
         <Image src='/static/Images/global/post-page.jpg' wrapped ui={false} />
         <Card.Content>
-          <Card.Description>{Content}</Card.Description>
+          <Card.Description style={{ color: Theme.post.textColor }}>
+            {Content}
+          </Card.Description>
         </Card.Content>
-        <Menu floated='right'>
+        <Menu
+          floated='right'
+          style={{ backgroundColor: Theme.post.backgroundColor }}
+        >
           <Icon>
             <CommentIcon fontSize='large' style={handleStyle} />
             <ThumbUpAltIcon fontSize='large' style={handleStyle} />
@@ -70,4 +84,4 @@ const CardExampleCard = () => (
   </Grid>
 )
 
-export default CardExampleCard
+export default Post
