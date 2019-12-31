@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Card as Crd,
   Image,
@@ -54,34 +54,62 @@ const handleStyle = {
   color: 'white'
 }
 
-const Post = () => (
-  <Grid centered style={{ marginTop: '7rem' }}>
-    <Grid.Column centered width={9}>
-      <Card>
-        <Segment basic>
-          <ImageAvatar src='/static/Images/global/avatar2.jpg' size='tiny' />
-          <Text>Kian Bakhtari</Text>
-        </Segment>
-        <Image src='/static/Images/global/post-page.jpg' wrapped ui={false} />
-        <Card.Content>
-          <Card.Description style={{ color: Theme.post.textColor }}>
-            {Content}
-          </Card.Description>
-        </Card.Content>
-        <Menu
-          floated='right'
-          style={{ backgroundColor: Theme.post.backgroundColor }}
-        >
-          <Icon>
-            <CommentIcon fontSize='large' style={handleStyle} />
-            <ThumbUpAltIcon fontSize='large' style={handleStyle} />
-            <ShareIcon fontSize='large' style={handleStyle} />
-          </Icon>
-        </Menu>
-        <Comments />
-      </Card>
-    </Grid.Column>
-  </Grid>
-)
+class Post extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { display: 'none' }
+    this.handleCommentClick = this.handleCommentClick.bind(this)
+  }
+
+  handleCommentClick () {
+    const { display } = this.state
+    const next = display === 'block' ? 'none' : 'block'
+    this.setState({ display: next })
+  }
+
+  render () {
+    const { display } = this.state
+    return (
+      <Grid centered style={{ marginTop: '7rem' }}>
+        <Grid.Column centered width={9}>
+          <Card>
+            <Segment basic>
+              <ImageAvatar
+                src='/static/Images/global/avatar2.jpg'
+                size='tiny'
+              />
+              <Text>Kian Bakhtari</Text>
+            </Segment>
+            <Image
+              src='/static/Images/global/post-page.jpg'
+              wrapped
+              ui={false}
+            />
+            <Card.Content>
+              <Card.Description style={{ color: Theme.post.textColor }}>
+                {Content}
+              </Card.Description>
+            </Card.Content>
+            <Menu
+              floated='right'
+              style={{ backgroundColor: Theme.post.backgroundColor }}
+            >
+              <Icon>
+                <CommentIcon
+                  fontSize='large'
+                  style={handleStyle}
+                  onClick={this.handleCommentClick}
+                />
+                <ThumbUpAltIcon fontSize='large' style={handleStyle} />
+                <ShareIcon fontSize='large' style={handleStyle} />
+              </Icon>
+            </Menu>
+            <Comments display={display} />
+          </Card>
+        </Grid.Column>
+      </Grid>
+    )
+  }
+}
 
 export default Post

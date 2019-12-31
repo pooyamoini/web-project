@@ -6,8 +6,8 @@ const globalStyle = {
   color: Theme.post.textColor
 }
 
-const CommentExampleComment = () => (
-  <Comment.Group style={{ paddingLeft: '1rem !important' }}>
+const CommentsPage = ({ display }) => (
+  <Comment.Group style={{ paddingLeft: '1rem !important', display }}>
     <Header as='h3' dividing color='grey'>
       Comments
     </Header>
@@ -72,4 +72,4 @@ const CommentExampleComment = () => (
   </Comment.Group>
 )
 
-export default CommentExampleComment
+export default CommentsPage
