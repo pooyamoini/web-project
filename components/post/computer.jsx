@@ -4,7 +4,8 @@ import {
   Image,
   Grid,
   Segment as Seg,
-  Menu as Men
+  Menu as Men,
+  Modal
 } from 'semantic-ui-react'
 import Content from '../../public/post-content'
 import Comments from './comments/computer'
@@ -88,7 +89,11 @@ const FooterMenu = props => (
           onClick={props.handleLike}
         />
         <Data>{props.likes} Likes</Data>
-        <ShareIcon fontSize='large' style={handleStyle()} />
+        <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
+          <Modal.Content>
+            <p>http://www.localhost:3000/post/2483931074231</p>
+          </Modal.Content>
+        </Modal>
       </Icon>
     </Menu.Menu>
   </Menu>

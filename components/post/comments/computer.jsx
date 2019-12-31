@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import { Button, Comment, Form, Header, Modal } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
 import Samples from '../../../public/comments'
 
