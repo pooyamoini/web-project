@@ -11,9 +11,7 @@ import Content from '../../public/post-content'
 import Comments from './comments/computer'
 import styled from 'styled-components'
 import Theme from '../../public/theme'
-import LikesIcon from '@material-ui/icons/ThumbUpAlt'
-import CommentIcon from '@material-ui/icons/ChatBubble'
-import ShareIcon from '@material-ui/icons/Share'
+import FooterMenu from "./footer-computer";
 
 const Segment = styled(Seg)`
   padding: 0 !important;
@@ -46,24 +44,6 @@ const Info = styled.p`
   opacity: 0.6;
 `
 
-const Menu = styled(Men)`
-  border: 0 !important;
-  box-shadow: none !important;
-`
-
-const Icon = styled(Menu.Item)`
-  &:before {
-    width: 0 !important;
-  }
-`
-
-const Data = styled.p`
-  font-size: 1rem;
-  color: white;
-  margin-right: 1rem !important;
-  margin-top: 0.5rem !important;
-`
-
 const Informations = () => (
   <Segment basic>
     <ImageAvatar src='/static/Images/global/avatar2.jpg' size='mini' />
@@ -71,38 +51,6 @@ const Informations = () => (
     <Info>3 hours ago</Info>
   </Segment>
 )
-
-const FooterMenu = props => (
-  <Menu floated='right' style={{ backgroundColor: Theme.post.backgroundColor }}>
-    <Menu.Menu>
-      {' '}
-      <Icon>
-        <CommentIcon
-          fontSize='large'
-          style={handleStyle()}
-          onClick={props.handleCommentClick}
-        />
-        <Data>12 comments</Data>
-        <LikesIcon
-          fontSize='large'
-          style={handleStyle(props.color)}
-          onClick={props.handleLike}
-        />
-        <Data>{props.likes} Likes</Data>
-        <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
-          <Modal.Content>
-            <p>http://www.localhost:3000/post/2483931074231</p>
-          </Modal.Content>
-        </Modal>
-      </Icon>
-    </Menu.Menu>
-  </Menu>
-)
-
-const handleStyle = color => ({
-  marginRight: '.75rem !important',
-  color: color === undefined ? 'white' : color
-})
 
 class Post extends Component {
   constructor (props) {
@@ -156,6 +104,7 @@ class Post extends Component {
               handleCommentClick={this.handleCommentClick}
               color={color}
               likes={likes}
+              disLikes={15}
             />
             <Comments display={display} />
           </Card>
