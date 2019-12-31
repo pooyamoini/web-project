@@ -63,6 +63,37 @@ const Data = styled.p`
   margin-top: 0.5rem !important;
 `
 
+const Informations = () => (
+  <Segment basic>
+    <ImageAvatar src='/static/Images/global/avatar2.jpg' size='mini' />
+    <Text>Kian Bakhtari</Text>
+    <Info>3 hours ago</Info>
+  </Segment>
+)
+
+const FooterMenu = props => (
+  <Menu floated='right' style={{ backgroundColor: Theme.post.backgroundColor }}>
+    <Menu.Menu>
+      {' '}
+      <Icon>
+        <CommentIcon
+          fontSize='large'
+          style={handleStyle()}
+          onClick={props.handleCommentClick}
+        />
+        <Data>12 comments</Data>
+        <LikesIcon
+          fontSize='large'
+          style={handleStyle(props.color)}
+          onClick={props.handleLike}
+        />
+        <Data>{props.likes} Likes</Data>
+        <ShareIcon fontSize='large' style={handleStyle()} />
+      </Icon>
+    </Menu.Menu>
+  </Menu>
+)
+
 const handleStyle = color => ({
   marginRight: '.75rem !important',
   color: color === undefined ? 'white' : color
@@ -105,14 +136,7 @@ class Post extends Component {
         <Grid.Column centered width={7}>
           <Card>
             <Card.Content>
-              <Segment basic>
-                <ImageAvatar
-                  src='/static/Images/global/avatar2.jpg'
-                  size='mini'
-                />
-                <Text>Kian Bakhtari</Text>
-                <Info>3 hours ago</Info>
-              </Segment>
+              <Informations />
               <Card.Description style={{ color: Theme.post.textColor }}>
                 {Content}
               </Card.Description>
@@ -122,29 +146,12 @@ class Post extends Component {
               wrapped
               ui={false}
             />
-            <Menu
-              floated='right'
-              style={{ backgroundColor: Theme.post.backgroundColor }}
-            >
-              <Menu.Menu>
-                {' '}
-                <Icon>
-                  <CommentIcon
-                    fontSize='large'
-                    style={handleStyle()}
-                    onClick={this.handleCommentClick}
-                  />
-                  <Data>12 comments</Data>
-                  <LikesIcon
-                    fontSize='large'
-                    style={handleStyle(color)}
-                    onClick={this.handleLike}
-                  />
-                  <Data>{likes} Likes</Data>
-                  <ShareIcon fontSize='large' style={handleStyle()} />
-                </Icon>
-              </Menu.Menu>
-            </Menu>
+            <FooterMenu
+              handleLike={this.handleLike}
+              handleCommentClick={this.handleCommentClick}
+              color={color}
+              likes={likes}
+            />
             <Comments display={display} />
           </Card>
         </Grid.Column>
