@@ -5,7 +5,10 @@ import {
   Container,
   Button,
   Header,
-  Modal
+  Modal,
+  Input,
+  Form as Fo,
+  TextArea,
 } from "semantic-ui-react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
@@ -18,17 +21,39 @@ const Menu = styled(Me)`
   border-color: rgb(102, 102, 102) !important;
 `;
 
+const Form = styled(Fo)``;
+
 const MenuItem = styled(Menu.Item)``;
 
 class NewPost extends Component {
   constructor(props) {
     super(props);
-    this.state = { modalOpen: false };
+    this.state = {
+       modalOpen: false,
+       title: '',
+       image: '',
+       content: '',
+       submittedTitle: '',
+       submittedImage: '',
+       submittedContent: '',
+      };
   }
 
   handleClose = () => this.setState({ modalOpen: false });
 
   handleOpen = () => this.setState({ modalOpen: true });
+
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
+  handleSubmit = () => {
+    const { title, image, content } = this.state
+      if(title == '' || content == '')
+        return;
+    this.setState({ submittedTitle: title, submittedImage: image, submittedConent: content })
+    this.handleClose();
+  }
 
   render() {
     return (
@@ -39,7 +64,7 @@ class NewPost extends Component {
           <Button
             icon
             circular
-            onClick = {this.handleOpen}
+            onClick={this.handleOpen}
             size="small"
             style={{
               "background-color": "white",
@@ -56,16 +81,30 @@ class NewPost extends Component {
       >
         <Header content="Create New Post" />
         <Modal.Content>
-          <p>
-            Your inbox is getting full, would you like us to enable automatic
-            archiving of old messages?
-          </p>
+          <Form inverted size='large'>
+            <Form.Field control={Input} label="Title" name = 'title' placeholder="Title" required
+              onChange = {this.handleChange}
+              error = {this.state.title == '' ? 'Title Can\'t Be Empty' : false}
+            />
+            <Form.Field control={Input} label="Image" name= ' image' placeholder="Url" 
+              onChange = {this.handleChange}
+            />
+            <Form.Field
+              control={TextArea}
+              label="Content"
+              name = 'content'
+              placeholder="..."
+              required
+              onChange = {this.handleChange}
+              error = {this.state.content == '' ? 'Content Can\'t Be Empty' : false}
+            />
+          </Form>
         </Modal.Content>
         <Modal.Actions>
           <Button basic color="red" inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          <Button color="green" inverted onClick={this.handleClose}>
+          <Button color="green" inverted onClick={this.handleSubmit}>
             Done
           </Button>
         </Modal.Actions>
