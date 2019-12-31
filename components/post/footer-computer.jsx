@@ -10,6 +10,7 @@ import Theme from '../../public/theme'
 const Data = styled.p`
   font-size: 1rem;
   color: white;
+  margin-left: 0.5rem !important;
   margin-right: 1rem !important;
   margin-top: 0.5rem !important;
 `
@@ -26,36 +27,46 @@ const Icon = styled(Menu.Item)`
 `
 
 const handleStyle = color => ({
-  marginRight: '.75rem !important',
   color: color === undefined ? 'white' : color
 })
 
 const FooterMenu = props => (
-  <Menu floated='right' style={{ backgroundColor: Theme.post.backgroundColor }}>
-    <Menu.Menu>
-      {' '}
-      <Icon>
-        <CommentIcon
-          fontSize='large'
-          style={handleStyle()}
-          onClick={props.handleCommentClick}
-        />
-        <Data>12 comments</Data>
-        <LikesIcon
-          fontSize='large'
-          style={handleStyle(props.color)}
-          onClick={props.handleLike}
-        />
-        <Data>{props.likes} Likes</Data>
-        <DisLikeIcon fontSize='large' style={handleStyle()} />
-        <Data>{props.disLikes} Dislikes</Data>
-        <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
-          <Modal.Content>
-            <p>http://www.localhost:3000/post/2483931074231</p>
-          </Modal.Content>
-        </Modal>
-      </Icon>
-    </Menu.Menu>
+  <Menu
+    fluid
+    style={{ backgroundColor: Theme.post.backgroundColor }}
+    widths={4}
+  >
+    <Icon position='left'>
+      <CommentIcon
+        fontSize='large'
+        style={handleStyle()}
+        onClick={props.handleCommentClick}
+      />
+      <Data>12 comments</Data>
+    </Icon>
+    <Icon position='left'>
+      <LikesIcon
+        fontSize='large'
+        style={handleStyle(props.color)}
+        onClick={props.handleLike}
+      />
+      <Data>{props.likes} Likes</Data>
+    </Icon>
+    <Icon position='left'>
+      <DisLikeIcon
+        fontSize='large'
+        style={handleStyle(props.colorD)}
+        onClick={props.handleDisLike}
+      />
+      <Data>{props.dislikes} Dis Likes</Data>
+    </Icon>
+    <Icon position='right'>
+      <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
+        <Modal.Content>
+          <p>http://www.localhost:3000/post/2483931074231</p>
+        </Modal.Content>
+      </Modal>
+    </Icon>
   </Menu>
 )
 

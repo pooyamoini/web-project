@@ -9,7 +9,7 @@ const PostPage = () => {
     <>
       <GloBalStyle />
       <Navbar />
-      <Post likes={12}/>
+      <Post likes={7} dislikes={3} />
     </>
   )
 }

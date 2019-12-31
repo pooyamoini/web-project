@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Comment, Form, Header, Modal } from 'semantic-ui-react'
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
 import Samples from '../../../public/comments'
+import ModalReply from '../reply-computer'
 
 const globalStyle = {
   color: Theme.post.textColor
@@ -17,7 +18,7 @@ const CommentComp = ({ src, name, time, content, reply }) => {
         ))}
       </Comment.Group>
     )
-
+  const props = { name, src, content }
   return (
     <Comment>
       <Comment.Avatar src={src} />
@@ -30,7 +31,7 @@ const CommentComp = ({ src, name, time, content, reply }) => {
         </Comment.Metadata>
         <Comment.Text style={globalStyle}>{content}</Comment.Text>
         <Comment.Actions>
-          <Comment.Action style={globalStyle}>Reply</Comment.Action>
+          <ModalReply Trigger={Comment.Action} {...props} />
         </Comment.Actions>
       </Comment.Content>
       <Replies />
@@ -84,7 +85,7 @@ class CommentsPage extends Component {
             id='comtextfield'
           />
           <Button secondary positive style={{ marginBottom: '1rem' }}>
-            Add Reply
+            Add Comment
           </Button>
         </Form>
       </Comment.Group>

@@ -11,7 +11,7 @@ import Content from '../../public/post-content'
 import Comments from './comments/computer'
 import styled from 'styled-components'
 import Theme from '../../public/theme'
-import FooterMenu from "./footer-computer";
+import FooterMenu from './footer-computer'
 
 const Segment = styled(Seg)`
   padding: 0 !important;
@@ -55,10 +55,17 @@ const Informations = () => (
 class Post extends Component {
   constructor (props) {
     super(props)
-    const { likes } = this.props
-    this.state = { display: 'none', likes, color: 'white' }
+    const { likes, dislikes } = this.props
+    this.state = {
+      display: 'none',
+      likes,
+      dislikes,
+      color: 'white',
+      colorD: 'white'
+    }
     this.handleCommentClick = this.handleCommentClick.bind(this)
     this.handleLike = this.handleLike.bind(this)
+    this.handleUndoLike = this.handleUndoLike.bind(this)
     this.handleDisLike = this.handleDisLike.bind(this)
   }
 
@@ -71,19 +78,33 @@ class Post extends Component {
   handleLike () {
     const { likes, color } = this.state
     if (color === '#4267b2') {
-      this.handleDisLike()
+      this.handleUndoLike()
       return
     }
     this.setState({ likes: likes + 1, color: '#4267b2' })
   }
 
   handleDisLike () {
+    const { dislikes, colorD } = this.state
+    if (colorD === '#4267b2') {
+      this.handleUndoDisLike()
+      return
+    }
+    this.setState({ dislikes: dislikes + 1, colorD: '#4267b2' })
+  }
+
+  handleUndoLike () {
     const { likes } = this.state
     this.setState({ likes: likes - 1, color: '#fff' })
   }
 
+  handleUndoDisLike () {
+    const { dislikes } = this.state
+    this.setState({ dislikes: dislikes - 1, colorD: '#fff' })
+  }
+
   render () {
-    const { display, color, likes } = this.state
+    const { display } = this.state
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
         <Grid.Column centered width={7}>
@@ -102,9 +123,8 @@ class Post extends Component {
             <FooterMenu
               handleLike={this.handleLike}
               handleCommentClick={this.handleCommentClick}
-              color={color}
-              likes={likes}
-              disLikes={15}
+              handleDisLike={this.handleDisLike}
+              {...this.state}
             />
             <Comments display={display} />
           </Card>
