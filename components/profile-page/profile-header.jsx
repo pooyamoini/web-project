@@ -3,7 +3,14 @@ import styled from "styled-components";
 import Theme from "../../public/theme";
 import SettingsIcon from "@material-ui/icons/Settings";
 import IconButton from "@material-ui/core/IconButton";
-import { Grid as Gr, Segment as Seg, Card, Image } from "semantic-ui-react";
+import Followers from "../../public/json-files/followers";
+import {
+  Grid as Gr,
+  Segment as Seg,
+  Card,
+  Image,
+  Dropdown
+} from "semantic-ui-react";
 
 const Grid = styled(Gr)`
   width: 80%;
@@ -23,6 +30,12 @@ const SegmentGroup = styled(Segment.Group)`
 `;
 
 export default class ProfileHeader extends Component {
+  showFollowers = () => {
+    alert("yay");
+  };
+
+  showFollowed = () => {};
+
   render() {
     return (
       <Grid centered>
@@ -37,21 +50,55 @@ export default class ProfileHeader extends Component {
         <Grid.Column width={7}>
           <SegmentGroup>
             <SegmentGroup horizontal>
-              <Segment style={{
-                'margin-top': '1rem'
-              }}>{this.props.data.userName}</Segment>
+              <Segment
+                style={{
+                  "margin-top": "1rem"
+                }}
+              >
+                {this.props.data.userName}
+              </Segment>
               <Segment textAlign="center">
-                <IconButton aria-label="setting" size='medium' style={{
-                  color: 'white',
-                }}>
+                <IconButton
+                  aria-label="setting"
+                  size="medium"
+                  style={{
+                    color: "white"
+                  }}
+                >
                   <SettingsIcon centered fontSize="large"></SettingsIcon>
                 </IconButton>
               </Segment>
             </SegmentGroup>
             <SegmentGroup horizontal>
               <Segment>{this.props.data.postsNumber} Posts</Segment>
-              <Segment>{this.props.data.followersNumber} Followers</Segment>
-              <Segment>{this.props.data.followingNumber} Following</Segment>
+              <Segment>
+                <Dropdown
+                  inline
+                  text={this.props.data.followersNumber + " Followers"}
+                  pointing={false}
+                  options={Followers}
+                  scrolling
+                  fluid
+                  icon="none"
+                  style={{
+                    width: '110%'
+                  }}
+                />
+              </Segment>
+              <Segment>
+                <Dropdown
+                  inline
+                  text={this.props.data.followersNumber + " Following"}
+                  pointing={false}
+                  options={Followers}
+                  scrolling
+                  fluid
+                  icon="none"
+                  style={{
+                    width: '110%'
+                  }}
+                />
+              </Segment>
             </SegmentGroup>
             <Segment>{this.props.data.bio}</Segment>
           </SegmentGroup>

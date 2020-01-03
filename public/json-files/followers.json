@@ -1,0 +1,74 @@
+[
+  {
+    "key": "Important",
+    "text": "Account 1",
+    "value": "Important",
+    "image": { "avatar": "true", "src": "/Images/global/avatar0.jpg" }
+  },
+  {
+    "key": "Announcement",
+    "text": "Account 2",
+    "value": "Announcement",
+    "image": { "avatar": "true", "src": "/Images/global/avatar1.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 3",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar2.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 4",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar.jpg" }
+  },
+  {
+    "key": "Important",
+    "text": "Account 1",
+    "value": "Important",
+    "image": { "avatar": "true", "src": "/Images/global/avatar0.jpg" }
+  },
+  {
+    "key": "Announcement",
+    "text": "Account 2",
+    "value": "Announcement",
+    "image": { "avatar": "true", "src": "/Images/global/avatar1.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 3",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar2.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 4",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar.jpg" }
+  },
+  {
+    "key": "Important",
+    "text": "Account 1",
+    "value": "Important",
+    "image": { "avatar": "true", "src": "/Images/global/avatar0.jpg" }
+  },
+  {
+    "key": "Announcement",
+    "text": "Account 2",
+    "value": "Announcement",
+    "image": { "avatar": "true", "src": "/Images/global/avatar1.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 3",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar2.jpg" }
+  },
+  {
+    "key": "Cannot Fix",
+    "text": "Account 4",
+    "value": "Cannot Fix",
+    "image": { "avatar": "true", "src": "/Images/global/avatar.jpg" }
+  }
+]
