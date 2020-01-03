@@ -24,7 +24,7 @@ const Menu = styled(Me)`
 `;
 
 const GridColumn = styled(Grid.Column)`
-  width: 30% !important; 
+  width: 30% !important;
   margin: 1rem !important;
 `;
 
@@ -146,7 +146,6 @@ export default class ProfilePostsContainer extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeSection: name });
 
   makePosts(postsList, row) {
-
     const list = [];
     postsList.forEach(function(post, index) {
       if (index % 3 != row) return;
@@ -163,24 +162,19 @@ export default class ProfilePostsContainer extends Component {
     return list;
   }
 
-  render() {
-    const { activeSection } = this.state;
-    const postsList =
-      activeSection == "your posts"
-        ? this.props.data.yourPosts
-        : this.props.data.followedPosts;
-    return (
-      <Container
-        textAlign="center"
-        style={{
-          width: "90%;",
-          margin: "1rem auto !important;"
-        }}
-      >
-        <NewPost
-          active={activeSection == "your posts" ? "visible" : "hidden"}
-        />
-        <Menu
+  getNewPost(){
+    if(this.props.type != 'self') return 
+    return(
+      <NewPost
+        active={this.state.activeSection == "your posts" ? "visible" : "hidden"}
+      />
+    )
+  }
+
+  getMenu(){
+    if(this.props.type != 'self') return
+    return(
+      <Menu
           inverted
           borderless
           pointing
@@ -192,21 +186,47 @@ export default class ProfilePostsContainer extends Component {
             "margin-top": "-1.7rem"
           }}
         >
-          <MenuItem
-            name="your posts"
-            active={activeSection == "your posts"}
-            onClick={this.handleItemClick}
-          />
-          <MenuItem
-            name="followed posts"
-            active={activeSection == "followed posts"}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
-        <Grid columns={3} style={{
-          width: '100%',
-          margin: '3rem'
-        }}>
+    <MenuItem
+      name="your posts"
+      active={this.state.activeSection == "your posts"}
+      onClick={this.handleItemClick}
+    />
+    <MenuItem
+      name="followed posts"
+      active={this.state.activeSection == "followed posts"}
+      onClick={this.handleItemClick}
+    />
+    </Menu>
+    );
+  }
+
+  render() {
+    let postsList = [];
+    if (this.props.type == "self") {
+      postsList =
+        this.state.activeSection == "your posts"
+          ? this.props.data.yourPosts
+          : this.props.data.followedPosts;
+    } else{
+      postsList = this.props.data.yourPosts;
+    }
+    return (
+      <Container
+        textAlign="center"
+        style={{
+          width: "90%;",
+          margin: "1rem auto !important;"
+        }}
+      >
+        {this.getNewPost()}
+        {this.getMenu()}
+        <Grid
+          columns={3}
+          style={{
+            width: "100%",
+            margin: "3rem"
+          }}
+        >
           <GridColumn>{this.makePosts(postsList, 0)}</GridColumn>
           <GridColumn>{this.makePosts(postsList, 1)}</GridColumn>
           <GridColumn>{this.makePosts(postsList, 2)}</GridColumn>
