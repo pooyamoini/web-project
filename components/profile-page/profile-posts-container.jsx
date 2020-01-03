@@ -9,11 +9,14 @@ import {
   Input,
   Form as Fo,
   TextArea,
-  Grid
+  Grid as Gr,
+  Responsive,
+  Segment
 } from "semantic-ui-react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import Post from "../profile-page/profile-post";
+import NoSSR from "react-no-ssr";
 
 const Menu = styled(Me)`
   color: white !important;
@@ -23,10 +26,24 @@ const Menu = styled(Me)`
   border-color: rgb(102, 102, 102) !important;
 `;
 
-const GridColumn = styled(Grid.Column)`
-  width: 30% !important;
-  margin: 1rem !important;
+const Grid = styled(Gr)`
+  margin: 1.5rem auto !important;
 `;
+
+const GridColumnStyleDesktop = {
+  width: "30%",
+  margin: "1rem"
+};
+
+const GridColumnStyleTablet = {
+  width: "45%",
+  margin: "1rem "
+};
+
+const GridColumnStyleMobile = {
+  width: "90%",
+  margin: "1rem"
+};
 
 const Form = styled(Fo)``;
 
@@ -145,10 +162,10 @@ export default class ProfilePostsContainer extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeSection: name });
 
-  makePosts(postsList, row) {
+  makePosts(postsList, n, row) {
     const list = [];
     postsList.forEach(function(post, index) {
-      if (index % 3 != row) return;
+      if (index % n != row) return;
       list.push(
         <Post
           name={post.title}
@@ -162,41 +179,86 @@ export default class ProfilePostsContainer extends Component {
     return list;
   }
 
-  getNewPost(){
-    if(this.props.type != 'self') return 
-    return(
+  getNewPost() {
+    if (this.props.type != "self") return;
+    return (
       <NewPost
         active={this.state.activeSection == "your posts" ? "visible" : "hidden"}
       />
-    )
+    );
   }
 
-  getMenu(){
-    if(this.props.type != 'self') return
-    return(
+  getMenu() {
+    if (this.props.type != "self") return;
+    return (
       <Menu
-          inverted
-          borderless
-          pointing
-          secondary
-          compact
-          width={2}
-          size="massive"
-          style={{
-            "margin-top": "-1.7rem"
-          }}
-        >
-    <MenuItem
-      name="your posts"
-      active={this.state.activeSection == "your posts"}
-      onClick={this.handleItemClick}
-    />
-    <MenuItem
-      name="followed posts"
-      active={this.state.activeSection == "followed posts"}
-      onClick={this.handleItemClick}
-    />
-    </Menu>
+        inverted
+        borderless
+        pointing
+        secondary
+        compact
+        width={2}
+        size="massive"
+        style={{
+          "margin-top": "-1.7rem"
+        }}
+      >
+        <MenuItem
+          name="your posts"
+          active={this.state.activeSection == "your posts"}
+          onClick={this.handleItemClick}
+        />
+        <MenuItem
+          name="followed posts"
+          active={this.state.activeSection == "followed posts"}
+          onClick={this.handleItemClick}
+        />
+      </Menu>
+    );
+  }
+
+  getPosts(postsList) {
+    return (
+      <Segment.Group basic>
+        <NoSSR>
+          <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+            <Grid columns={1}>
+              <Grid.Column style={GridColumnStyleMobile}>
+                {this.makePosts(postsList, 1, 0)}
+              </Grid.Column>
+            </Grid>
+          </Responsive>
+          <Responsive
+            minWidth={Responsive.onlyTablet.minWidth}
+            maxWidth={Responsive.onlyTablet.maxWidth}
+          >
+            <Grid columns={2}>
+              <Grid.Column style={GridColumnStyleTablet}>
+                {this.makePosts(postsList, 2, 0)}
+              </Grid.Column>
+              <Grid.Column style={GridColumnStyleTablet}>
+                {this.makePosts(postsList, 2, 1)}
+              </Grid.Column>
+            </Grid>
+          </Responsive>
+          <Responsive
+            minWidth={Responsive.onlyComputer.minWidth}
+            maxWidth={Responsive.onlyComputer.maxWidth}
+          >
+            <Grid columns={3}>
+              <Grid.Column style={GridColumnStyleDesktop}>
+                {this.makePosts(postsList, 3, 0)}
+              </Grid.Column>
+              <Grid.Column style={GridColumnStyleDesktop}>
+                {this.makePosts(postsList, 3, 1)}
+              </Grid.Column>
+              <Grid.Column style={GridColumnStyleDesktop}>
+                {this.makePosts(postsList, 3, 2)}
+              </Grid.Column>
+            </Grid>
+          </Responsive>
+        </NoSSR>
+      </Segment.Group>
     );
   }
 
@@ -207,7 +269,7 @@ export default class ProfilePostsContainer extends Component {
         this.state.activeSection == "your posts"
           ? this.props.data.yourPosts
           : this.props.data.followedPosts;
-    } else{
+    } else {
       postsList = this.props.data.yourPosts;
     }
     return (
@@ -220,17 +282,7 @@ export default class ProfilePostsContainer extends Component {
       >
         {this.getNewPost()}
         {this.getMenu()}
-        <Grid
-          columns={3}
-          style={{
-            width: "100%",
-            margin: "3rem"
-          }}
-        >
-          <GridColumn>{this.makePosts(postsList, 0)}</GridColumn>
-          <GridColumn>{this.makePosts(postsList, 1)}</GridColumn>
-          <GridColumn>{this.makePosts(postsList, 2)}</GridColumn>
-        </Grid>
+        {this.getPosts(postsList)}
       </Container>
     );
   }

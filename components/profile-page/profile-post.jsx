@@ -20,7 +20,7 @@ export default class Post extends Component {
 
   render () {
     return (
-      <Grid style={{ marginBottom: '1rem' }}>
+      <Grid style={{ marginBottom: '1rem' }} >
         <Grid.Row textAlign='left' style={{ padding: '0' }}>
           <Segment
             basic
