@@ -9,7 +9,8 @@ import {
   Segment as Seg,
   Card,
   Image,
-  Dropdown
+  Dropdown,
+  Button
 } from "semantic-ui-react";
 
 const Grid = styled(Gr)`
@@ -30,11 +31,42 @@ const SegmentGroup = styled(Segment.Group)`
 `;
 
 export default class ProfileHeader extends Component {
-  showFollowers = () => {
-    alert("yay");
-  };
+  constructor(props){
+    super(props);
+    this.state = {followed: false}
+  }
 
-  showFollowed = () => {};
+
+  changeFollow = () =>{
+    this.setState(prevState => ({
+      followed: !prevState.followed
+    }));
+  }
+  
+  getButton() {
+    if (this.props.type == "self") {
+      return (
+        <IconButton
+          aria-label="setting"
+          size="medium"
+          style={{
+            color: "white"
+          }}
+        >
+          <SettingsIcon centered fontSize="large"></SettingsIcon>
+        </IconButton>
+      );
+    }
+    if(!this.state.followed){
+      return(
+        <Button color='blue' onClick={this.changeFollow}>Follow</Button>
+      );
+    } else{
+      return(
+        <Button color='red' onClick={this.changeFollow}>Unfollow</Button>
+      );
+    }
+  }
 
   render() {
     return (
@@ -58,15 +90,7 @@ export default class ProfileHeader extends Component {
                 {this.props.data.userName}
               </Segment>
               <Segment textAlign="center">
-                <IconButton
-                  aria-label="setting"
-                  size="medium"
-                  style={{
-                    color: "white"
-                  }}
-                >
-                  <SettingsIcon centered fontSize="large"></SettingsIcon>
-                </IconButton>
+                {this.getButton()}
               </Segment>
             </SegmentGroup>
             <SegmentGroup horizontal>
@@ -81,7 +105,7 @@ export default class ProfileHeader extends Component {
                   fluid
                   icon="none"
                   style={{
-                    width: '120%'
+                    width: "120%"
                   }}
                 />
               </Segment>
@@ -95,7 +119,7 @@ export default class ProfileHeader extends Component {
                   fluid
                   icon="none"
                   style={{
-                    width: '120%'
+                    width: "120%"
                   }}
                 />
               </Segment>
