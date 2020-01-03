@@ -13,7 +13,7 @@ import {
 } from "semantic-ui-react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
-import Post from "../home-page/post-tablet";
+import Post from "../profile-page/profile-post";
 
 const Menu = styled(Me)`
   color: white !important;
@@ -137,7 +137,7 @@ class NewPost extends Component {
   }
 }
 
-export default class ProfilePosts extends Component {
+export default class ProfilePostsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { activeSection: "your posts" };

@@ -81,21 +81,21 @@ export default class ProfileHeader extends Component {
                   fluid
                   icon="none"
                   style={{
-                    width: '110%'
+                    width: '120%'
                   }}
                 />
               </Segment>
               <Segment>
                 <Dropdown
                   inline
-                  text={this.props.data.followersNumber + " Following"}
+                  text={this.props.data.followingNumber + " Following"}
                   pointing={false}
                   options={Followers}
                   scrolling
                   fluid
                   icon="none"
                   style={{
-                    width: '110%'
+                    width: '120%'
                   }}
                 />
               </Segment>
