@@ -9,7 +9,15 @@ import {
 import Comment from './comment'
 import samples from '../../../public/comments.json'
 
-const GenerateComments = ({ data }) => data.map(x => <Comment {...x} key={x} />)
+const GenerateComments = ({ data }) =>
+  data.map(x => {
+    if (x.reply.length == 0 || x.reply === undefined)
+      return <Comment {...x} key={x} replies={[]} />
+    const replies = x.reply
+    return (
+      <Comment {...x} key={x} replies={replies !== undefined ? replies : []} />
+    )
+  })
 
 const CommentsPage = ({ display }) => (
   <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem', display }}>

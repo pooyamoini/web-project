@@ -18,9 +18,23 @@ const Reply = ({ display }) => (
 class CommentComp extends Component {
   constructor (props) {
     super(props)
-    this.state = { display: 'none' }
+    this.state = { display: 'none', Replies: <></> }
     this.toReply = this.toReply.bind(this)
     this.doneReply = this.doneReply.bind(this)
+  }
+
+  componentDidMount () {
+    const { replies } = this.props
+    if (replies.length == 0) return
+    this.setState({
+      Replies: replies.map(x => {
+        return (
+          <Comment.Group key={x}>
+            <CommentComp key={x} {...x} />
+          </Comment.Group>
+        )
+      })
+    })
   }
 
   doneReply () {
@@ -39,7 +53,7 @@ class CommentComp extends Component {
   render () {
     const { name, date, content, src } = this.props
     const color = Theme.post.textColor
-    const { display } = this.state
+    const { display, Replies } = this.state
     const gStyle = { color }
     return (
       <>
@@ -60,6 +74,7 @@ class CommentComp extends Component {
             </Comment.Actions>
           </Comment.Content>
           <Reply display={display} />
+          {Replies}
         </Comment>
       </>
     )

@@ -26,13 +26,15 @@
                 "src": "/static/Images/global/avatar.jpg",
                 "name": "Lionel messi",
                 "date": "just now",
-                "content": "Its Amazing!"
+                "content": "Its Amazing!",
+                "reply": []
             },
             {
                 "src": "/static/Images/global/avatar0.jpg",
                 "name": "Ahmadi Nezhad",
                 "date": "12 mins ago",
-                "content": "You look awfull !"
+                "content": "You look awfull !",
+                "reply": []
             }
         ]
 
