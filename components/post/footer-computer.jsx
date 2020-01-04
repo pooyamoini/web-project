@@ -13,17 +13,20 @@ const Data = styled.p`
   margin-left: 0.5rem !important;
   margin-right: 1rem !important;
   margin-top: 0.5rem !important;
+  display: none;
 `
 
 const Menu = styled(Men)`
   border: 0 !important;
   box-shadow: none !important;
+  margin-top: 0 !important;
 `
 
 const Icon = styled(Menu.Item)`
   &:before {
     width: 0 !important;
   }
+  color: white !important;
 `
 
 const handleStyle = color => ({
@@ -31,43 +34,51 @@ const handleStyle = color => ({
 })
 
 const FooterMenu = props => (
-  <Menu
-    fluid
-    style={{ backgroundColor: Theme.post.backgroundColor }}
-    widths={4}
-  >
-    <Icon position='left'>
-      <CommentIcon
-        fontSize='large'
-        style={handleStyle()}
-        onClick={props.handleCommentClick}
-      />
-      <Data>12 comments</Data>
-    </Icon>
-    <Icon position='left'>
-      <LikesIcon
-        fontSize='large'
-        style={handleStyle(props.color)}
-        onClick={props.handleLike}
-      />
-      <Data>{props.likes} Likes</Data>
-    </Icon>
-    <Icon position='left'>
-      <DisLikeIcon
-        fontSize='large'
-        style={handleStyle(props.colorD)}
-        onClick={props.handleDisLike}
-      />
-      <Data>{props.dislikes} Dis Likes</Data>
-    </Icon>
-    <Icon position='right'>
-      <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
-        <Modal.Content>
-          <p>http://www.localhost:3000/post/2483931074231</p>
-        </Modal.Content>
-      </Modal>
-    </Icon>
-  </Menu>
+  <>
+    <Menu
+      fluid
+      style={{ backgroundColor: Theme.post.backgroundColor }}
+      widths={4}
+    >
+      <Icon position='left'>
+        <CommentIcon
+          fontSize='large'
+          style={handleStyle()}
+          onClick={props.handleCommentClick}
+        />
+        <Data>12 comments</Data>
+      </Icon>
+      <Icon position='left'>
+        <LikesIcon
+          fontSize='large'
+          style={handleStyle(props.color)}
+          onClick={props.handleLike}
+        />
+        <Data>{props.likes} Likes</Data>
+      </Icon>
+      <Icon position='left'>
+        <DisLikeIcon
+          fontSize='large'
+          style={handleStyle(props.colorD)}
+          onClick={props.handleDisLike}
+        />
+        <Data>{props.dislikes} dislikes</Data>
+      </Icon>
+      <Icon position='right'>
+        <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
+          <Modal.Content>
+            <p>http://www.localhost:3000/post/2483931074231</p>
+          </Modal.Content>
+        </Modal>
+      </Icon>
+    </Menu>
+    <Menu text widths={4}>
+      <Icon name='7 comments' />
+      <Icon onClick={props.handleLike}>{props.likes} likes</Icon>
+      <Icon onClick={props.handleDisLike}>{props.dislikes} dislikes</Icon>
+      <Icon name='' />
+    </Menu>
+  </>
 )
 
 export default FooterMenu
