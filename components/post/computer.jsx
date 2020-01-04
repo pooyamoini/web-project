@@ -105,7 +105,7 @@ class Post extends Component {
     const { display } = this.state
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
-        <Grid.Column centered width={7}>
+        <Grid.Column centered computer={7} mobile={16} tablet={13}>
           <Card>
             <Card.Content>
               <Informations />

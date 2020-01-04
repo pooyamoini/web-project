@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Comment, Form, Button } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
+import EditIcon from '@material-ui/icons/Edit'
 
 const Reply = ({ display }) => (
   <Form reply style={{ display }}>
@@ -25,7 +26,7 @@ class CommentComp extends Component {
   }
 
   componentDidMount () {
-      this.handleReplies(this.props.replies)
+    this.handleReplies(this.props.replies)
   }
 
   handleReplies (replies) {
@@ -70,11 +71,13 @@ class CommentComp extends Component {
             <Comment.Metadata style={{ color: 'grey' }}>
               <div>{date}</div>
             </Comment.Metadata>
+           
             <Comment.Text style={gStyle}>{content}</Comment.Text>
             <Comment.Actions>
               <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
                 Reply
-              </Comment.Action>
+                </Comment.Action>
+                <EditIcon fontSize="small" style={{ color: 'grey' }} />
             </Comment.Actions>
           </Comment.Content>
           <Reply display={display} />
