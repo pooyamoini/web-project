@@ -11,7 +11,7 @@ import samples from '../../../public/comments.json'
 
 const GenerateComments = ({ data }) =>
   data.map(x => {
-    if (x.reply.length == 0 || x.reply === undefined)
+    if (x.reply === undefined || x.reply.length == 0)
       return <Comment {...x} key={x} replies={[]} />
     const replies = x.reply
     return (

@@ -21,11 +21,15 @@ class CommentComp extends Component {
     this.state = { display: 'none', Replies: <></> }
     this.toReply = this.toReply.bind(this)
     this.doneReply = this.doneReply.bind(this)
+    this.handleReplies = this.handleReplies.bind(this)
   }
 
   componentDidMount () {
-    const { replies } = this.props
-    if (replies.length == 0) return
+      this.handleReplies(this.props.replies)
+  }
+
+  handleReplies (replies) {
+    if (replies == undefined || replies.length == 0) return
     this.setState({
       Replies: replies.map(x => {
         return (
