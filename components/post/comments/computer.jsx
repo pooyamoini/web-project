@@ -95,7 +95,7 @@ class CommentsPage extends Component {
     const { display } = this.props
     const { comments } = this.state
     return (
-      <Comment.Group style={{ paddingLeft: '1rem !important', display }}>
+      <Comment.Group style={{ paddingLeft: '1rem !important', display }} threaded>
         <Header as='h3' dividing color='grey'>
           Comments
         </Header>

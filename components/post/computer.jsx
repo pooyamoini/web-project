@@ -4,8 +4,6 @@ import {
   Image,
   Grid,
   Segment as Seg,
-  Menu as Men,
-  Modal
 } from 'semantic-ui-react'
 import Content from '../../public/post-content'
 import Comments from './comments/computer'
