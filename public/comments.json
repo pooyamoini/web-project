@@ -2,7 +2,7 @@
     {
         "src": "/static/Images/global/avatar.jpg",
         "name": "Lionel messi",
-        "time": "just now",
+        "date": "just now",
         "content": "Its Amazing!",
         "reply": [],
         "id": 349489538208
@@ -10,7 +10,7 @@
     {
         "src": "/static/Images/global/avatar0.jpg",
         "name": "Ahmadi Nezhad",
-        "time": "12 mins ago",
+        "date": "12 mins ago",
         "content": "You look awfull !",
         "reply":[],
         "id": 4372703294
@@ -18,20 +18,20 @@
     {
         "src": "/static/Images/global/avater3.jpg",
         "name": "Ahmad Nosratbakhsh",
-        "time": "3 hours ago",
+        "date": "3 hours ago",
         "id": 384033110,
         "content": "Dawshami !",
         "reply": [
             {
                 "src": "/static/Images/global/avatar.jpg",
                 "name": "Lionel messi",
-                "time": "just now",
+                "date": "just now",
                 "content": "Its Amazing!"
             },
             {
                 "src": "/static/Images/global/avatar0.jpg",
                 "name": "Ahmadi Nezhad",
-                "time": "12 mins ago",
+                "date": "12 mins ago",
                 "content": "You look awfull !"
             }
         ]
@@ -40,7 +40,7 @@
     {
         "src": "/static/Images/global/profile.jpg",
         "name": "Pooya Moini",
-        "time": "5 hours ago",
+        "date": "5 hours ago",
         "content": "There are multiple modules with names that only differ in casing.",
         "reply":[],
         "id":122312
