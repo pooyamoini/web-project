@@ -18,7 +18,7 @@ const Label = styled.label`
 `;
 
 const Input = styled(In)`
-  width: 50% !important;
+  // width: 100% !important;
 `;
 
 const labels = {
@@ -64,7 +64,7 @@ export default class EditProfile extends Component {
         >
           {labels[name]}
         </Label>
-        <Input style={{width: '100%'}} type={type} defaultValue={this.props.data[name]}></Input>
+        <Input style={{width: '70%'}} type={type} defaultValue={this.props.data[name]}></Input>
       </Form.Field>
     );
   }
@@ -86,7 +86,7 @@ export default class EditProfile extends Component {
         </Label>
         <Select
           style={{
-            width: "50%"
+            width: "70%"
           }}
           options={genderOptions}
           defaultValue={this.props.data.gender}

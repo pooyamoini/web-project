@@ -17,9 +17,9 @@ const Home = () => {
     <>
       <GloBalStyle />
       <Navbar />
-      <ProfileHeader type = 'other'></ProfileHeader>
-      <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer>
-      {/* <EditProfile data = {ProfileData}></EditProfile>    */}
+      {/* <ProfileHeader type = 'other'></ProfileHeader>
+      <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> */}
+      <EditProfile data = {ProfileData}></EditProfile>   
     </>
   )
 }
