@@ -11,6 +11,7 @@ import ProfileData from "../public/json-files/profile"
 import ProfilePostsContainer from "../components/profile-page/profile-posts-container"
 import EditProfileDesktop from '../components/profile-page/edit-profile-desktop'
 import EditProfileMobile from '../components/profile-page/edit-profile-mobile'
+import EditProfile from '../components/profile-page/edit-profile'
 const Home = () => {
   return (
     <>
@@ -19,7 +20,7 @@ const Home = () => {
       {/* <ProfileHeader type = 'other'></ProfileHeader>
       <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> */}
       {/* <EditProfileDesktop data = {ProfileData}></EditProfileDesktop>    */}
-      <EditProfileMobile data = {ProfileData}></EditProfileMobile>   
+      <EditProfile data = {ProfileData}></EditProfile>   
     </>
   )
 }
