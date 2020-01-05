@@ -50,7 +50,7 @@ export default class ProfileHeader extends Component {
           aria-label="setting"
           size="medium"
           style={{
-            color: "white"
+            color: "white",
           }}
         >
           <SettingsIcon centered fontSize="large"></SettingsIcon>
@@ -77,25 +77,38 @@ export default class ProfileHeader extends Component {
             centered
             circular
             src={this.props.data.image}
+            style={{
+              marginTop: '3rem'
+            }}
           ></Image>
         </Grid.Column>
-        <Grid.Column width={7}>
+        <Grid.Column width={9}>
           <SegmentGroup>
             <SegmentGroup horizontal>
               <Segment
                 style={{
-                  "margin-top": "1rem"
+                  "margin-top": "1rem",
+                  fontSize: '26px ',
+                  fontWeight: '700',
                 }}
               >
                 {this.props.data.userName}
               </Segment>
-              <Segment textAlign="center">
+              <Segment textAlign="center" style={{
+                marginTop: '2rem'
+              }}>
                 {this.getButton()}
               </Segment>
             </SegmentGroup>
             <SegmentGroup horizontal>
-              <Segment>{this.props.data.postsNumber} Posts</Segment>
-              <Segment>
+              <Segment style = {{
+                fontSize: '20px',
+                fontWeight: '700',
+              }}>{this.props.data.postsNumber} Posts</Segment>
+              <Segment style = {{
+                fontSize: '20px',
+                fontWeight: '0 !important'
+              }}>
                 <Dropdown
                   inline
                   text={this.props.data.followersNumber + " Followers"}
@@ -105,11 +118,13 @@ export default class ProfileHeader extends Component {
                   fluid
                   icon="none"
                   style={{
-                    width: "120%"
+                    width: "120%",
                   }}
                 />
               </Segment>
-              <Segment>
+              <Segment style = {{
+                fontSize: '20px'
+              }}>
                 <Dropdown
                   inline
                   text={this.props.data.followingNumber + " Following"}
@@ -124,7 +139,10 @@ export default class ProfileHeader extends Component {
                 />
               </Segment>
             </SegmentGroup>
-            <Segment>{this.props.data.bio}</Segment>
+            <Segment style={{
+              fontSize: '18px',
+              fontWeight: '400'
+            }}>{this.props.data.bio}</Segment>
           </SegmentGroup>
         </Grid.Column>
       </Grid>

@@ -16,7 +16,7 @@ const EditProfile = (props) => {
           minWidth={Responsive.onlyTablet.minWidth}
           maxWidth={Responsive.onlyTablet.maxWidth}
         >
-          <Computer data={ProfileData} />
+          <Mobile data={ProfileData} />
         </Responsive>
         <Responsive
           minWidth={Responsive.onlyComputer.minWidth}
