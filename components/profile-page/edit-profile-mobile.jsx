@@ -148,18 +148,17 @@ export default class EditProfile extends Component {
     const { activeSection } = this.state;
 
     return (
-      <Container>
+      <Container> 
         <Menu
           inverted
           borderless
           pointing
           secondary
           compact
-          width={2}
+          widths={2}
           size="massive"
           style={{
-            marginBottom: "1rem",
-            marginLeft: '3rem'
+            margin:"1rem"
           }}
         >
           <Menu.Item
