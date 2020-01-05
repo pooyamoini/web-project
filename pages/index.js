@@ -9,14 +9,15 @@ import ProfileHeader from '../components/profile-page/profile-header'
 import ProfileHeaderMobile from '../components/profile-page/profile-header-mobile'
 import ProfileData from "../public/json-files/profile"
 import ProfilePostsContainer from "../components/profile-page/profile-posts-container"
-
+import EditProfile from '../components/profile-page/edit-profile'
 const Home = () => {
   return (
     <>
       <GloBalStyle />
       <Navbar />
-      <ProfileHeader></ProfileHeader>
-      <ProfilePostsContainer data = {ProfileData} type = 'self'></ProfilePostsContainer>
+      {/* <ProfileHeader type = 'other'></ProfileHeader>
+      <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> */}
+      <EditProfile data = {ProfileData}></EditProfile>   
     </>
   )
 }

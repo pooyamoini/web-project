@@ -1,10 +1,15 @@
 {
   "image": "/Images/global/avatar0.jpg",
   "userName": "alirezamhm2000",
+  "name": "Alireza Mohammadian",
+  "gender": "male",
   "postsNumber": 34,
   "followersNumber": 178,
   "followingNumber": 207,
   "bio": "Alireza Mohammadian",
+  "email": "alireza.am1379@gmail.com",
+  "phoneNumber": "+989388324394",
+  "country": "Iran",
   "yourPosts": [
     {
       "title": "belabelabela",
