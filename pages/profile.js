@@ -10,7 +10,7 @@ const Home = () => {
     <>
       <GloBalStyle />
       <Navbar />
-      <ProfileHeader type = 'other'></ProfileHeader>
+      <ProfileHeader type = 'self'></ProfileHeader>
       <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> 
     </>
   )

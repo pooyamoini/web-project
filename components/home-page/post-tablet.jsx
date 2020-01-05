@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Segment, Image, Card } from 'semantic-ui-react'
 import styled from 'styled-components'
+import Link from 'next/link'
 
 const Name = styled.span`
   font-size: 20px;
@@ -34,15 +35,17 @@ class Post extends Component {
           </Segment>
         </Grid.Row>
         <Grid.Row centered>
-          <Card style={{ width: '80vw', padding: '0 !important' }}>
-            <Image src={this.props.image} wrapped ui={false} />
-            <Card.Content>
-              <Card.Description style={{fontSize: '20px'}}>
-                {' '}
-                {this.props.desc.substr(0, 100)}
-              </Card.Description>
-            </Card.Content>
-          </Card>
+          <Link href='/post'>
+            <Card style={{ width: '80vw', padding: '0 !important' }}>
+              <Image src={this.props.image} wrapped ui={false} />
+              <Card.Content>
+                <Card.Description style={{ fontSize: '20px' }}>
+                  {' '}
+                  {this.props.desc.substr(0, 100)}
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          </Link>
         </Grid.Row>
       </Grid>
     )

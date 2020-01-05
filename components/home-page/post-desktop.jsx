@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from 'react'
 import {
   Grid,
   Rail,
@@ -8,14 +8,15 @@ import {
   Card as Ca,
   Segment,
   Image
-} from "semantic-ui-react";
-import styled from "styled-components";
-import image from "../../public/Images/global/post.jpg";
-import Theme from '../../public/theme';
+} from 'semantic-ui-react'
+import Link from 'next/link'
+import styled from 'styled-components'
+import image from '../../public/Images/global/post.jpg'
+import Theme from '../../public/theme'
 
 const Column = styled(Grid.Column)`
   margin-left: 20px;
-`;
+`
 
 const Card = styled(Ca)`
   padding: 10px !important;
@@ -23,31 +24,31 @@ const Card = styled(Ca)`
   border-radius: 0 !important;
   background-color: ${Theme.post.backgroundColor} !important;
   box-shadow: none !important;
-`;
+`
 
 const Icon = styled(Ic)`
   margin: 5px;
   visibility: hidden;
-`;
+`
 
-function getImage(source) {
-  if (source == "") return;
+function getImage (source) {
+  if (source == '') return
   return (
     <Image
       src={image}
       style={{
-        "border-radius": "0 !important;"
+        'border-radius': '0 !important;'
       }}
-      size="medium"
+      size='medium'
       wrapped
       ui={false}
     />
-  );
+  )
 }
 
 const Post = props => {
-  const { contextRef } = props;
-  const src = props.src;
+  const { contextRef } = props
+  const src = props.src
   return (
     <Grid columns={2}>
       <Column width={1}>
@@ -56,11 +57,11 @@ const Post = props => {
             <Segment basic>
               <Sticky context={contextRef} offset={65}>
                 <Image
-                  size="tiny"
+                  size='tiny'
                   src={props.src}
                   style={{
-                    left: "-8rem",
-                    zIndex: "999999",
+                    left: '-8rem',
+                    zIndex: '999999'
                   }}
                 ></Image>
               </Sticky>
@@ -68,34 +69,51 @@ const Post = props => {
           </Rail>
         </Ref>
       </Column>
-      <Column width={16} style={{ padding: "0 !important" }}>
-        <Card fluid>
-          {getImage(props.image)}
-          <Card.Content>
-            <Card.Header style={{
-              color: Theme.post.headarColor
-            }}>{props.title}</Card.Header>
-            <Card.Meta style={{
-              color: Theme.post.dateColor
-            }}>{props.date}</Card.Meta>
-            <Card.Description style={{
-              color: Theme.post.textColor
-            }}>{props.content}</Card.Description>
-          </Card.Content>
-          <Card.Content extra style={{
-            color: Theme.post.dateColor
-          }}>
-            <p>
-              <Icon name="thumbs up" />
-              {props.votes} Votes
-              <Icon name="thumbs up" />
-              {props.comments} Comments
-            </p>
-          </Card.Content>
-        </Card>
+      <Column width={16} style={{ padding: '0 !important' }}>
+        <Link href='/post'>
+          <Card fluid>
+            {getImage(props.image)}
+            <Card.Content>
+              <Card.Header
+                style={{
+                  color: Theme.post.headarColor
+                }}
+              >
+                {props.title}
+              </Card.Header>
+              <Card.Meta
+                style={{
+                  color: Theme.post.dateColor
+                }}
+              >
+                {props.date}
+              </Card.Meta>
+              <Card.Description
+                style={{
+                  color: Theme.post.textColor
+                }}
+              >
+                {props.content}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content
+              extra
+              style={{
+                color: Theme.post.dateColor
+              }}
+            >
+              <p>
+                <Icon name='thumbs up' />
+                {props.votes} Votes
+                <Icon name='thumbs up' />
+                {props.comments} Comments
+              </p>
+            </Card.Content>
+          </Card>
+        </Link>
       </Column>
     </Grid>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post
