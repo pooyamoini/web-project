@@ -15,7 +15,6 @@ class CommentsPage extends Component {
     super(props)
     this.state = { comments: samples }
     this.addComment = this.addComment.bind(this)
-    this.addReply = this.addReply.bind(this)
   }
 
   addComment () {
@@ -29,18 +28,6 @@ class CommentsPage extends Component {
       src: '/static/Images/global/avatar0.jpg',
       reply: [],
       date: '30 mins ago'
-    })
-    this.setState({ comments })
-  }
-
-  addReply (content, index, name, src) {
-    const { comments } = this.state
-    comments[index].reply.push({
-      name,
-      content,
-      src,
-      date: 'just now',
-      reply: []
     })
     this.setState({ comments })
   }
@@ -69,7 +56,7 @@ class CommentsPage extends Component {
             add Comment
           </Button>
         </Form>
-        <GenerateComments data={comments} addReply={this.addReply} />
+        <GenerateComments data={comments}/>
       </CMT.Group>
     )
   }

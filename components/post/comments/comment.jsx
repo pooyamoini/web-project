@@ -13,7 +13,6 @@ const Reply = ({ display, handle, name }) => (
       secondary
       positive
       style={{ marginBottom: '1rem', marginLeft: '5%' }}
-      onClick={handle}
     >
       add Reply
     </Button>
