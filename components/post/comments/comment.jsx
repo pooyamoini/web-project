@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
-import { Comment, Form, Button } from 'semantic-ui-react'
+import { Comment } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
-import EditIcon from '@material-ui/icons/Edit'
-
-const Reply = ({ display, handle, name }) => (
-  <Form reply style={{ display }}>
-    <Form.TextArea
-      style={{ marginLeft: '5%', width: '90%', height: '20%' }}
-      id={'reply'.concat(name)}
-    />
-    <Button
-      secondary
-      positive
-      style={{ marginBottom: '1rem', marginLeft: '5%' }}
-    >
-      add Reply
-    </Button>
-  </Form>
-)
+import { Reply } from './reply'
+import CommentG from './reply'
 
 class CommentComp extends Component {
   constructor (props) {
     super(props)
     this.toReply = this.toReply.bind(this)
+    this.addReply = this.addReply.bind(this)
     this.doneReply = this.doneReply.bind(this)
-    this.state = { display: 'none' }
+    this.GenerateReplies = this.GenerateReplies.bind(this)
+    this.submit = this.submit.bind(this)
+    const { reply } = this.props
+    this.state = { display: 'none', reply }
   }
 
   doneReply () {
@@ -40,10 +29,42 @@ class CommentComp extends Component {
     this.setState({ display: 'block' })
   }
 
+  addReply (name, content, src, date = 'just now') {
+    const { reply } = this.state
+    reply.push({
+      name,
+      src,
+      content,
+      date
+    })
+    this.setState({ reply })
+  }
+
+  submit () {
+    const { name } = this.props
+    const nameW = 'pooya'
+    const src = 'static/Images/global/avater3.jpg'
+    const content = document.getElementById('reply'.concat(name)).value
+    document.getElementById('reply'.concat(name)).value = ''
+    this.addReply(nameW, content, src)
+    this.doneReply()
+  }
+
+  GenerateReplies ({ replies, addReply }) {
+    if (replies === undefined || replies.length === 0) return <></>
+    return (
+      <Comment.Group>
+        {replies.map(x => (
+          <CommentG {...x} key={x} addReply={addReply} />
+        ))}
+      </Comment.Group>
+    )
+  }
+
   render () {
     const { name, date, content, src } = this.props
+    const { display, reply } = this.state
     const color = Theme.post.textColor
-    const { display } = this.state
     const gStyle = { color }
     return (
       <>
@@ -56,7 +77,6 @@ class CommentComp extends Component {
             <Comment.Metadata style={{ color: 'grey' }}>
               <div>{date}</div>
             </Comment.Metadata>
-
             <Comment.Text style={gStyle}>{content}</Comment.Text>
             <Comment.Actions>
               <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
@@ -64,7 +84,8 @@ class CommentComp extends Component {
               </Comment.Action>
             </Comment.Actions>
           </Comment.Content>
-          <Reply display={display} handle={this.addReplySub} name={name} />
+          <Reply display={display} name={name} handle={this.submit} />
+          <this.GenerateReplies replies={reply} addReply={this.addReply} />
         </Comment>
       </>
     )
