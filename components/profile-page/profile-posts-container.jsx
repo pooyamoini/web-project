@@ -47,8 +47,6 @@ const GridColumnStyleMobile = {
 
 const Form = styled(Fo)``;
 
-const MenuItem = styled(Menu.Item)``;
-
 class NewPost extends Component {
   constructor(props) {
     super(props);
@@ -203,12 +201,12 @@ export default class ProfilePostsContainer extends Component {
           "margin-top": "-1.7rem"
         }}
       >
-        <MenuItem
+        <Menu.Item
           name="your posts"
           active={this.state.activeSection == "your posts"}
           onClick={this.handleItemClick}
         />
-        <MenuItem
+        <Menu.Item
           name="followed posts"
           active={this.state.activeSection == "followed posts"}
           onClick={this.handleItemClick}

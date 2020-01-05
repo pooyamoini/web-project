@@ -9,7 +9,8 @@ import ProfileHeader from '../components/profile-page/profile-header'
 import ProfileHeaderMobile from '../components/profile-page/profile-header-mobile'
 import ProfileData from "../public/json-files/profile"
 import ProfilePostsContainer from "../components/profile-page/profile-posts-container"
-import EditProfile from '../components/profile-page/edit-profile'
+import EditProfileDesktop from '../components/profile-page/edit-profile-desktop'
+import EditProfileMobile from '../components/profile-page/edit-profile-mobile'
 const Home = () => {
   return (
     <>
@@ -17,7 +18,8 @@ const Home = () => {
       <Navbar />
       {/* <ProfileHeader type = 'other'></ProfileHeader>
       <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> */}
-      <EditProfile data = {ProfileData}></EditProfile>   
+      {/* <EditProfileDesktop data = {ProfileData}></EditProfileDesktop>    */}
+      <EditProfileMobile data = {ProfileData}></EditProfileMobile>   
     </>
   )
 }

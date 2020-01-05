@@ -55,7 +55,7 @@ export default class EditProfile extends Component {
           <Label>{labels[name]}</Label>
         </Grid.Column>
         <Grid.Column textAlign="left" width={12}>
-          <Input type={type} defaultValue={this.props.data[name]} fluid></Input>
+          <Input type={type} defaultValue={this.props.data[name]}></Input>
         </Grid.Column>
       </Grid.Row>
     );
