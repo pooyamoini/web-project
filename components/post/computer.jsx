@@ -55,7 +55,7 @@ class Post extends Component {
     super(props)
     const { likes, dislikes } = this.props
     this.state = {
-      display: 'block',
+      display: 'none',
       likes,
       dislikes,
       color: 'white',

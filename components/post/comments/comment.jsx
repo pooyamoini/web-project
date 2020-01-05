@@ -3,13 +3,17 @@ import { Comment, Form, Button } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
 import EditIcon from '@material-ui/icons/Edit'
 
-const Reply = ({ display }) => (
+const Reply = ({ display, handle, name }) => (
   <Form reply style={{ display }}>
-    <Form.TextArea style={{ marginLeft: '5%', width: '90%', height: '20%' }} />
+    <Form.TextArea
+      style={{ marginLeft: '5%', width: '90%', height: '20%' }}
+      id={'reply'.concat(name)}
+    />
     <Button
       secondary
       positive
       style={{ marginBottom: '1rem', marginLeft: '5%' }}
+      onClick={handle}
     >
       add Reply
     </Button>
@@ -19,27 +23,9 @@ const Reply = ({ display }) => (
 class CommentComp extends Component {
   constructor (props) {
     super(props)
-    this.state = { display: 'none', Replies: <></> }
     this.toReply = this.toReply.bind(this)
     this.doneReply = this.doneReply.bind(this)
-    this.handleReplies = this.handleReplies.bind(this)
-  }
-
-  componentDidMount () {
-    this.handleReplies(this.props.replies)
-  }
-
-  handleReplies (replies) {
-    if (replies == undefined || replies.length == 0) return
-    this.setState({
-      Replies: replies.map(x => {
-        return (
-          <Comment.Group key={x}>
-            <CommentComp key={x} {...x} />
-          </Comment.Group>
-        )
-      })
-    })
+    this.state = { display: 'none' }
   }
 
   doneReply () {
@@ -58,7 +44,7 @@ class CommentComp extends Component {
   render () {
     const { name, date, content, src } = this.props
     const color = Theme.post.textColor
-    const { display, Replies } = this.state
+    const { display } = this.state
     const gStyle = { color }
     return (
       <>
@@ -71,17 +57,15 @@ class CommentComp extends Component {
             <Comment.Metadata style={{ color: 'grey' }}>
               <div>{date}</div>
             </Comment.Metadata>
-           
+
             <Comment.Text style={gStyle}>{content}</Comment.Text>
             <Comment.Actions>
               <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
                 Reply
-                </Comment.Action>
-                <EditIcon fontSize="small" style={{ color: 'grey' }} />
+              </Comment.Action>
             </Comment.Actions>
           </Comment.Content>
-          <Reply display={display} />
-          {Replies}
+          <Reply display={display} handle={this.addReplySub} name={name} />
         </Comment>
       </>
     )

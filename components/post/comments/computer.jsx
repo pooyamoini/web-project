@@ -6,25 +6,16 @@ import {
   Divider,
   Comment as CMT
 } from 'semantic-ui-react'
-import Comment from './comment'
+import GenerateComments from "./generate-comments"
 import samples from '../../../public/comments.json'
-import EditIcon from '@material-ui/icons/Edit';
-
-const GenerateComments = ({ data }) =>
-  data.map(x => {
-    if (x.reply === undefined || x.reply.length == 0)
-      return <Comment {...x} key={x} replies={[]} />
-    const replies = x.reply
-    return (
-      <Comment {...x} key={x} replies={replies !== undefined ? replies : []} />
-    )
-  })
+import EditIcon from '@material-ui/icons/Edit'
 
 class CommentsPage extends Component {
   constructor (props) {
     super(props)
     this.state = { comments: samples }
     this.addComment = this.addComment.bind(this)
+    this.addReply = this.addReply.bind(this)
   }
 
   addComment () {
@@ -42,6 +33,18 @@ class CommentsPage extends Component {
     this.setState({ comments })
   }
 
+  addReply (content, index, name, src) {
+    const { comments } = this.state
+    comments[index].reply.push({
+      name,
+      content,
+      src,
+      date: 'just now',
+      reply: []
+    })
+    this.setState({ comments })
+  }
+
   render () {
     const { display } = this.props
     const { comments } = this.state
@@ -53,7 +56,10 @@ class CommentsPage extends Component {
           </Header>
         </Divider>
         <Form reply>
-          <Form.TextArea style={{ marginLeft: '5%', width: '90%' }} id='add-comment'/>
+          <Form.TextArea
+            style={{ marginLeft: '5%', width: '90%' }}
+            id='add-comment'
+          />
           <Button
             secondary
             positive
@@ -63,7 +69,7 @@ class CommentsPage extends Component {
             add Comment
           </Button>
         </Form>
-        <GenerateComments data={comments} />
+        <GenerateComments data={comments} addReply={this.addReply} />
       </CMT.Group>
     )
   }
