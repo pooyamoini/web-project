@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Image, Dropdown, Input } from 'semantic-ui-react'
+import Link from 'next/link'
 
 const options = [
   { key: 1, text: 'Hot', value: 1 },
@@ -41,7 +42,9 @@ export default class MenuExampleVerticalText extends Component {
       <>
         <Menu text widths={5}>
           <Menu.Item>
-            <Image src='/static/Images/global/logo1.png' avatar />
+            <Link href='.'>
+              <Image src='/static/Images/global/logo1.png' avatar />
+            </Link>
           </Menu.Item>
           <Menu.Item>
             <Image
@@ -59,7 +62,9 @@ export default class MenuExampleVerticalText extends Component {
             />
           </Menu.Item>
           <Menu.Item>
-            <Image src='/static/Images/global/avatar.jpg' avatar />
+            <Link href='/profile'>
+              <Image src='/static/Images/global/avatar.jpg' avatar />
+            </Link>
           </Menu.Item>
         </Menu>
         <Dropdown

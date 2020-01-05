@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react'
 import Theme from '../../public/Theme'
 import TagOptions from '../../public/json-files/nav-bar/navbar-tags.json'
+import Link from 'next/link'
 
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
@@ -133,7 +134,9 @@ class NavBar extends Component {
           style={{ visibility }}
         >
           <Menu.Menu position='left'>
-            <Image avatar src={imgSrc} />
+            <Link href='.'>
+              <Image avatar src={imgSrc} />
+            </Link>
             <DropDown />
           </Menu.Menu>
           <Menu.Menu position='right'>
@@ -147,11 +150,13 @@ class NavBar extends Component {
                 onMouseEnter={this.hoverNotifEnter}
                 onMouseOut={this.hoverNotifExit}
               />
-              <Im
-                src={avatarImg}
-                avatar
-                style={{ marginLeft: '2rem', marginRight: '1rem' }}
-              />
+              <Link href="/profile">
+                <Im
+                  src={avatarImg}
+                  avatar
+                  style={{ marginLeft: '2rem', marginRight: '1rem' }}
+                />
+              </Link>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
