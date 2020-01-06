@@ -6,15 +6,13 @@ import MainContainer from '../components/home-page/index'
 import Header from '../components/home-page-contents/home-header'
 import HeaderData from '../public/headerSample'
 
-const Home = () => {
-  return (
-    <>
-      <GloBalStyle />
-      <Navbar />
-      <Header data={HeaderData} />
-      <MainContainer />
-    </>
-  )
-}
+const Home = () => (
+  <>
+    <GloBalStyle />
+    <Navbar />
+    <Header data={HeaderData} />
+    <MainContainer />
+  </>
+)
 
 export default Home

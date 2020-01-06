@@ -48,7 +48,7 @@ function getImage (source) {
 
 const Post = props => {
   const { contextRef } = props
-  const src = props.src
+  const { src } = props
   return (
     <Grid columns={2}>
       <Column width={1}>
@@ -57,7 +57,7 @@ const Post = props => {
             <Segment basic>
               <Sticky context={contextRef} offset={65}>
                 <Image
-                  src={props.src}
+                  src={src}
                   style={{
                     left: '-8rem',
                     zIndex: '999999',
