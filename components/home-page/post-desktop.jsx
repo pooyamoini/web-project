@@ -57,11 +57,13 @@ const Post = props => {
             <Segment basic>
               <Sticky context={contextRef} offset={65}>
                 <Image
-                  size='tiny'
                   src={props.src}
                   style={{
                     left: '-8rem',
-                    zIndex: '999999'
+                    zIndex: '999999',
+                    width: '6rem',
+                    height: '6rem',
+                    objectFit: 'cover'
                   }}
                 ></Image>
               </Sticky>

@@ -11,7 +11,7 @@ const Home = () => {
       <GloBalStyle />
       <Navbar />
       <ProfileHeader type = 'self'></ProfileHeader>
-      <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> 
+      <ProfilePostsContainer data = {ProfileData} type = 'self'></ProfilePostsContainer> 
     </>
   )
 }
