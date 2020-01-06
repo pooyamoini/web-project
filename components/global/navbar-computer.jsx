@@ -10,10 +10,13 @@ import {
 import TagOptions from '../../public/json-files/nav-bar/navbar-tags.json'
 import Theme from '../../public/Theme'
 import Link from 'next/link'
-
+import NotificationsIcon from '@material-ui/icons/Notifications'
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
-const notifImg = '/bell.png'
+
+const BadgeNotif = styled.p`
+  color: #fff;
+`
 
 const Menu = styled(M)`
   position: fixed !important;
@@ -129,7 +132,6 @@ class NavBar extends Component {
         <Menu
           size='massive'
           transparent={transparent}
-          secondary
           className='large-navbar'
           style={{ visibility }}
         >
@@ -142,19 +144,16 @@ class NavBar extends Component {
           <Menu.Menu position='right'>
             <Menu.Item>
               <Input size='mini' placeholder='Search...' />
-              <Im
-                src={notifImg}
-                size='mini'
-                style={{ marginLeft: '2rem', opacity: notifOpacity }}
-                className='notifications'
-                onMouseEnter={this.hoverNotifEnter}
-                onMouseOut={this.hoverNotifExit}
+              <NotificationsIcon
+                fontSize='large'
+                style={{ marginLeft: '2rem' }}
               />
+              <BadgeNotif>7</BadgeNotif>
               <Link href='/profile'>
                 <Im
                   src={avatarImg}
                   avatar
-                  style={{ marginLeft: '2rem', marginRight: '10rem' }}
+                  style={{ marginLeft: '2rem', marginRight: '15rem' }}
                 />
               </Link>
             </Menu.Item>
