@@ -14,6 +14,27 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
 
+const friendOptions = [
+  {
+    key: 'Jenny Hess',
+    text: 'Jenny Hess',
+    value: 'Jenny Hess',
+    image: { avatar: true, src: '/static/Images/global/avatar.jpg' }
+  },
+  {
+    key: 'Elliot Fu',
+    text: 'Elliot Fu',
+    value: 'Elliot Fu',
+    image: { avatar: true, src: '/static/Images/global/avatar1.jpg' }
+  },
+  {
+    key: 'Stevie Feliciano',
+    text: 'Stevie Feliciano',
+    value: 'Stevie Feliciano',
+    image: { avatar: true, src: '/static/Images/global/avatar2.jpg' }
+  }
+]
+
 const BadgeNotif = styled.p`
   color: #fff;
 `
@@ -35,12 +56,6 @@ const Image = styled(Im)`
   top: 50%;
   transform: translateY(-50%);
   left: 13rem;
-`
-
-const Input = styled(In)`
-  min-width: 30rem;
-  background-color: ${Theme.navbar.menuColor} !important;
-  color: ${Theme.navbar.textColor} !important;
 `
 
 const DropDown = () => {
@@ -92,12 +107,18 @@ const DropDown = () => {
   )
 }
 
+const SearchResults = () => (
+  <Menu vertical style={{ width: '30rem' }}>
+    <Menu.Item name='closest' />
+    <Menu.Item name='mostComments' />
+    <Menu.Item name='mostPopular' />
+  </Menu>
+)
+
 class NavBar extends Component {
   constructor (props) {
     super(props)
-    this.state = { notifOpacity: '0.7', offset: 0, visibility: 'visible' }
-    this.hoverNotifEnter = this.hoverNotifEnter.bind(this)
-    this.hoverNotifExit = this.hoverNotifExit.bind(this)
+    this.state = { offset: 0, visibility: 'visible' }
     this.handleScroll = this.handleScroll.bind(this)
   }
 
@@ -115,51 +136,51 @@ class NavBar extends Component {
     this.setState({ visibility: 'visible', offset: offsetNow })
   }
 
-  hoverNotifEnter () {
-    this.setState({ notifOpacity: '1' })
-  }
-
-  hoverNotifExit () {
-    this.setState({ notifOpacity: '0.7' })
-  }
-
   render () {
     const { transparent } = this.props
-    const { notifOpacity } = this.state
     const { visibility } = this.state
     return (
-      <Segment basic>
-        <Menu
-          size='massive'
-          transparent={transparent}
-          className='large-navbar'
-          style={{ visibility }}
-        >
-          <Menu.Menu position='left'>
-            <Link href='.'>
-              <Image avatar src={imgSrc} />
-            </Link>
-            <DropDown />
-          </Menu.Menu>
-          <Menu.Menu position='right'>
-            <Menu.Item>
-              <Input size='mini' placeholder='Search...' />
-              <NotificationsIcon
-                fontSize='large'
-                style={{ marginLeft: '2rem' }}
-              />
-              <BadgeNotif>7</BadgeNotif>
-              <Link href='/profile'>
-                <Im
-                  src={avatarImg}
-                  avatar
-                  style={{ marginLeft: '2rem', marginRight: '15rem' }}
-                />
+      <>
+        <Segment basic>
+          <Menu
+            size='massive'
+            transparent={transparent}
+            className='large-navbar'
+            style={{ visibility }}
+            secondary
+          >
+            <Menu.Menu position='left'>
+              <Link href='.'>
+                <Image avatar src={imgSrc} />
               </Link>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-      </Segment>
+              <DropDown />
+            </Menu.Menu>
+            <Menu.Menu position='right'>
+              <Menu.Item>
+                <Drp
+                  placeholder='Search'
+                  search
+                  selection
+                  options={friendOptions}
+                  style={{ width: '32rem' }}
+                />
+                <NotificationsIcon
+                  fontSize='large'
+                  style={{ marginLeft: '2rem' }}
+                />
+                <BadgeNotif>7</BadgeNotif>
+                <Link href='/profile'>
+                  <Im
+                    src={avatarImg}
+                    avatar
+                    style={{ marginLeft: '2rem', marginRight: '15rem' }}
+                  />
+                </Link>
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
+        </Segment>
+      </>
     )
   }
 }
