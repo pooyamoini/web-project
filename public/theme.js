@@ -4,7 +4,8 @@ const theme = {
         backgroundColor: 'rgb(31, 39, 56)',
         textColor: 'rgb(184, 184, 184)',
         menuColor: 'rgb(24, 26, 27)',
-        borderColor: 'white'
+        borderColor: 'white',
+        optionsBackgroundColor: 'white'
     },
     post: {
         backgroundColor: 'rgb(24, 26, 27)',
