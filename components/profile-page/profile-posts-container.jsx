@@ -52,6 +52,8 @@ class NewPost extends Component {
     super(props);
     this.state = {
       modalOpen: false,
+      imageModalOpen: false,
+      contentModalOpen: false,
       title: "",
       image: "",
       content: "",
@@ -62,8 +64,7 @@ class NewPost extends Component {
   }
 
   handleClose = () => {
-    this.setState({ title: "", image: "", content: "" });
-    this.setState({ modalOpen: false });
+    this.setState({ title: "", image: "", content: "", modalOpen: false, imageModalOpen: false, contentModalOpen: false });
   };
 
   handleOpen = () => this.setState({ modalOpen: true });
@@ -74,7 +75,6 @@ class NewPost extends Component {
 
   handleSubmit = () => {
     const { title, image, content } = this.state;
-    if (title == "" || content == "") return;
     this.setState({
       submittedTitle: title,
       submittedImage: image,
@@ -82,6 +82,96 @@ class NewPost extends Component {
     });
     this.handleClose();
   };
+
+  openImageModal = () => {
+    this.setState({imageModalOpen: true})
+  }
+
+  openContentModal = () =>{
+    this.setState({contentModalOpen: true})
+  }
+
+  getContentModal(){
+    return(
+    <Modal
+        open={this.state.contentModalOpen}
+        onClose={this.handleClose}
+        // trigger={
+        //   <Button color='green' inverted onClick={this.openImageModal} >
+        //     Next
+        //   </Button>
+        // }
+        basic
+        size="small"
+      >
+        <Header content="Write The Content" />
+        <Modal.Content>
+          <Form inverted size="large">
+          <Form.Field
+              control={TextArea}
+              label="Content"
+              name="content"
+              placeholder="..."
+              required
+              onChange={this.handleChange}
+              error={
+                this.state.content == "" ? "Content Can't Be Empty" : false
+              }
+            />
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color="red" inverted onClick={this.handleClose}>
+            Cancel
+          </Button>
+          <Button color="green" inverted onClick={this.handleSubmit}>
+            Done
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    );
+  }
+
+  getImageModal(){
+    return(
+    <Modal
+        open={this.state.imageModalOpen}
+        onClose={this.handleClose}
+        trigger={
+          <Button color='green' inverted onClick={this.openImageModal} >
+            Next
+          </Button>
+        }
+        basic
+        size="small"
+      >
+        <Header content="Select an Image" />
+        <Modal.Content>
+          <Form inverted size="large">
+            <Form.Field
+              control={Input}
+              label="Image"
+              name=" image"
+              placeholder="Url"
+              onChange={this.handleChange}
+            />
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color="red" inverted onClick={this.handleClose}>
+            Cancel
+          </Button>
+          <Button color="green" inverted onClick={this.openContentModal}>
+            Done
+          </Button>
+          <Button color="blue" inverted onClick={this.openContentModal}>
+            Skip
+          </Button>
+          {this.getContentModal()}
+        </Modal.Actions>
+      </Modal>
+    );
+  }
 
   render() {
     return (
@@ -107,7 +197,7 @@ class NewPost extends Component {
         basic
         size="small"
       >
-        <Header content="Create New Post" />
+        <Header content="Enter a Title" />
         <Modal.Content>
           <Form inverted size="large">
             <Form.Field
@@ -119,7 +209,7 @@ class NewPost extends Component {
               onChange={this.handleChange}
               error={this.state.title == "" ? "Title Can't Be Empty" : false}
             />
-            <Form.Field
+            {/* <Form.Field
               control={Input}
               label="Image"
               name=" image"
@@ -136,20 +226,24 @@ class NewPost extends Component {
               error={
                 this.state.content == "" ? "Content Can't Be Empty" : false
               }
-            />
+            /> */}
           </Form>
         </Modal.Content>
         <Modal.Actions>
           <Button basic color="red" inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          <Button color="green" inverted onClick={this.handleSubmit}>
-            Done
-          </Button>
+          {/* <Button color='green' inverted onClick={this.openImageModal} >
+            Next
+          </Button> */}
+          {this.getImageModal()}
+          {/* <NestedModal/> */}
         </Modal.Actions>
       </Modal>
     );
   }
+
+ 
 }
 
 export default class ProfilePostsContainer extends Component {
