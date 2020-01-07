@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
-import { Menu, Image, Dropdown, Input } from 'semantic-ui-react'
+import { Menu as M, Image, Dropdown, Input } from 'semantic-ui-react'
 import Link from 'next/link'
+import styled from 'styled-components'
+import Theme from '../../public/Theme'
+
+const Menu = styled(M)`
+border-bottom: ${props =>
+  props.transparent ? '0' : '1px solid '} !important;
+border-color: ${Theme.navbar.borderColor} !important;
+background-color: ${Theme.navbar.backgroundColor} !important;
+margin-top: 0 !important;
+`;
 
 const options = [
   { key: 1, text: 'Hot', value: 1 },
