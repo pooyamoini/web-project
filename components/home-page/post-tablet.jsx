@@ -47,8 +47,8 @@ class Post extends Component {
           <Link href="/post">
             <Card>
               <Image src={this.props.image} wrapped ui={false} />
-              <Card.Content>
-                <Card.Description textAlign = 'left'
+              <Card.Content  textAlign = 'left'>
+                <Card.Description
                   style={{ fontSize: "20px", color: Theme.post.textColor }}
                 >
                   {" "}
