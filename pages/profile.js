@@ -10,8 +10,8 @@ const Home = () => {
     <>
       <GloBalStyle />
       <Navbar />
-      <ProfileHeader type = 'other'></ProfileHeader>
-      <ProfilePostsContainer data = {ProfileData} type = 'other'></ProfilePostsContainer> 
+      <ProfileHeader type = 'self'></ProfileHeader>
+      <ProfilePostsContainer data = {ProfileData} type = 'self'></ProfilePostsContainer> 
     </>
   )
 }
