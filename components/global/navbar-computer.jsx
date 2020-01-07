@@ -43,6 +43,7 @@ const Menu = styled(M)`
   position: fixed !important;
   border-bottom: ${props =>
     props.transparent ? '0' : '1px solid '} !important;
+  border-color: ${Theme.navbar.borderColor} !important;
   background: #fff !important;
   z-index: 10000000000000 !important;
   width: 110% !important;
@@ -88,7 +89,7 @@ const DropDown = () => {
         <Drp.Menu
           scrolling
           style={{
-            'background-color': Theme.navbar.menuColor,
+            'background-color': Theme.navbar.optionsBackgroundColor,
             color: Theme.navbar.textColor
           }}
         >
