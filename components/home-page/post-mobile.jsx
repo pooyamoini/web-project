@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Image, Card } from 'semantic-ui-react'
+import { Grid, Segment, Image, Card as Ca} from 'semantic-ui-react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import Theme from "../../public/theme";
 
 const Name = styled.span`
   font-size: 20px;
@@ -15,6 +16,14 @@ const Meta = styled.span`
   margin-right: 3rem;
   color: white;
 `
+const Card = styled(Ca)`
+  width: 90vw !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background-color: ${Theme.post.backgroundColor} !important;
+  box-shadow: none !important;
+`;
+
 
 class Post extends Component {
   constructor (props) {
@@ -36,7 +45,7 @@ class Post extends Component {
         </Grid.Row>
         <Grid.Row centered>
           <Link href='/post'>
-            <Card style={{ width: '90vw', padding: '0 !important' }}>
+            <Card>
               <Image
                 src={this.props.image}
                 wrapped
@@ -45,8 +54,8 @@ class Post extends Component {
                   display: this.props.image === '' ? 'hidden' : 'visible'
                 }}
               />
-              <Card.Content>
-                <Card.Description>
+              <Card.Content textAlign = 'left'>
+                <Card.Description style={{ fontSize: "20px", color: Theme.post.textColor }}>
                   {this.props.desc.substr(0, 100)}
                 </Card.Description>
               </Card.Content>
