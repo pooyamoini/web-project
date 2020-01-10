@@ -167,7 +167,7 @@ class NavBar extends Component {
                 />
                 <NotificationsIcon
                   fontSize='large'
-                  style={{ marginLeft: '2rem' }}
+                  style={{ marginLeft: '2rem', color: 'white' }}
                 />
                 <BadgeNotif>7</BadgeNotif>
                 <Link href='/profile'>
