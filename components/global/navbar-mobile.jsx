@@ -60,13 +60,13 @@ export default class MenuExampleVerticalText extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item>
-            <SearchIcon onClick={this.handleSearch} style={{ color: 'white'}}/>
+            <SearchIcon fontSize='large' onClick={this.handleSearch} style={{ color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
-            <NotificationsIcon style={{color: 'white'}}/>
+            <NotificationsIcon  fontSize='large' style={{color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
-           <MenuIcon onClick={this.handleDrp} style={{ color: 'white'}}/>
+           <MenuIcon  fontSize='large' onClick={this.handleDrp} style={{ color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
             <Link href='/profile'>
