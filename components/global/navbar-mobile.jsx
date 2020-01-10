@@ -60,6 +60,7 @@ export default class MenuExampleVerticalText extends Component {
             <Image
               src='/static/Images/global/search.png'
               onClick={this.handleSearch}
+              style={{color: 'white'}}
             />
           </Menu.Item>
           <Menu.Item>
