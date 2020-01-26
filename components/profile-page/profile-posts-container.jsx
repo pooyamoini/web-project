@@ -96,11 +96,6 @@ class NewPost extends Component {
     <Modal
         open={this.state.contentModalOpen}
         onClose={this.handleClose}
-        // trigger={
-        //   <Button color='green' inverted onClick={this.openImageModal} >
-        //     Next
-        //   </Button>
-        // }
         basic
         size="small"
       >
@@ -151,7 +146,7 @@ class NewPost extends Component {
             <Form.Field
               control={Input}
               label="Image"
-              name=" image"
+              name="image"
               placeholder="Url"
               onChange={this.handleChange}
             />
@@ -209,35 +204,13 @@ class NewPost extends Component {
               onChange={this.handleChange}
               error={this.state.title == "" ? "Title Can't Be Empty" : false}
             />
-            {/* <Form.Field
-              control={Input}
-              label="Image"
-              name=" image"
-              placeholder="Url"
-              onChange={this.handleChange}
-            />
-            <Form.Field
-              control={TextArea}
-              label="Content"
-              name="content"
-              placeholder="..."
-              required
-              onChange={this.handleChange}
-              error={
-                this.state.content == "" ? "Content Can't Be Empty" : false
-              }
-            /> */}
           </Form>
         </Modal.Content>
         <Modal.Actions>
           <Button basic color="red" inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          {/* <Button color='green' inverted onClick={this.openImageModal} >
-            Next
-          </Button> */}
           {this.getImageModal()}
-          {/* <NestedModal/> */}
         </Modal.Actions>
       </Modal>
     );
