@@ -141,45 +141,47 @@ class NavBar extends Component {
     const { transparent } = this.props
     const { visibility } = this.state
     return (
-      <Segment basic>
-        <Menu
-          size='massive'
-          transparent={transparent}
-          className='large-navbar'
-          style={{ visibility }}
-          secondary
-        >
-          <Menu.Menu position='left'>
-            <Link href='.'>
-              <Image avatar src={imgSrc} />
-            </Link>
-            <DropDown />
-          </Menu.Menu>
-          <Menu.Menu position='right'>
-            <Menu.Item>
-              <Drp
-                placeholder='Search'
-                search
-                selection
-                options={friendOptions}
-                style={{ width: '32rem' }}
-              />
-              <NotificationsIcon
-                fontSize='large'
-                style={{ marginLeft: '2rem' }}
-              />
-              <BadgeNotif>7</BadgeNotif>
-              <Link href='/profile'>
-                <Im
-                  src={avatarImg}
-                  avatar
-                  style={{ marginLeft: '2rem', marginRight: '15rem' }}
-                />
+      <>
+        <Segment basic>
+          <Menu
+            size='massive'
+            transparent={transparent}
+            className='large-navbar'
+            style={{ visibility }}
+            secondary
+          >
+            <Menu.Menu position='left'>
+              <Link href='.'>
+                <Image avatar src={imgSrc} />
               </Link>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-      </Segment>
+              <DropDown />
+            </Menu.Menu>
+            <Menu.Menu position='right'>
+              <Menu.Item>
+                <Drp
+                  placeholder='Search'
+                  search
+                  selection
+                  options={friendOptions}
+                  style={{ width: '32rem' }}
+                />
+                <NotificationsIcon
+                  fontSize='large'
+                  style={{ marginLeft: '2rem', color: 'white' }}
+                />
+                <BadgeNotif>7</BadgeNotif>
+                <Link href='/profile'>
+                  <Im
+                    src={avatarImg}
+                    avatar
+                    style={{ marginLeft: '2rem', marginRight: '15rem' }}
+                  />
+                </Link>
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
+        </Segment>
+      </>
     )
   }
 }

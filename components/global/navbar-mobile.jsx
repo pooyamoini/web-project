@@ -3,6 +3,9 @@ import { Menu as M, Image, Dropdown, Input } from 'semantic-ui-react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Theme from '../../public/Theme'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import SearchIcon from '@material-ui/icons/Search'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const Menu = styled(M)`
 border-bottom: ${props =>
@@ -57,19 +60,13 @@ export default class MenuExampleVerticalText extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item>
-            <Image
-              src='/static/Images/global/search.png'
-              onClick={this.handleSearch}
-            />
+            <SearchIcon fontSize='large' onClick={this.handleSearch} style={{ color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
-            <Image src='/static/Images/global/notification.png' />
+            <NotificationsIcon  fontSize='large' style={{color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
-            <Image
-              src='/static/Images/global/menu.png'
-              onClick={this.handleDrp}
-            />
+           <MenuIcon  fontSize='large' onClick={this.handleDrp} style={{ color: 'white'}}/>
           </Menu.Item>
           <Menu.Item>
             <Link href='/profile'>
