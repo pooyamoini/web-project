@@ -1,7 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 import Theme from '../../public/theme'
-const color = "rgb(21, 32, 43)";
-const secondColor = "#24292e";
+import React, { Component } from 'react'
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -15,6 +14,18 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
   }
-`;
+`
 
-export default GlobalStyle;
+class GlobalStyleComp extends Component {
+  constructor (props) {
+    super(props)
+  }
+
+  componentDidMount () {}
+
+  render () {
+    return <GlobalStyle></GlobalStyle>
+  }
+}
+
+export default GlobalStyleComp
