@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import styled from 'styled-components'
-import { signupAPI } from '../../api/account-action/'
+import { signupAPI, loginAPI } from '../../api/account-action/'
 import {
   Grid,
   Image,
@@ -50,13 +50,23 @@ export default class Login extends Component {
     }
     this.handleSignup = this.handleSignup.bind(this)
     this.closeModal = this.closeModal.bind(this)
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   async handleSignup () {
     try {
       const { name, username, email, password } = this.state // handling erros later.
       const res = await signupAPI({ name, username, password, email })
+      this.setState({ open: true, msg: res.data['msg'], color: 'green' })
+    } catch (e) {
+      this.setState({ open: true, msg: e.response.data['msg'], color: 'red' })
+    }
+  }
+
+  async handleLogin () {
+    try {
+      const { username, password } = this.state // handling erros later.
+      const res = await loginAPI({ username, password })
       this.setState({ open: true, msg: res.data['msg'], color: 'green' })
     } catch (e) {
       this.setState({ open: true, msg: e.response.data['msg'], color: 'red' })
@@ -98,7 +108,7 @@ export default class Login extends Component {
           type='password'
           onChange={this.handleChange}
         ></Form.Field>
-        <Button type='submit' onClick={this.handleSubmit}>
+        <Button type='submit' onClick={this.handleLogin}>
           Submit
         </Button>
       </Form>
@@ -151,7 +161,12 @@ export default class Login extends Component {
     const { open, msg, color } = this.state
     return (
       <>
-        <ShowMSG open={open} msg={msg} close={this.closeModal} color={color}></ShowMSG>
+        <ShowMSG
+          open={open}
+          msg={msg}
+          close={this.closeModal}
+          color={color}
+        ></ShowMSG>
         <Grid
           columns={2}
           style={{
