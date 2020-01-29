@@ -81,7 +81,7 @@ export default class Login extends Component {
           control={Input}
           name="name"
           label="Name"
-          placeholder='name'
+          placeholder='Ken Adams'
           onChange={this.handleChange}
         >
         </Form.Field>
@@ -123,7 +123,7 @@ export default class Login extends Component {
   render() {
     return (
       <Grid
-        columns={2}
+        columns={1}
         style={{
           width: "100vw",
           heigth: "100vh",
@@ -131,20 +131,6 @@ export default class Login extends Component {
           margin: "0"
         }}
       >
-        <Grid.Column
-          style={{
-            padding: "0",
-            margin: "0 "
-          }}
-        >
-          <Image
-            src="/static/Images/global/login.jpg"
-            fluid
-            style={{
-              height: "100vh"
-            }}
-          ></Image>
-        </Grid.Column>
         <Grid.Column
           textAlign="center"
           verticalAlign="top"

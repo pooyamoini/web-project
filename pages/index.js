@@ -6,7 +6,6 @@ import GloBalStyle from '../components/global/globalStyle'
 import MainContainer from '../components/home-page/index'
 import Header from '../components/home-page-contents/home-header'
 import HeaderData from '../public/headerSample'
-import Login from '../components/login/login'
 
 const Home = () => (
   <>
