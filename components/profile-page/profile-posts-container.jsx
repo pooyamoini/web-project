@@ -61,6 +61,7 @@ class NewPost extends Component {
       submittedContent: ''
     }
     this.createPost = this.createPost.bind(this)
+    this.setImage = this.setImage.bind(this)
   }
 
   handleClose = () => {
@@ -83,7 +84,8 @@ class NewPost extends Component {
     const { content, image } = this.state
     const token = localStorage.getItem('token')
     try {
-      const res = await createPostAPI({ content, image, token })
+      const imagePath = 'statics/images/'.concat(image)
+      const res = await createPostAPI({ content, image: imagePath, token })
       this.handleClose()
       window.location.reload()
     } catch (e) {
@@ -106,6 +108,12 @@ class NewPost extends Component {
 
   openContentModal = () => {
     this.setState({ contentModalOpen: true })
+  }
+
+  setImage () {
+    const x = document.getElementById('input-img')
+    const nameImg = x.files.item(0).name
+    this.setState({ image: nameImg })
   }
 
   getContentModal () {
@@ -176,9 +184,13 @@ class NewPost extends Component {
           <Button color='green' inverted onClick={this.createPost}>
             Done
           </Button>
-          <Button color='blue' inverted onClick={this.createPost}>
-            Skip
-          </Button>
+          <input
+            type='file'
+            accept='image/*'
+            required
+            id='input-img'
+            onChange={this.setImage}
+          />
         </Modal.Actions>
       </Modal>
     )
