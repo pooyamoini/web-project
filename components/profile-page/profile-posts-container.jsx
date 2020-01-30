@@ -54,17 +54,21 @@ class NewPost extends Component {
       modalOpen: false,
       imageModalOpen: false,
       contentModalOpen: false,
-      title: "",
       image: "",
       content: "",
-      submittedTitle: "",
       submittedImage: "",
       submittedContent: ""
     };
   }
 
   handleClose = () => {
-    this.setState({ title: "", image: "", content: "", modalOpen: false, imageModalOpen: false, contentModalOpen: false });
+    this.setState({
+      image: "",
+      content: "",
+      modalOpen: false,
+      imageModalOpen: false,
+      contentModalOpen: false
+    });
   };
 
   handleOpen = () => this.setState({ modalOpen: true });
@@ -74,9 +78,8 @@ class NewPost extends Component {
   };
 
   handleSubmit = () => {
-    const { title, image, content } = this.state;
+    const { image, content } = this.state;
     this.setState({
-      submittedTitle: title,
       submittedImage: image,
       submittedConent: content
     });
@@ -84,16 +87,16 @@ class NewPost extends Component {
   };
 
   openImageModal = () => {
-    this.setState({imageModalOpen: true})
-  }
+    this.setState({ imageModalOpen: true });
+  };
 
-  openContentModal = () =>{
-    this.setState({contentModalOpen: true})
-  }
+  openContentModal = () => {
+    this.setState({ contentModalOpen: true });
+  };
 
-  getContentModal(){
-    return(
-    <Modal
+  getContentModal() {
+    return (
+      <Modal
         open={this.state.contentModalOpen}
         onClose={this.handleClose}
         basic
@@ -102,7 +105,7 @@ class NewPost extends Component {
         <Header content="Write The Content" />
         <Modal.Content>
           <Form inverted size="large">
-          <Form.Field
+            <Form.Field
               control={TextArea}
               label="Content"
               name="content"
@@ -127,13 +130,13 @@ class NewPost extends Component {
     );
   }
 
-  getImageModal(){
-    return(
-    <Modal
+  getImageModal() {
+    return (
+      <Modal
         open={this.state.imageModalOpen}
         onClose={this.handleClose}
         trigger={
-          <Button color='green' inverted onClick={this.openImageModal} >
+          <Button color="green" inverted onClick={this.openImageModal}>
             Next
           </Button>
         }
@@ -156,13 +159,12 @@ class NewPost extends Component {
           <Button basic color="red" inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          <Button color="green" inverted onClick={this.openContentModal}>
+          <Button color="green" inverted onClick={this.handleSubmit}>
             Done
           </Button>
-          <Button color="blue" inverted onClick={this.openContentModal}>
+          <Button color="blue" inverted onClick={this.handleSubmit}>
             Skip
           </Button>
-          {this.getContentModal()}
         </Modal.Actions>
       </Modal>
     );
@@ -192,7 +194,7 @@ class NewPost extends Component {
         basic
         size="small"
       >
-        <Header content="Enter a Title" />
+        {/* <Header content="Enter a Title" />
         <Modal.Content>
           <Form inverted size="large">
             <Form.Field
@@ -211,12 +213,33 @@ class NewPost extends Component {
             Cancel
           </Button>
           {this.getImageModal()}
+        </Modal.Actions> */}
+
+        <Header content="Write The Content" />
+        <Modal.Content>
+          <Form inverted size="large">
+            <Form.Field
+              control={TextArea}
+              label="Content"
+              name="content"
+              placeholder="..."
+              required
+              onChange={this.handleChange}
+              error={
+                this.state.content == "" ? "Content Can't Be Empty" : false
+              }
+            />
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color="red" inverted onClick={this.handleClose}>
+            Cancel
+          </Button>
+          {this.getImageModal()}
         </Modal.Actions>
       </Modal>
     );
   }
-
- 
 }
 
 export default class ProfilePostsContainer extends Component {
