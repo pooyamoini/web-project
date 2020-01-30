@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { SIGNUP_ROUTE, LOGIN_ROUTE } from '../urls/account'
+import Router from 'next/router'
+import { SIGNUP_ROUTE, LOGIN_ROUTE, VALIATE_TOKEN } from '../urls/account'
 const axios = require('axios')
 
 export const signupAPI = params => {
@@ -18,4 +19,22 @@ export const loginAPI = params => {
     }
   })
   return res
+}
+
+export const tokenIsValid = token => {
+  const res = axios.post(
+    VALIATE_TOKEN,
+    { token },
+    {
+      headers: {
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    }
+  )
+  return res
+}
+
+export const logout = () => {
+  localStorage.setItem('token', null)
+  Router.push('/')
 }

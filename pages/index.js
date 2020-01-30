@@ -1,19 +1,45 @@
-
-import React from 'react'
+import React, { Component } from 'react'
+import Router from 'next/router'
 import 'semantic-ui-css/semantic.min.css'
-import Navbar from '../components/global/navbar-index'
+import { Responsive, Segment } from 'semantic-ui-react'
+import NoSSR from 'react-no-ssr'
+import { tokenIsValid } from '../api/account-action/'
 import GloBalStyle from '../components/global/globalStyle'
-import MainContainer from '../components/home-page/index'
-import Header from '../components/home-page-contents/home-header'
-import HeaderData from '../public/headerSample'
+import Desktop from '../components/login/login-desktop'
+import Mobile from '../components/login/login-mobile'
 
-const Home = () => (
-  <>
-    <GloBalStyle />
-    <Navbar />
-    <Header data={HeaderData} />
-    <MainContainer />
-  </>
-)
+class LoginComp extends Component {
+  async componentDidMount () {
+    const token = localStorage.getItem('token')
+    if (token === null) return
+    try {
+      const res = await tokenIsValid(token)
+      Router.push('/dashboard')
+    } catch (e) {
+      return
+    }
+  }
 
-export default Home
+  render () {
+    return (
+      <>
+        <GloBalStyle />
+        <Segment.Group basic>
+          <NoSSR>
+            <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
+              <Mobile />
+            </Responsive>
+            <Responsive
+              minWidth={Responsive.onlyComputer.minWidth}
+              maxWidth={Responsive.onlyComputer.maxWidth}
+            >
+              <Desktop />
+            </Responsive>
+          </NoSSR>
+        </Segment.Group>
+      </>
+    )
+  }
+}
+
+export default LoginComp

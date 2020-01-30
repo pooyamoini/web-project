@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Router from 'next/router'
 import 'semantic-ui-css/semantic.min.css'
 import styled from 'styled-components'
 import { signupAPI, loginAPI } from '../../api/account-action/'
@@ -20,10 +21,10 @@ const Form = styled(Fo)`
 
 function ShowMSG ({ msg, open, close, color }) {
   return (
-    <Modal open={open}>
+    <Modal size='tiny' open={open}>
       <Header content='Your registration' />
       <Modal.Content>
-        <p style={{ color }}>{msg}</p>
+        <p style={{ color, fontSize: '1.2rem' }}>{msg}</p>
       </Modal.Content>
       <Modal.Actions>
         <Button color='green' onClick={close}>
@@ -67,7 +68,12 @@ export default class Login extends Component {
     try {
       const { username, password } = this.state // handling erros later.
       const res = await loginAPI({ username, password })
-      this.setState({ open: true, msg: res.data['msg'], color: 'green' })
+      const token = res.data['token']
+      const account = res.data['account']
+      localStorage.setItem('token', token)
+      localStorage.setItem('account', account)
+      Router.push('/dashboard')
+      return
     } catch (e) {
       this.setState({ open: true, msg: e.response.data['msg'], color: 'red' })
     }

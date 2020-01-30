@@ -10,6 +10,8 @@ import {
 import TagOptions from '../../public/json-files/nav-bar/navbar-tags.json'
 import Theme from '../../public/Theme'
 import Link from 'next/link'
+import { logout } from '../../api/account-action/'
+import ExitIcon from '@material-ui/icons/ExitToApp'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 const imgSrc = '/Images/global/logo1.png'
 const avatarImg = '/Images/global/avatar.jpg'
@@ -121,6 +123,7 @@ class NavBar extends Component {
     super(props)
     this.state = { offset: 0, visibility: 'visible' }
     this.handleScroll = this.handleScroll.bind(this)
+    this.logoutFunc = this.logoutFunc.bind(this)
   }
 
   componentDidMount () {
@@ -135,6 +138,10 @@ class NavBar extends Component {
       return
     }
     this.setState({ visibility: 'visible', offset: offsetNow })
+  }
+
+  logoutFunc () {
+    logout()
   }
 
   render () {
@@ -154,6 +161,12 @@ class NavBar extends Component {
               <Link href='.'>
                 <Image avatar src={imgSrc} />
               </Link>
+              <ExitIcon
+                fontSize='large'
+                color='primary'
+                style={{ marginTop: '1.5rem', marginLeft: '3.5rem' }}
+                onClick={this.logoutFunc}
+              />
               <DropDown />
             </Menu.Menu>
             <Menu.Menu position='right'>
@@ -177,6 +190,7 @@ class NavBar extends Component {
                     style={{ marginLeft: '2rem', marginRight: '15rem' }}
                   />
                 </Link>
+                Î
               </Menu.Item>
             </Menu.Menu>
           </Menu>
