@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import {
   Menu as Me,
   Container,
@@ -12,11 +12,12 @@ import {
   Grid as Gr,
   Responsive,
   Segment
-} from "semantic-ui-react";
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
-import Post from "../profile-page/profile-post";
-import NoSSR from "react-no-ssr";
+} from 'semantic-ui-react'
+import { createPostAPI } from '../../api/post/'
+import IconButton from '@material-ui/core/IconButton'
+import AddIcon from '@material-ui/icons/Add'
+import Post from '../profile-page/profile-post'
+import NoSSR from 'react-no-ssr'
 
 const Menu = styled(Me)`
   color: white !important;
@@ -24,153 +25,166 @@ const Menu = styled(Me)`
   border-right: none !important;
   border-left: none !important;
   border-color: rgb(102, 102, 102) !important;
-`;
+`
 
 const Grid = styled(Gr)`
   margin: 1.5rem auto !important;
-`;
+`
 
 const GridColumnStyleDesktop = {
-  width: "30%",
-  margin: "1rem"
-};
+  width: '30%',
+  margin: '1rem'
+}
 
 const GridColumnStyleTablet = {
-  width: "45%",
-  margin: "1rem "
-};
+  width: '45%',
+  margin: '1rem '
+}
 
 const GridColumnStyleMobile = {
-  width: "90%",
-  margin: "1rem"
-};
+  width: '90%',
+  margin: '1rem'
+}
 
-const Form = styled(Fo)``;
+const Form = styled(Fo)``
 
 class NewPost extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       modalOpen: false,
       imageModalOpen: false,
       contentModalOpen: false,
-      image: "",
-      content: "",
-      submittedImage: "",
-      submittedContent: ""
-    };
+      image: '',
+      content: '',
+      submittedImage: '',
+      submittedContent: ''
+    }
+    this.createPost = this.createPost.bind(this)
   }
 
   handleClose = () => {
     this.setState({
-      image: "",
-      content: "",
+      image: '',
+      content: '',
       modalOpen: false,
       imageModalOpen: false,
       contentModalOpen: false
-    });
-  };
+    })
+  }
 
-  handleOpen = () => this.setState({ modalOpen: true });
+  handleOpen = () => this.setState({ modalOpen: true })
 
   handleChange = (e, { name, value }) => {
-    this.setState({ [name]: value });
-  };
+    this.setState({ [name]: value })
+  }
+
+  async createPost () {
+    const { content, image } = this.state
+    const token = localStorage.getItem('token')
+    try {
+      const res = await createPostAPI({ content, image, token })
+      this.handleClose()
+      window.location.reload()
+    } catch (e) {
+      alert('some thing wrong happend')
+    }
+  }
 
   handleSubmit = () => {
-    const { image, content } = this.state;
+    const { image, content } = this.state
     this.setState({
       submittedImage: image,
       submittedConent: content
-    });
-    this.handleClose();
-  };
+    })
+    this.handleClose()
+  }
 
   openImageModal = () => {
-    this.setState({ imageModalOpen: true });
-  };
+    this.setState({ imageModalOpen: true })
+  }
 
   openContentModal = () => {
-    this.setState({ contentModalOpen: true });
-  };
+    this.setState({ contentModalOpen: true })
+  }
 
-  getContentModal() {
+  getContentModal () {
     return (
       <Modal
         open={this.state.contentModalOpen}
         onClose={this.handleClose}
         basic
-        size="small"
+        size='small'
       >
-        <Header content="Write The Content" />
+        <Header content='Write The Content' />
         <Modal.Content>
-          <Form inverted size="large">
+          <Form inverted size='large'>
             <Form.Field
               control={TextArea}
-              label="Content"
-              name="content"
-              placeholder="..."
+              label='Content'
+              name='content'
+              placeholder='...'
               required
               onChange={this.handleChange}
               error={
-                this.state.content == "" ? "Content Can't Be Empty" : false
+                this.state.content == '' ? "Content Can't Be Empty" : false
               }
             />
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic color="red" inverted onClick={this.handleClose}>
+          <Button basic color='red' inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          <Button color="green" inverted onClick={this.handleSubmit}>
+          <Button color='green' inverted onClick={this.handleSubmit}>
             Done
           </Button>
         </Modal.Actions>
       </Modal>
-    );
+    )
   }
 
-  getImageModal() {
+  getImageModal () {
     return (
       <Modal
         open={this.state.imageModalOpen}
         onClose={this.handleClose}
         trigger={
-          <Button color="green" inverted onClick={this.openImageModal}>
+          <Button color='green' inverted onClick={this.openImageModal}>
             Next
           </Button>
         }
         basic
-        size="small"
+        size='small'
       >
-        <Header content="Select an Image" />
+        <Header content='Select an Image' />
         <Modal.Content>
-          <Form inverted size="large">
+          <Form inverted size='large'>
             <Form.Field
               control={Input}
-              label="Image"
-              name="image"
-              placeholder="Url"
+              label='Image'
+              name='image'
+              placeholder='Url'
               onChange={this.handleChange}
             />
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic color="red" inverted onClick={this.handleClose}>
+          <Button basic color='red' inverted onClick={this.handleClose}>
             Cancel
           </Button>
-          <Button color="green" inverted onClick={this.handleSubmit}>
+          <Button color='green' inverted onClick={this.createPost}>
             Done
           </Button>
-          <Button color="blue" inverted onClick={this.handleSubmit}>
+          <Button color='blue' inverted onClick={this.createPost}>
             Skip
           </Button>
         </Modal.Actions>
       </Modal>
-    );
+    )
   }
 
-  render() {
+  render () {
     return (
       <Modal
         open={this.state.modalOpen}
@@ -180,19 +194,19 @@ class NewPost extends Component {
             icon
             circular
             onClick={this.handleOpen}
-            size="small"
+            size='small'
             style={{
-              "background-color": "white",
-              color: "black",
-              "margin-right": "2rem",
+              'background-color': 'white',
+              color: 'black',
+              'margin-right': '2rem',
               visibility: this.props.active
             }}
           >
-            <AddIcon size="large" />
+            <AddIcon size='large' />
           </Button>
         }
         basic
-        size="small"
+        size='small'
       >
         {/* <Header content="Enter a Title" />
         <Modal.Content>
@@ -215,45 +229,45 @@ class NewPost extends Component {
           {this.getImageModal()}
         </Modal.Actions> */}
 
-        <Header content="Write The Content" />
+        <Header content='Write The Content' />
         <Modal.Content>
-          <Form inverted size="large">
+          <Form inverted size='large'>
             <Form.Field
               control={TextArea}
-              label="Content"
-              name="content"
-              placeholder="..."
+              label='Content'
+              name='content'
+              placeholder='...'
               required
               onChange={this.handleChange}
               error={
-                this.state.content == "" ? "Content Can't Be Empty" : false
+                this.state.content == '' ? "Content Can't Be Empty" : false
               }
             />
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic color="red" inverted onClick={this.handleClose}>
+          <Button basic color='red' inverted onClick={this.handleClose}>
             Cancel
           </Button>
           {this.getImageModal()}
         </Modal.Actions>
       </Modal>
-    );
+    )
   }
 }
 
 export default class ProfilePostsContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { activeSection: "your posts" };
+  constructor (props) {
+    super(props)
+    this.state = { activeSection: 'your posts' }
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeSection: name });
+  handleItemClick = (e, { name }) => this.setState({ activeSection: name })
 
-  makePosts(postsList, n, row) {
-    const list = [];
-    postsList.forEach(function(post, index) {
-      if (index % n != row) return;
+  makePosts (postsList, n, row) {
+    const list = []
+    postsList.forEach(function (post, index) {
+      if (index % n != row) return
       list.push(
         <Post
           name={post.title}
@@ -262,22 +276,22 @@ export default class ProfilePostsContainer extends Component {
           desc={post.content}
           image={post.image}
         ></Post>
-      );
-    });
-    return list;
+      )
+    })
+    return list
   }
 
-  getNewPost() {
-    if (this.props.type != "self") return;
+  getNewPost () {
+    if (this.props.type != 'self') return
     return (
       <NewPost
-        active={this.state.activeSection == "your posts" ? "visible" : "hidden"}
+        active={this.state.activeSection == 'your posts' ? 'visible' : 'hidden'}
       />
-    );
+    )
   }
 
-  getMenu() {
-    if (this.props.type != "self") return;
+  getMenu () {
+    if (this.props.type != 'self') return
     return (
       <Menu
         inverted
@@ -286,26 +300,26 @@ export default class ProfilePostsContainer extends Component {
         secondary
         compact
         width={2}
-        size="massive"
+        size='massive'
         style={{
-          "margin-top": "-1.7rem"
+          'margin-top': '-1.7rem'
         }}
       >
         <Menu.Item
-          name="your posts"
-          active={this.state.activeSection == "your posts"}
+          name='your posts'
+          active={this.state.activeSection == 'your posts'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name="followed posts"
-          active={this.state.activeSection == "followed posts"}
+          name='followed posts'
+          active={this.state.activeSection == 'followed posts'}
           onClick={this.handleItemClick}
         />
       </Menu>
-    );
+    )
   }
 
-  getPosts(postsList) {
+  getPosts (postsList) {
     return (
       <Segment.Group basic>
         <NoSSR>
@@ -347,31 +361,31 @@ export default class ProfilePostsContainer extends Component {
           </Responsive>
         </NoSSR>
       </Segment.Group>
-    );
+    )
   }
 
-  render() {
-    let postsList = [];
-    if (this.props.type == "self") {
+  render () {
+    let postsList = []
+    if (this.props.type == 'self') {
       postsList =
-        this.state.activeSection == "your posts"
+        this.state.activeSection == 'your posts'
           ? this.props.data.yourPosts
-          : this.props.data.followedPosts;
+          : this.props.data.followedPosts
     } else {
-      postsList = this.props.data.yourPosts;
+      postsList = this.props.data.yourPosts
     }
     return (
       <Container
-        textAlign="center"
+        textAlign='center'
         style={{
-          width: "90%;",
-          margin: "1rem auto !important;"
+          width: '90%;',
+          margin: '1rem auto !important;'
         }}
       >
         {this.getNewPost()}
         {this.getMenu()}
         {this.getPosts(postsList)}
       </Container>
-    );
+    )
   }
 }
