@@ -58,6 +58,7 @@ export default class EditProfile extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChangeInput = this.handleChangeInput.bind(this)
     this.setStates = this.setStates.bind(this)
+    this.handleGender = this.handleGender.bind(this)
   }
 
   componentDidMount () {
@@ -90,6 +91,11 @@ export default class EditProfile extends Component {
     })
   }
 
+  handleGender (e) {
+    const value = e.target.textContent
+    this.setState({ gender: value })
+  }
+
   handleItemClick = (e, { name }) => {
     this.setState({ activeSection: name })
   }
@@ -110,7 +116,7 @@ export default class EditProfile extends Component {
       const res = await editProfileAPI(data)
       window.location.reload()
     } catch (e) {
-      alert('error')
+      alert('some thing wrong happen:(')
       console.log(e)
     }
   }
@@ -144,7 +150,8 @@ export default class EditProfile extends Component {
               width: '50%'
             }}
             options={genderOptions}
-            defaultValue={this.props.data.gender}
+            defaultValue={this.props.gender}
+            onChange={this.handleGender}
           />
         </Grid.Column>
       </Grid.Row>

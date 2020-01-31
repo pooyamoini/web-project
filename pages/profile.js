@@ -11,7 +11,7 @@ import ProfilePostsContainer from '../components/profile-page/profile-posts-cont
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = { data: '' }
+    this.state = { data: '', type: '' }
   }
 
   async componentDidMount () {
@@ -37,10 +37,10 @@ class Home extends Component {
       <>
         <GloBalStyle />
         <Navbar />
-        <ProfileHeader data={data} type='self'></ProfileHeader>
+        <ProfileHeader data={data} type='other'></ProfileHeader>
         <ProfilePostsContainer
           data={ProfileData}
-          type='self'
+          type='other'
         ></ProfilePostsContainer>
       </>
     )

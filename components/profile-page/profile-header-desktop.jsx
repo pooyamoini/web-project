@@ -100,7 +100,7 @@ export default class ProfileHeader extends Component {
                   fontWeight: '700'
                 }}
               >
-                {this.props.data.username}
+                {this.props.data.name}
               </Segment>
               <Segment
                 textAlign='center'
