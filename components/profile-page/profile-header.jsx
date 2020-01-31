@@ -1,7 +1,6 @@
 import React from 'react'
 import { Responsive, Segment } from 'semantic-ui-react'
 import NoSSR from 'react-no-ssr'
-import ProfileData from '../../public/json-files/profile'
 import Mobile from './profile-header-mobile'
 import Computer from './profile-header-desktop'
 

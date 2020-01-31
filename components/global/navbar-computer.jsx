@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React, { Component } from 'react'
+import { useRouter } from 'next/router'
 import {
   Menu as M,
   Image as Im,
@@ -120,13 +121,15 @@ const SearchResults = () => (
 class NavBar extends Component {
   constructor (props) {
     super(props)
-    this.state = { offset: 0, visibility: 'visible' }
+    this.state = { offset: 0, visibility: 'visible', isProfile: false }
     this.handleScroll = this.handleScroll.bind(this)
     this.logoutFunc = this.logoutFunc.bind(this)
   }
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+    const url = window.location.href.includes('profile/')
+    this.setState({ isProfile: url })
   }
 
   handleScroll () {
@@ -145,7 +148,7 @@ class NavBar extends Component {
 
   render () {
     const { transparent } = this.props
-    const { visibility } = this.state
+    const { visibility, isProfile } = this.state
     return (
       <>
         <Segment basic>
@@ -157,7 +160,7 @@ class NavBar extends Component {
             secondary
           >
             <Menu.Menu position='left'>
-              <Link href='.'>
+              <Link href={isProfile ? '../dashboard' : './dashboard'}>
                 <Image avatar src={imgSrc} />
               </Link>
               <ExitIcon
@@ -182,11 +185,13 @@ class NavBar extends Component {
                   style={{ marginLeft: '2rem', color: 'white' }}
                 />
                 <BadgeNotif>7</BadgeNotif>
-                <Link href='/profile'>
+                <Link href='/profile/profile'>
                   <Im
                     src={
                       this.props.profile
-                        ? this.props.profile
+                        ? isProfile
+                          ? '../'.concat(this.props.profile)
+                          : this.props.profile
                         : '/static/Images/profiles/empty.png'
                     }
                     avatar

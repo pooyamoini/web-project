@@ -51,7 +51,7 @@ export default class ProfileHeader extends Component {
             color: 'white'
           }}
         >
-          <Link href='edit-profile'>
+          <Link href='../edit-profile'>
             <SettingsIcon centered fontSize='large'></SettingsIcon>
           </Link>
         </IconButton>
@@ -73,6 +73,7 @@ export default class ProfileHeader extends Component {
   }
 
   render () {
+    console.log(this.props.data)
     return (
       <Grid centered>
         <Grid.Column width={5}>
@@ -81,9 +82,9 @@ export default class ProfileHeader extends Component {
             centered
             circular
             src={
-              this.props.data.profile 
-                ? this.props.data.profile
-                : '/static/Images/profiles/empty.png'
+              this.props.data.profile
+                ? '../'.concat(this.props.data.profile)
+                : '../static/Images/profiles/empty.png'
             }
             style={{
               marginTop: '3rem'
