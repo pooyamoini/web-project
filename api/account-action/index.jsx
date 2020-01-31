@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
-import { SIGNUP_ROUTE, LOGIN_ROUTE, VALIATE_TOKEN } from '../urls/account'
+import {
+  SIGNUP_ROUTE,
+  LOGIN_ROUTE,
+  VALIATE_TOKEN,
+  EDIT_PROFILE
+} from '../urls/account'
 const axios = require('axios')
 
 export const signupAPI = params => {
@@ -37,4 +42,13 @@ export const tokenIsValid = token => {
 export const logout = () => {
   localStorage.setItem('token', null)
   Router.push('/')
+}
+
+export const editProfileAPI = params => {
+  const res = axios.put(EDIT_PROFILE, params, {
+    headers: {
+      'Access-Control-Allow-Methods': 'POST'
+    }
+  })
+  return res
 }
