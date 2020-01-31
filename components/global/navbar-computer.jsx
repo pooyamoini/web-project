@@ -14,7 +14,6 @@ import { logout } from '../../api/account-action/'
 import ExitIcon from '@material-ui/icons/ExitToApp'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 const imgSrc = '/Images/global/logo1.png'
-const avatarImg = '/Images/global/avatar.jpg'
 
 const friendOptions = [
   {
@@ -185,7 +184,11 @@ class NavBar extends Component {
                 <BadgeNotif>7</BadgeNotif>
                 <Link href='/profile'>
                   <Im
-                    src={avatarImg}
+                    src={
+                      this.props.profile
+                        ? this.props.profile
+                        : '/static/Images/profiles/empty.png'
+                    }
                     avatar
                     style={{ marginLeft: '2rem', marginRight: '15rem' }}
                   />

@@ -8,12 +8,12 @@ import SearchIcon from '@material-ui/icons/Search'
 import MenuIcon from '@material-ui/icons/Menu'
 
 const Menu = styled(M)`
-border-bottom: ${props =>
-  props.transparent ? '0' : '1px solid '} !important;
-border-color: ${Theme.navbar.borderColor} !important;
-background-color: ${Theme.navbar.backgroundColor} !important;
-margin-top: 0 !important;
-`;
+  border-bottom: ${props =>
+    props.transparent ? '0' : '1px solid '} !important;
+  border-color: ${Theme.navbar.borderColor} !important;
+  background-color: ${Theme.navbar.backgroundColor} !important;
+  margin-top: 0 !important;
+`
 
 const options = [
   { key: 1, text: 'Hot', value: 1 },
@@ -60,17 +60,32 @@ export default class MenuExampleVerticalText extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item>
-            <SearchIcon fontSize='large' onClick={this.handleSearch} style={{ color: 'white'}}/>
+            <SearchIcon
+              fontSize='large'
+              onClick={this.handleSearch}
+              style={{ color: 'white' }}
+            />
           </Menu.Item>
           <Menu.Item>
-            <NotificationsIcon  fontSize='large' style={{color: 'white'}}/>
+            <NotificationsIcon fontSize='large' style={{ color: 'white' }} />
           </Menu.Item>
           <Menu.Item>
-           <MenuIcon  fontSize='large' onClick={this.handleDrp} style={{ color: 'white'}}/>
+            <MenuIcon
+              fontSize='large'
+              onClick={this.handleDrp}
+              style={{ color: 'white' }}
+            />
           </Menu.Item>
           <Menu.Item>
             <Link href='/profile'>
-              <Image src='/static/Images/global/avatar.jpg' avatar />
+              <Image
+                src={
+                  this.props.profile
+                    ? this.props.profile
+                    : '/static/Images/profiles/empty.png'
+                }
+                avatar
+              />
             </Link>
           </Menu.Item>
         </Menu>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Theme from '../../public/theme'
 import SettingsIcon from '@material-ui/icons/Settings'
 import IconButton from '@material-ui/core/IconButton'
 import Followers from '../../public/json-files/followers'
@@ -8,7 +7,6 @@ import Link from 'next/link'
 import {
   Grid as Gr,
   Segment as Seg,
-  Card,
   Image,
   Dropdown,
   Button
@@ -82,7 +80,11 @@ export default class ProfileHeader extends Component {
             size='small'
             centered
             circular
-            src={this.props.data.image}
+            src={
+              this.props.data.profile 
+                ? this.props.data.profile
+                : '/static/Images/profiles/empty.png'
+            }
             style={{
               marginTop: '3rem'
             }}
@@ -98,7 +100,7 @@ export default class ProfileHeader extends Component {
                   fontWeight: '700'
                 }}
               >
-                {this.props.data.userName}
+                {this.props.data.username}
               </Segment>
               <Segment
                 textAlign='center'
@@ -116,7 +118,7 @@ export default class ProfileHeader extends Component {
                   fontWeight: '700'
                 }}
               >
-                {this.props.data.postsNumber} Posts
+                {0} Posts
               </Segment>
               <Segment
                 style={{
@@ -126,7 +128,7 @@ export default class ProfileHeader extends Component {
               >
                 <Dropdown
                   inline
-                  text={this.props.data.followersNumber + ' Followers'}
+                  text={'0' + ' Followers'}
                   pointing={false}
                   options={Followers}
                   scrolling
@@ -144,7 +146,7 @@ export default class ProfileHeader extends Component {
               >
                 <Dropdown
                   inline
-                  text={this.props.data.followingNumber + ' Following'}
+                  text={'0' + ' Following'}
                   pointing={false}
                   options={Followers}
                   scrolling

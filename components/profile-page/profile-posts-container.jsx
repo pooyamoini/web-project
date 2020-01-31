@@ -14,7 +14,6 @@ import {
   Segment
 } from 'semantic-ui-react'
 import { createPostAPI } from '../../api/post/'
-import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import Post from '../profile-page/profile-post'
 import NoSSR from 'react-no-ssr'
