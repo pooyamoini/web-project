@@ -6,7 +6,7 @@ import Mobile from './mobile'
 import Computer from './desktop'
 import Tablet from './tablet'
 
-const HomePageContents = () => {
+const HomePageContents = ({ suggestions }) => {
   return (
     <Segment.Group basic>
       <NoSSR>
@@ -23,7 +23,7 @@ const HomePageContents = () => {
           minWidth={Responsive.onlyComputer.minWidth}
           maxWidth={Responsive.onlyComputer.maxWidth}
         >
-          <Computer posts={homePagePostsJson} />
+          <Computer posts={homePagePostsJson} suggestions={suggestions} />
         </Responsive>
       </NoSSR>
     </Segment.Group>

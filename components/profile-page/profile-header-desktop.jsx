@@ -73,7 +73,7 @@ export default class ProfileHeader extends Component {
   }
 
   render () {
-    console.log(this.props.data)
+    console.log(this.props)
     return (
       <Grid centered>
         <Grid.Column width={5}>
@@ -119,7 +119,7 @@ export default class ProfileHeader extends Component {
                   fontWeight: '700'
                 }}
               >
-                {0} Posts
+                {this.props.data.npost} Posts
               </Segment>
               <Segment
                 style={{
@@ -129,7 +129,7 @@ export default class ProfileHeader extends Component {
               >
                 <Dropdown
                   inline
-                  text={'0' + ' Followers'}
+                  text={this.props.data.nfollowers + ' Followers'}
                   pointing={false}
                   options={Followers}
                   scrolling
@@ -147,7 +147,7 @@ export default class ProfileHeader extends Component {
               >
                 <Dropdown
                   inline
-                  text={'0' + ' Following'}
+                  text={this.props.data.nfollowings + ' Following'}
                   pointing={false}
                   options={Followers}
                   scrolling

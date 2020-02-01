@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import React, { Component } from 'react'
-import { useRouter } from 'next/router'
 import {
   Menu as M,
   Image as Im,

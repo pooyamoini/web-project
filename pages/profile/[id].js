@@ -8,16 +8,6 @@ import { getProfileAPI } from '../../api/profile/'
 import ProfileHeader from '../../components/profile-page/profile-header'
 import ProfileData from '../../public/json-files/profile'
 import ProfilePostsContainer from '../../components/profile-page/profile-posts-container'
-import { useRouter } from 'next/router'
-
-const test = () => {
-  const router = useRouter()
-  const { id } = router.query
-  {
-    localStorage.setItem('id', id)
-  }
-  return <p>id</p>
-}
 
 class Home extends Component {
   constructor (props) {
@@ -37,7 +27,8 @@ class Home extends Component {
         this.setState({ type: 'self' })
         const res = await tokenIsValid(token)
         const account = res.data['account']
-        this.setState({ data: account })
+        const res1 = await getProfileAPI(account.username, token)
+        this.setState({ data: res1.data['msg'] })
         return
       } catch (e) {
         Router.push('/')
@@ -46,7 +37,6 @@ class Home extends Component {
     }
     this.setState({ type: 'other' })
     const res = await getProfileAPI(id, token)
-    console.log(res.data['msg'])
     this.setState({ data: res.data['msg'] })
   }
 

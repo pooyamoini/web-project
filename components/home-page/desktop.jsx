@@ -1,13 +1,5 @@
 import React, { Component, createRef } from 'react'
-import {
-  Grid,
-  Rail,
-  Sticky,
-  Ref,
-  Container,
-  Dimmer,
-  Loader
-} from 'semantic-ui-react'
+import { Grid, Rail, Sticky, Ref, Container } from 'semantic-ui-react'
 import RightContainer from './rightContainer'
 import styled from 'styled-components'
 import Post from './post-desktop'
@@ -104,6 +96,7 @@ class HomePageDesktop extends Component {
                   marginTop={marginTop}
                   content='Suggestion for Accounts'
                   type='account'
+                  suggestions={this.props.suggestions}
                 />
                 <RightContainer content='Suggestion for Channel' />
               </Sticky>

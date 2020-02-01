@@ -1,10 +1,10 @@
-import React from "react";
-import { Advertisement as Ad, Segment } from "semantic-ui-react";
-import styled from "styled-components";
-import { Header, Image, Container } from "semantic-ui-react";
-import ProfileSuggestions from "../../public/json-files/suggestion-accounts.json";
-import ChannelSuggestions from "../../public/json-files/suggest-channels.json";
-import Theme from "../../public/theme";
+import React from 'react'
+import { Advertisement as Ad } from 'semantic-ui-react'
+import styled from 'styled-components'
+import { Header, Image } from 'semantic-ui-react'
+import ChannelSuggestions from '../../public/json-files/suggest-channels.json'
+import Link from 'next/link'
+import Theme from '../../public/theme'
 
 const Advertisement = styled(Ad)`
   background: ${Theme.sidebar.backgroundColor} !important;
@@ -25,62 +25,75 @@ const Advertisement = styled(Ad)`
     background: #ff0000 !important;
   }
   overflow-y: scroll !important;
-`;
+`
 
-const Suggest = ({ src, name }) => {
+const Suggest = ({ src, name, username }) => {
   return (
     <>
-      <Image src={src} avatar style={{ marginLeft: "0.1rem" }} />
-      <a
-        style={{
-          display: "inline",
-          marginLeft: "1rem",
-          opacity: "0.75",
-          color: "white"
-        }}
-        href="."
-      >
-        {name}
-      </a>
+      <Link href={`./profile/${username}`}>
+        <Image src={src} avatar style={{ marginLeft: '0.1rem' }} />
+      </Link>
+      <Link href={`./profile/${username}`}>
+        <a
+          style={{
+            display: 'inline',
+            marginLeft: '1rem',
+            opacity: '0.75',
+            color: 'white'
+          }}
+        >
+          {name}
+        </a>
+      </Link>
       <br />
       <br />
     </>
-  );
-};
+  )
+}
 
-const SuggestsProfiles = () => {
-  const Suggests = ProfileSuggestions.map(x => {
-    return <Suggest src={x.src} name={x.name} key={x.name} />;
-  });
-  return Suggests;
-};
+const SuggestsProfiles = suggestions => {
+  const Suggests = Array.from(suggestions).map(x => {
+    return (
+      <Suggest
+        src={x.profile ? x.profile : '/static/Images/profiles/empty.png'}
+        name={x.name}
+        key={x.name}
+        username={x.username}
+      />
+    )
+  })
+  return Suggests
+}
 
 const SuggestsChannels = () => {
   const Suggests = ChannelSuggestions.map(x => {
-    return <Suggest src={x.src} name={x.name} key={x.name} />;
-  });
-  return Suggests;
-};
+    return <Suggest src={x.src} name={x.name} key={x.name} />
+  })
+  return Suggests
+}
 
-const GenerateSuggests = ({ type }) => {
-  return type === "account" ? SuggestsProfiles() : SuggestsChannels();
-};
+const GenerateSuggests = ({ type, suggestions }) => {
+  return type === 'account' ? SuggestsProfiles(suggestions) : SuggestsChannels()
+}
 
 const Recommend = props => (
-  <Advertisement unit="small rectangle" marginTop={props.marginTop}>
+  <Advertisement unit='small rectangle' marginTop={props.marginTop}>
     <Header
-      as="h5"
+      as='h5'
       style={{
         color: Theme.sidebar.headarColor,
-        opacity: "0.85",
-        marginTop: "1rem",
-        marginLeft: "1.5rem"
+        opacity: '0.85',
+        marginTop: '1rem',
+        marginLeft: '1.5rem'
       }}
     >
       {props.content}
     </Header>
-    <GenerateSuggests type={props.type} />
+    <GenerateSuggests
+      type={props.type}
+      suggestions={props.type === 'account' ? props.suggestions : []}
+    />
   </Advertisement>
-);
+)
 
-export default Recommend;
+export default Recommend
