@@ -83,7 +83,7 @@ class NewPost extends Component {
     const { content, image } = this.state
     const token = localStorage.getItem('token')
     try {
-      const imagePath = 'statics/images/'.concat(image)
+      const imagePath = image ? 'statics/Images/photos/' + image : ''
       const res = await createPostAPI({ content, image: imagePath, token })
       this.handleClose()
       window.location.reload()
