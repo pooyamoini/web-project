@@ -4,7 +4,7 @@ import Router from 'next/router'
 import Navbar from '../../components/global/navbar-index'
 import GloBalStyle from '../../components/global/globalStyle'
 import { tokenIsValid } from '../../api/account-action/'
-import { getProfileAPI } from '../../api/profile/'
+import { getProfileAPI, getFolFolAPI } from '../../api/profile/'
 import ProfileHeader from '../../components/profile-page/profile-header'
 import ProfileData from '../../public/json-files/profile'
 import ProfilePostsContainer from '../../components/profile-page/profile-posts-container'
@@ -12,7 +12,7 @@ import ProfilePostsContainer from '../../components/profile-page/profile-posts-c
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = { data: '', type: '' }
+    this.state = { data: '', type: '', followers: '', followings: '' }
   }
 
   async componentDidMount () {
@@ -28,6 +28,8 @@ class Home extends Component {
         const res = await tokenIsValid(token)
         const account = res.data['account']
         const res1 = await getProfileAPI(account.username, token)
+        const res2 = await getFolFolAPI(token, account.username)
+        this.setFolFol(res2.data.msg.followers, res2.data.msg.followings)
         this.setState({ data: res1.data['msg'] })
         return
       } catch (e) {
@@ -37,16 +39,39 @@ class Home extends Component {
     }
     this.setState({ type: 'other' })
     const res = await getProfileAPI(id, token)
+    const res2 = await getFolFolAPI(token, id)
+    this.setFolFol(res2.data.msg.followers, res2.data.msg.followings)
     this.setState({ data: res.data['msg'] })
   }
 
+  async setFolFol (followersData, followingsData) {
+    let folow = followersData.map(x => ({
+      text: x.name,
+      key: x.name,
+      value: x.username,
+      image: { avatar: 'true', src: '../' + x.profile }
+    }))
+    let folowing = followingsData.map(x => ({
+      text: x.name,
+      key: x.name,
+      value: x.username,
+      image: { avatar: 'true', src: '../' + x.profile }
+    }))
+    this.setState({ followers: folow, followings: folowing })
+  }
+
   render () {
-    const { data, type } = this.state
+    const { data, type, followers, followings } = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
-        <ProfileHeader data={data} type={type}></ProfileHeader>
+        <ProfileHeader
+          data={data}
+          type={type}
+          followers={followers}
+          followings={followings}
+        ></ProfileHeader>
         <ProfilePostsContainer
           data={ProfileData}
           type={type}

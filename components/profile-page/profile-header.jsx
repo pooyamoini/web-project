@@ -15,13 +15,23 @@ const ProfileHeader = props => {
           minWidth={Responsive.onlyTablet.minWidth}
           maxWidth={Responsive.onlyTablet.maxWidth}
         >
-          <Computer data={props.data} type={props.type} />
+          <Computer
+            data={props.data}
+            type={props.type}
+            followers={props.followers}
+            followings={props.followings}
+          />
         </Responsive>
         <Responsive
           minWidth={Responsive.onlyComputer.minWidth}
           maxWidth={Responsive.onlyComputer.maxWidth}
         >
-          <Computer data={props.data} type={props.type} />
+          <Computer
+            data={props.data}
+            type={props.type}
+            followers={props.followers}
+            followings={props.followings}
+          />
         </Responsive>
       </NoSSR>
     </Segment.Group>

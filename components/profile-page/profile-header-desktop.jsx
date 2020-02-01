@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import SettingsIcon from '@material-ui/icons/Settings'
 import IconButton from '@material-ui/core/IconButton'
-import Followers from '../../public/json-files/followers'
 import Link from 'next/link'
 import { followAPI } from '../../api/profile'
 import {
@@ -12,7 +11,7 @@ import {
   Dropdown,
   Button
 } from 'semantic-ui-react'
-import { Router } from 'next/router'
+import Router from 'next/router'
 
 const Grid = styled(Gr)`
   width: 80%;
@@ -36,6 +35,7 @@ export default class ProfileHeader extends Component {
     super(props)
     this.state = { followed: false }
     this.changeFollow = this.changeFollow.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   async changeFollow () {
@@ -82,6 +82,11 @@ export default class ProfileHeader extends Component {
         </Button>
       )
     }
+  }
+
+  handleChange = (e, { value }) => {
+    Router.push(`/profile/${value}`)
+    return
   }
 
   render () {
@@ -139,17 +144,19 @@ export default class ProfileHeader extends Component {
                 }}
               >
                 <Dropdown
+                  search
                   inline
+                  onChange={this.handleChange}
                   text={this.props.data.nfollowers + ' Followers'}
                   pointing={false}
-                  options={Followers}
                   scrolling
                   fluid
+                  options={this.props.followers}
                   icon='none'
                   style={{
                     width: '120%'
                   }}
-                />
+                ></Dropdown>
               </Segment>
               <Segment
                 style={{
@@ -158,9 +165,10 @@ export default class ProfileHeader extends Component {
               >
                 <Dropdown
                   inline
+                  onChange={this.handleChange}
                   text={this.props.data.nfollowings + ' Following'}
                   pointing={false}
-                  options={Followers}
+                  options={this.props.followings}
                   scrolling
                   fluid
                   icon='none'
