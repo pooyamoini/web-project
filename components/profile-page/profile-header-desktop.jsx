@@ -4,6 +4,7 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import IconButton from '@material-ui/core/IconButton'
 import Followers from '../../public/json-files/followers'
 import Link from 'next/link'
+import { followAPI } from '../../api/profile'
 import {
   Grid as Gr,
   Segment as Seg,
@@ -11,6 +12,7 @@ import {
   Dropdown,
   Button
 } from 'semantic-ui-react'
+import { Router } from 'next/router'
 
 const Grid = styled(Gr)`
   width: 80%;
@@ -33,9 +35,19 @@ export default class ProfileHeader extends Component {
   constructor (props) {
     super(props)
     this.state = { followed: false }
+    this.changeFollow = this.changeFollow.bind(this)
   }
 
-  changeFollow = () => {
+  async changeFollow () {
+    const token = localStorage.getItem('token')
+    const username = this.props.data.username
+    try {
+      const res = await followAPI(token, username)
+      window.location.reload()
+    } catch (e) {
+      Router.push('../')
+      return
+    }
     this.setState(prevState => ({
       followed: !prevState.followed
     }))
@@ -57,7 +69,7 @@ export default class ProfileHeader extends Component {
         </IconButton>
       )
     }
-    if (!this.state.followed) {
+    if (!this.props.data.isfollowed) {
       return (
         <Button color='blue' onClick={this.changeFollow}>
           Follow
@@ -73,7 +85,6 @@ export default class ProfileHeader extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <Grid centered>
         <Grid.Column width={5}>
