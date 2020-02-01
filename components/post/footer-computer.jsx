@@ -48,34 +48,34 @@ const FooterMenu = props => (
         />
         <Data>12 comments</Data>
       </Icon>
-      <Icon position='left'>
+      <Icon position='left' onClick={props.like}>
         <LikesIcon
           fontSize='large'
           style={handleStyle(props.color)}
-          onClick={props.handleLike}
+          
         />
         <Data>{props.likes} Likes</Data>
       </Icon>
-      <Icon position='left'>
+      <Icon position='left' onClick={props.dislike}>
         <DisLikeIcon
           fontSize='large'
           style={handleStyle(props.colorD)}
-          onClick={props.handleDisLike}
+          
         />
         <Data>{props.dislikes} dislikes</Data>
       </Icon>
       <Icon position='right'>
         <Modal trigger={<ShareIcon fontSize='large' style={handleStyle()} />}>
           <Modal.Content>
-            <p>http://www.localhost:3000/post/2483931074231</p>
+            <p>http://www.localhost:3000/post/{props.pid}</p>
           </Modal.Content>
         </Modal>
       </Icon>
     </Menu>
     <Menu text widths={4}>
       <Icon name='7 comments' />
-      <Icon onClick={props.handleLike}>{props.likes} likes</Icon>
-      <Icon onClick={props.handleDisLike}>{props.dislikes} dislikes</Icon>
+      <Icon>{props.likes} likes</Icon>
+      <Icon>{props.dislikes} dislikes</Icon>
       <Icon name='' />
     </Menu>
   </>

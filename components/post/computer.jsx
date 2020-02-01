@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-import {
-  Card as Crd,
-  Image,
-  Grid,
-  Segment as Seg,
-} from 'semantic-ui-react'
-import Content from '../../public/post-content'
+import { Card as Crd, Image, Grid, Segment as Seg } from 'semantic-ui-react'
 import Comments from './comments/computer'
 import styled from 'styled-components'
 import Theme from '../../public/theme'
+import Link from 'next/link'
 import FooterMenu from './footer-computer'
+import { likeAPI } from '../../api/post/'
 
 const Segment = styled(Seg)`
   padding: 0 !important;
@@ -42,12 +38,14 @@ const Info = styled.p`
   opacity: 0.6;
 `
 
-const Informations = () => (
-  <Segment basic>
-    <ImageAvatar src='/static/Images/global/avatar2.jpg' size='mini' />
-    <Text>Kian Bakhtari</Text>
-    <Info>3 hours ago</Info>
-  </Segment>
+const Informations = ({ name, time, src, username }) => (
+  <Link href={`../profile/${username}`}>
+    <Segment basic>
+      <ImageAvatar src={'../' + src} size='mini' />
+      <Text>{name}</Text>
+      <Info>3 hours ago</Info>
+    </Segment>
+  </Link>
 )
 
 class Post extends Component {
@@ -65,6 +63,28 @@ class Post extends Component {
     this.handleLike = this.handleLike.bind(this)
     this.handleUndoLike = this.handleUndoLike.bind(this)
     this.handleDisLike = this.handleDisLike.bind(this)
+    this.like = this.like.bind(this)
+    this.dislike = this.dislike.bind(this)
+  }
+
+  componentDidMount () {
+    setTimeout(() => {
+      this.handleLike()
+    }, 1000)
+  }
+
+  async like () {
+    console.log('enter')
+    const token = localStorage.getItem('token')
+    const res = await likeAPI(token, this.props.post.id_post, 'like')
+    window.location.reload()
+  }
+
+  async dislike () {
+    console.log('enter')
+    const token = localStorage.getItem('token')
+    const res = await likeAPI(token, this.props.post.id_post, 'dislike')
+    window.location.reload()
   }
 
   handleCommentClick () {
@@ -74,12 +94,10 @@ class Post extends Component {
   }
 
   handleLike () {
-    const { likes, color } = this.state
-    if (color === '#4267b2') {
-      this.handleUndoLike()
-      return
-    }
-    this.setState({ likes: likes + 1, color: '#4267b2' })
+    const { isliked, isdisliked } = this.props
+    const color = isliked ? '#4267b2' : '#fff'
+    const colorD = isdisliked ? '#4267b2' : '#fff'
+    this.setState({ color, colorD })
   }
 
   handleDisLike () {
@@ -103,26 +121,32 @@ class Post extends Component {
 
   render () {
     const { display } = this.state
+    const { post, owner } = this.props
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
         <Grid.Column centered computer={7} mobile={16} tablet={13}>
           <Card>
             <Card.Content>
-              <Informations />
+              <Informations
+                name={owner.name}
+                src={owner.profile ? owner.profile : ''}
+                username={owner.username}
+              />
               <Card.Description style={{ color: Theme.post.textColor }}>
-                {Content}
+                {post.content}
               </Card.Description>
             </Card.Content>
-            <Image
-              src='/static/Images/global/post-page.jpg'
-              wrapped
-              ui={false}
-            />
+            <Image src={'../' + post.image} wrapped ui={false} />
             <FooterMenu
               handleLike={this.handleLike}
-              handleCommentClick={this.handleCommentClick}
-              handleDisLike={this.handleDisLike}
               {...this.state}
+              likes={this.props.post.nlikes ? this.props.post.nlikes.length : 0}
+              dislikes={
+                this.props.post.ndislikes ? this.props.post.ndislikes.length : 0
+              }
+              like={this.like}
+              dislike={this.dislike}
+              pid={this.props.post.id_post}
             />
             <Comments display={display} />
           </Card>
