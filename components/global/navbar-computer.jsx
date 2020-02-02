@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Router from 'next/router'
 import React, { Component } from 'react'
 import {
   Menu as M,
@@ -14,27 +15,6 @@ import { logout } from '../../api/account-action/'
 import ExitIcon from '@material-ui/icons/ExitToApp'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 const imgSrc = '/Images/global/logo1.png'
-
-const friendOptions = [
-  {
-    key: 'Jenny Hess',
-    text: 'Jenny Hess',
-    value: 'Jenny Hess',
-    image: { avatar: true, src: '/static/Images/global/avatar.jpg' }
-  },
-  {
-    key: 'Elliot Fu',
-    text: 'Elliot Fu',
-    value: 'Elliot Fu',
-    image: { avatar: true, src: '/static/Images/global/avatar1.jpg' }
-  },
-  {
-    key: 'Stevie Feliciano',
-    text: 'Stevie Feliciano',
-    value: 'Stevie Feliciano',
-    image: { avatar: true, src: '/static/Images/global/avatar2.jpg' }
-  }
-]
 
 const BadgeNotif = styled.p`
   color: #fff;
@@ -59,6 +39,15 @@ const Image = styled(Im)`
   transform: translateY(-50%);
   left: 13rem;
 `
+
+const handleClick = (e, data) => {
+  // if (data.text == 'Followings') {
+  //   Router.push(`/dashboard`)
+  //   return
+  // }
+  Router.push(`/${data.text}`)
+  return
+}
 
 const DropDown = () => {
   return (
@@ -101,7 +90,8 @@ const DropDown = () => {
               style={{
                 color: Theme.navbar.textColor
               }}
-            />
+              onClick={handleClick}
+            ></Drp.Item>
           ))}
         </Drp.Menu>
       </Drp.Menu>
@@ -174,9 +164,13 @@ class NavBar extends Component {
             </Menu.Menu>
             <Menu.Menu position='right'>
               <Menu.Item>
-                <Input size = 'small' placeholder='Search...' style={{
-                  width: '32rem'
-                }} />
+                <Input
+                  size='small'
+                  placeholder='Search...'
+                  style={{
+                    width: '32rem'
+                  }}
+                />
                 <NotificationsIcon
                   fontSize='large'
                   style={{ marginLeft: '2rem', color: 'white' }}
