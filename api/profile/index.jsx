@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { GET_PROFILE, GET_SUGGESTIONS, FOLLOW, GET_FF } from '../urls/profile'
+import {
+  GET_PROFILE,
+  GET_SUGGESTIONS,
+  FOLLOW,
+  GET_FF,
+  GET_POSTS
+} from '../urls/profile'
 const axios = require('axios')
 
 export const getProfileAPI = (username, token) => {
@@ -44,6 +50,19 @@ export const followAPI = (token, username) => {
 export const getFolFolAPI = (token, username) => {
   const res = axios.post(
     GET_FF,
+    { token, username },
+    {
+      headers: {
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    }
+  )
+  return res
+}
+
+export const getPosts = (token, username) => {
+  const res = axios.post(
+    GET_POSTS,
     { token, username },
     {
       headers: {

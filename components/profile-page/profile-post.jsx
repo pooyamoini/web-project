@@ -25,6 +25,12 @@ const Card = styled(Ca)`
 export default class Post extends Component {
   constructor (props) {
     super(props)
+    this.getImage = this.getImage.bind(this)
+  }
+
+  getImage (src) {
+    if (!src) return <></>
+    return <Image src={'../' + src} wrapped ui={false} />
   }
 
   render () {
@@ -38,12 +44,13 @@ export default class Post extends Component {
           >
             <Image src={this.props.src} avatar />
             <Name>{this.props.name}</Name>
-            <Meta>30 mins ago</Meta>
+            <Meta>{this.props.date}</Meta>
           </Segment>
         </Grid.Row>
         <Grid.Row centered>
-          <Link href='/post'>
+          <Link href={`/post/${this.props.id}`}>
             <Card>
+              {this.getImage(this.props.image)}
               <Card.Content>
                 <Card.Description
                   textAlign='left'
@@ -52,7 +59,6 @@ export default class Post extends Component {
                   {this.props.desc.substr(0, 100)}
                 </Card.Description>
               </Card.Content>
-              <Image src={this.props.image} wrapped ui={false} />
             </Card>
           </Link>
         </Grid.Row>

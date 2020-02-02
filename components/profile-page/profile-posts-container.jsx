@@ -219,27 +219,6 @@ class NewPost extends Component {
         basic
         size='small'
       >
-        {/* <Header content="Enter a Title" />
-        <Modal.Content>
-          <Form inverted size="large">
-            <Form.Field
-              control={Input}
-              label="Title"
-              name="title"
-              placeholder="Title"
-              required
-              onChange={this.handleChange}
-              error={this.state.title == "" ? "Title Can't Be Empty" : false}
-            />
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color="red" inverted onClick={this.handleClose}>
-            Cancel
-          </Button>
-          {this.getImageModal()}
-        </Modal.Actions> */}
-
         <Header content='Write The Content' />
         <Modal.Content>
           <Form inverted size='large'>
@@ -275,17 +254,23 @@ export default class ProfilePostsContainer extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeSection: name })
 
-  makePosts (postsList, n, row) {
+  makePosts (postsList, account, date, n, row) {
     const list = []
     postsList.forEach(function (post, index) {
       if (index % n != row) return
       list.push(
         <Post
-          name={post.title}
-          src={post.src}
+          name={post.account}
+          src={
+            account.profile
+              ? '../' + account.profile
+              : '../static/Images/profiles/empty.png'
+          }
           key={post.title}
           desc={post.content}
           image={post.image}
+          id={post.id_post}
+          date={date[index]}
         ></Post>
       )
     })
@@ -330,14 +315,14 @@ export default class ProfilePostsContainer extends Component {
     )
   }
 
-  getPosts (postsList) {
+  getPosts (postsList, account, date) {
     return (
       <Segment.Group basic>
         <NoSSR>
           <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
             <Grid columns={1}>
               <Grid.Column style={GridColumnStyleMobile}>
-                {this.makePosts(postsList, 1, 0)}
+                {this.makePosts(postsList, account, date, 1, 0)}
               </Grid.Column>
             </Grid>
           </Responsive>
@@ -347,10 +332,10 @@ export default class ProfilePostsContainer extends Component {
           >
             <Grid columns={2}>
               <Grid.Column style={GridColumnStyleTablet}>
-                {this.makePosts(postsList, 2, 0)}
+                {this.makePosts(postsList, account, date, 2, 0)}
               </Grid.Column>
               <Grid.Column style={GridColumnStyleTablet}>
-                {this.makePosts(postsList, 2, 1)}
+                {this.makePosts(postsList, account, date, 2, 1)}
               </Grid.Column>
             </Grid>
           </Responsive>
@@ -360,13 +345,13 @@ export default class ProfilePostsContainer extends Component {
           >
             <Grid columns={3}>
               <Grid.Column style={GridColumnStyleDesktop}>
-                {this.makePosts(postsList, 3, 0)}
+                {this.makePosts(postsList, account, date, 3, 0)}
               </Grid.Column>
               <Grid.Column style={GridColumnStyleDesktop}>
-                {this.makePosts(postsList, 3, 1)}
+                {this.makePosts(postsList, account, date, 3, 1)}
               </Grid.Column>
               <Grid.Column style={GridColumnStyleDesktop}>
-                {this.makePosts(postsList, 3, 2)}
+                {this.makePosts(postsList, account, date, 3, 2)}
               </Grid.Column>
             </Grid>
           </Responsive>
@@ -395,7 +380,7 @@ export default class ProfilePostsContainer extends Component {
       >
         {this.getNewPost()}
         {this.getMenu()}
-        {this.getPosts(postsList)}
+        {this.getPosts(this.props.posts, this.props.account, this.props.date)}
       </Container>
     )
   }

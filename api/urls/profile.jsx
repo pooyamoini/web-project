@@ -7,3 +7,5 @@ export const GET_SUGGESTIONS = `${base_add}/account/suggestions`
 export const FOLLOW = `${base_add}/profile/follow/`
 
 export const GET_FF = `${base_add}/profile/get_ff/`
+
+export const GET_POSTS = `${base_add}/profile/get_posts/`
