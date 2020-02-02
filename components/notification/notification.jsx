@@ -4,7 +4,7 @@ import { Segment as Seg, Image } from "semantic-ui-react";
 
 const Segment = styled(Seg)`
   background: transparent !important;
-  font-size: 18px !important;
+  font-size: 1rem !important;
 `;
 
 const SegmentGroup = styled(Segment.Group)`
