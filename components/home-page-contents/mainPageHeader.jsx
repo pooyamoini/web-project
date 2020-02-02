@@ -32,15 +32,6 @@ export default class Header extends Component {
           'box-shadow': 'none'
         }}
       >
-        <Image
-          src={image}
-          wrapped
-          ui={false}
-          style={{
-            height: 'auto !important;',
-            width: '100% !important;'
-          }}
-        />
         <Card.Content>
           <Card.Header
             style={{
@@ -64,6 +55,15 @@ export default class Header extends Component {
             {title}
           </Card.Description>
         </Card.Content>
+        <Image
+          src={image}
+          wrapped
+          ui={false}
+          style={{
+            height: 'auto !important;',
+            width: '100% !important;'
+          }}
+        />
         <Card.Content
           extra
           style={{
@@ -72,9 +72,9 @@ export default class Header extends Component {
         >
           <p>
             <Icon name='thumbs up' />
-            {votes} Votes
+            {votes} Likes
             <Icon name='thumbs up' />
-            {comments} Comments
+            {comments} Dislikes
           </p>
         </Card.Content>
       </Card>
@@ -87,41 +87,41 @@ export default class Header extends Component {
         <GridColumn textAlign='center'>
           {this.getCard(
             'Hot',
-            this.props.data.Hot.Title,
-            this.props.data.Hot.Date,
-            this.props.data.Hot.Votes,
-            this.props.data.Hot.Comments,
-            this.props.data.Hot.Image
+            this.props.hot.content,
+            this.props.hot.account,
+            2,
+            5,
+            this.props.hot.image
           )}
         </GridColumn>
         <GridColumn textAlign='center'>
           {this.getCard(
             'New',
-            this.props.data.New.Title,
-            this.props.data.New.Date,
-            this.props.data.New.Votes,
-            this.props.data.New.Comments,
-            this.props.data.New.Image
+            this.props.news.content,
+            this.props.news.account,
+            2,
+            this.props.news.ndislikes,
+            this.props.news.image
           )}
         </GridColumn>
         <GridColumn textAlign='center'>
           {this.getCard(
             'Followed',
-            this.props.data.Followed.Title,
-            this.props.data.Followed.Date,
-            this.props.data.Followed.Votes,
-            this.props.data.Followed.Comments,
-            this.props.data.Followed.Image
+            this.props.follow.content,
+            this.props.follow.account,
+            2,
+            5,
+            this.props.follow.image
           )}
         </GridColumn>
         <GridColumn textAlign='center'>
           {this.getCard(
             'Your Interest',
-            this.props.data.YourInterest.Title,
-            this.props.data.YourInterest.Date,
-            this.props.data.YourInterest.Votes,
-            this.props.data.YourInterest.Comments,
-            this.props.data.YourInterest.Image
+            this.props.x.content,
+            this.props.x.account,
+            2,
+            5,
+            this.props.x.image
           )}
         </GridColumn>
       </Grid>

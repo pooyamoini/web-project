@@ -41,10 +41,10 @@ const Image = styled(Im)`
 `
 
 const handleClick = (e, data) => {
-  // if (data.text == 'Followings') {
-  //   Router.push(`/dashboard`)
-  //   return
-  // }
+  if (data.text == 'Followings') {
+    Router.push(`/dashboard`)
+    return
+  }
   Router.push(`/${data.text}`)
   return
 }

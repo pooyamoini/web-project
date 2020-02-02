@@ -5,7 +5,8 @@ import {
   GET_POST,
   LIKE,
   GET_HOME_PAGE,
-  GET_HOMEPAGE_NEWS
+  GET_HOMEPAGE_NEWS, 
+  GET_HOMEPAGE_HOTS
 } from '../urls/post'
 const axios = require('axios')
 
@@ -60,6 +61,19 @@ export const getHomePageAPI = token => {
 export const getHomePageNewsAPI = token => {
   const res = axios.post(
     GET_HOMEPAGE_NEWS,
+    { token },
+    {
+      headers: {
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    }
+  )
+  return res
+}
+
+export const getHomePageHotsAPI = token => {
+  const res = axios.post(
+    GET_HOMEPAGE_HOTS,
     { token },
     {
       headers: {

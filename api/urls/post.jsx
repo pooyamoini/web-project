@@ -9,3 +9,5 @@ export const LIKE = `${base_add}/post/like/`
 export const GET_HOME_PAGE = `${base_add}/post/homepage/`
 
 export const GET_HOMEPAGE_NEWS = `${base_add}/post/homepage/news/`
+
+export const GET_HOMEPAGE_HOTS = `${base_add}/post/homepage/hots/`

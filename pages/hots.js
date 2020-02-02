@@ -3,7 +3,7 @@ import Router from 'next/router'
 import 'semantic-ui-css/semantic.min.css'
 import { tokenIsValid } from '../api/account-action/'
 import { getSuggestionsAPI } from '../api/profile/'
-import { getHomePageAPI } from '../api/post/'
+import { getHomePageHotsAPI } from '../api/post/'
 import Navbar from '../components/global/navbar-index'
 import GloBalStyle from '../components/global/globalStyle'
 import MainContainer from '../components/home-page/index'
@@ -13,14 +13,7 @@ import HeaderData from '../public/headerSample'
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      suggestions: '',
-      posts: [],
-      hot: [],
-      news: [],
-      follow: [],
-      x: {}
-    }
+    this.state = { suggestions: '', posts: [] }
   }
   async componentDidMount () {
     const token = localStorage.getItem('token')
@@ -29,9 +22,9 @@ class Home extends Component {
       return
     }
     try {
-      const res = await tokenIsValid(token)
+      await tokenIsValid(token)
       const res1 = await getSuggestionsAPI(token)
-      const res2 = await getHomePageAPI(token)
+      const res2 = await getHomePageHotsAPI(token)
       this.setState({ posts: res2.data.msg.posts })
       let suggests = []
       res1.data['msg'].map(x => {
@@ -42,14 +35,7 @@ class Home extends Component {
         }
         suggests.push(obj)
       })
-      const header = res2.data.msg.header
-      this.setState({
-        suggestions: suggests,
-        hot: header['hot'],
-        news: header['new'],
-        follow: header['follow'],
-        x: header['new']
-      })
+      this.setState({ suggestions: suggests })
       return
     } catch (e) {
       Router.push('/')
@@ -58,12 +44,11 @@ class Home extends Component {
   }
 
   render () {
-    const {hot, news, follow, x} = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
-        <Header {...{hot, news, follow, x}} />
+        <Header data={HeaderData} />
         <MainContainer {...this.state} />
       </>
     )
