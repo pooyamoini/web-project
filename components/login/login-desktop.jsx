@@ -146,11 +146,15 @@ export default class Login extends Component {
     super(props);
     this.state = {
       mode: "signup",
-      emailError: false,
       name: "",
       username: "",
       email: "",
       password: "",
+      nameError: false,
+      usernameError: false,
+      passwordError: false,
+      emailError: false,
+      agreed: false,
       open: false,
       msg: "",
       color: ""
@@ -160,10 +164,34 @@ export default class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  handleSubmit = () =>{
+    this.validateInput();
+    const {
+      name,
+      username,
+      password,
+      emailError,
+      mode,
+      agreed,
+    } = this.state;
+    if(mode == 'login'){
+      if (username == "" || password == "" ) return;
+      this.handleLogin()
+    } else {
+      if (emailError || name== "" || username == "" || password == "" || !agreed)
+      return;
+      this.handleSignup()
+    }
+  }
+
   async handleSignup() {
+    const {
+      name,
+      username,
+      email,
+      password,
+    } = this.state;
     try {
-      const { name, username, email, password, emailError } = this.state; // handling erros later.
-      if (emailError) return;
       const res = await signupAPI({ name, username, password, email });
       this.setState({ open: true, msg: res.data["msg"], color: "green" });
     } catch (e) {
@@ -173,7 +201,7 @@ export default class Login extends Component {
 
   async handleLogin() {
     try {
-      const { username, password } = this.state; // handling erros later.
+      const { username, password, } = this.state;
       const res = await loginAPI({ username, password });
       const token = res.data["token"];
       const account = res.data["account"];
@@ -186,21 +214,43 @@ export default class Login extends Component {
     }
   }
 
-  handleClick = (e, { name }) => this.setState({ mode: name });
+  handleClick = (e, { name }) => {
+    this.setState({ mode: name });
+    if (name == "login" || name == "signup") {
+      this.setState({ username: "", name: "", email: "", password: "" });
+    }
+  };
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
-    this.validateEmail();
+    if(name == 'email')
+      this.validateEmail()
+  };
+
+  handleAgree = () => {
+    const { value } = this.state;
+    this.setState({ agreed: !value });
   };
 
   closeModal() {
     this.setState({ open: false, msg: "", color: "black" });
   }
 
-  validateEmail() {
+  validateEmail(){
     const { email } = this.state;
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.setState({ emailError: !re.test(String(email).toLowerCase()) });
+    this.setState({
+      emailError: !re.test(String(email).toLowerCase()),
+    });
+  }
+
+  validateInput() {
+    const { name, username, password } = this.state;
+    this.setState({
+      nameError: name === "",
+      usernameError: username === "",
+      passwordError: password === ""
+    });
   }
 
   getLoginForm() {
@@ -210,6 +260,10 @@ export default class Login extends Component {
           control={Input}
           name="username"
           label="Username"
+          value={this.state.username}
+          error={
+            this.state.usernameError ? "Please enter your username" : false
+          }
           placeholder="Username"
           onChange={this.handleChange}
         ></Form.Field>
@@ -217,6 +271,10 @@ export default class Login extends Component {
           control={Input}
           name="password"
           label="Password"
+          value={this.state.password}
+          error={
+            this.state.passwordError ? "Please enter your password" : false
+          }
           placeholder="Password"
           type="password"
           onChange={this.handleChange}
@@ -224,7 +282,7 @@ export default class Login extends Component {
 
         <ForgotPasswordModal />
 
-        <Button type="submit" onClick={this.handleLogin}>
+        <Button type="submit" onClick={this.handleSubmit}>
           Submit
         </Button>
       </Form>
@@ -238,20 +296,27 @@ export default class Login extends Component {
           control={Input}
           name="name"
           label="Name"
+          value={this.state.name}
           placeholder="Ken Adams"
+          error={this.state.nameError ? "Please enter your name" : false}
           onChange={this.handleChange}
         ></Form.Field>
         <Form.Field
           control={Input}
           name="username"
           label="Username"
+          value={this.state.username}
           placeholder="Kenadams"
+          error={
+            this.state.usernameError ? "Please enter your username" : false
+          }
           onChange={this.handleChange}
         ></Form.Field>
         <Form.Field
           control={Input}
           name="email"
           label="Email"
+          value={this.state.email}
           placeholder="kenadams@gmail.com"
           error={this.state.emailError ? "Please Enter a Valid Email" : false}
           onChange={this.handleChange}
@@ -260,14 +325,22 @@ export default class Login extends Component {
           control={Input}
           name="password"
           label="Password"
+          value={this.state.password}
           placeholder="Password"
           type="password"
+          error={
+            this.state.passwordError ? "Please enter your password" : false
+          }
           onChange={this.handleChange}
         ></Form.Field>
         <Form.Field onChange={this.handleChange} required>
-          <Checkbox label="I agree to the Terms and Conditions" />
+          <Checkbox
+            name="agreed"
+            label="I agree to the Terms and Conditions"
+            onChange={this.handleAgree}
+          />
         </Form.Field>
-        <Button type="submit" onClick={this.handleSignup}>
+        <Button type="submit" onClick={this.handleSubmit}>
           Submit
         </Button>
       </Form>
