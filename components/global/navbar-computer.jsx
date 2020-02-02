@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   Menu as M,
   Image as Im,
-  Input as In,
+  Input,
   Dropdown as Drp,
   Segment
 } from 'semantic-ui-react'
@@ -174,13 +174,9 @@ class NavBar extends Component {
             </Menu.Menu>
             <Menu.Menu position='right'>
               <Menu.Item>
-                <Drp
-                  placeholder='Search'
-                  search
-                  selection
-                  options={friendOptions}
-                  style={{ width: '32rem' }}
-                />
+                <Input size = 'small' placeholder='Search...' style={{
+                  width: '32rem'
+                }} />
                 <NotificationsIcon
                   fontSize='large'
                   style={{ marginLeft: '2rem', color: 'white' }}
