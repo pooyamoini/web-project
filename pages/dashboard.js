@@ -3,6 +3,7 @@ import Router from 'next/router'
 import 'semantic-ui-css/semantic.min.css'
 import { tokenIsValid } from '../api/account-action/'
 import { getSuggestionsAPI } from '../api/profile/'
+import { getHomePageAPI } from '../api/post/'
 import Navbar from '../components/global/navbar-index'
 import GloBalStyle from '../components/global/globalStyle'
 import MainContainer from '../components/home-page/index'
@@ -12,7 +13,7 @@ import HeaderData from '../public/headerSample'
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = { suggestions: '' }
+    this.state = { suggestions: '', posts: [] }
   }
   async componentDidMount () {
     const token = localStorage.getItem('token')
@@ -23,6 +24,8 @@ class Home extends Component {
     try {
       const res = await tokenIsValid(token)
       const res1 = await getSuggestionsAPI(token)
+      const res2 = await getHomePageAPI(token)
+      this.setState({ posts: res2.data.msg.posts })
       let suggests = []
       res1.data['msg'].map(x => {
         let obj = {
@@ -41,13 +44,12 @@ class Home extends Component {
   }
 
   render () {
-    const { suggestions } = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
         <Header data={HeaderData} />
-        <MainContainer suggestions={suggestions} />
+        <MainContainer {...this.state} />
       </>
     )
   }

@@ -10,20 +10,25 @@ const ContainerC = styled(Container)`
 `
 
 class HomePagePosts extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   makePostsList () {
-    const posts = this.props.posts
-    const { contextRef } = this.props
-    const postsList = posts.map(post => {
+    const { contextRef, posts } = this.props
+    const postsList = posts.map(p => {
       return (
         <Post
-          title={post.title}
-          image={post.image}
-          date={post.date}
-          content={post.content}
-          votes={post.votes}
-          comments={post.comments}
-          key={post.title}
-          src={post.src}
+          title={p.title}
+          image={p.image}
+          date={p.date}
+          src={p.profile ? p.profile : 'static/Images/profiles/empty.png'}
+          content={p.content}
+          likes={p.likes}
+          dislikes={p.dislikes}
+          key={p.account}
+          username={p.username}
+          id={p.id}
           contextRef={contextRef}
         ></Post>
       )

@@ -11,7 +11,6 @@ import {
 } from 'semantic-ui-react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import image from '../../public/Images/global/post.jpg'
 import Theme from '../../public/theme'
 
 const Column = styled(Grid.Column)`
@@ -35,7 +34,7 @@ function getImage (source) {
   if (source == '') return
   return (
     <Image
-      src={image}
+      src={source}
       style={{
         'border-radius': '0 !important;'
       }}
@@ -48,7 +47,8 @@ function getImage (source) {
 
 const Post = props => {
   const { contextRef } = props
-  const { src } = props
+  const { src, username } = props
+  console.log(props)
   return (
     <Grid columns={2}>
       <Column width={1}>
@@ -56,23 +56,25 @@ const Post = props => {
           <Rail>
             <Segment basic>
               <Sticky context={contextRef} offset={65}>
-                <Image
-                  src={src}
-                  style={{
-                    left: '-8rem',
-                    zIndex: '999999',
-                    width: '6rem',
-                    height: '6rem',
-                    objectFit: 'cover'
-                  }}
-                ></Image>
+                <Link href={`./profile/${username}`}>
+                  <Image
+                    src={src}
+                    style={{
+                      left: '-8rem',
+                      zIndex: '999999',
+                      width: '6rem',
+                      height: '6rem',
+                      objectFit: 'cover'
+                    }}
+                  ></Image>
+                </Link>
               </Sticky>
             </Segment>
           </Rail>
         </Ref>
       </Column>
       <Column width={16} style={{ padding: '0 !important' }}>
-        <Link href='/post'>
+        <Link href={`/post/${props.id}`}>
           <Card fluid>
             {getImage(props.image)}
             <Card.Content>
@@ -104,11 +106,11 @@ const Post = props => {
                 color: Theme.post.dateColor
               }}
             >
-              <p>
-                <Icon name='thumbs up' />
-                {props.votes} Votes
-                <Icon name='thumbs up' />
-                {props.comments} Comments
+              <p style={{marginRight: '1rem', display: 'inline'}}>
+                {props.likes} Likes
+              </p>
+              <p style={{display: 'inline'}}>
+                {props.dislikes} Dislikes
               </p>
             </Card.Content>
           </Card>

@@ -8,7 +8,7 @@ import { getPostAPI } from '../../api/post/'
 class PostPage extends Component {
   constructor (props) {
     super(props)
-    this.state = { post: '', owner: '', isliked: '', isdisliked: '' }
+    this.state = { post: '', owner: '', isliked: '', isdisliked: '', date: '' }
   }
 
   async componentDidMount () {
@@ -24,7 +24,8 @@ class PostPage extends Component {
         post: res.data.msg['post'],
         owner: res.data.msg['account'],
         isliked: res.data.msg.isliked,
-        isdisliked: res.data.msg.isDisliked
+        isdisliked: res.data.msg.isDisliked,
+        date: res.data.msg.date
       })
     } catch (e) {
       Router.push('/')
