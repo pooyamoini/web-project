@@ -13,7 +13,6 @@ const SegmentGroup = styled(Segment.Group)`
 `;
 
 const Time = styled.p`
-//   display: inline !important;
   margin: auto !important;
 `;
 
@@ -26,7 +25,7 @@ export default class notification extends Component {
           width: "60%"
         }}
       >
-        <SegmentGroup style={{}}>
+        <SegmentGroup>
           <Segment.Group inverted horizontal>
             <Segment>
               <Image size="tiny" circular src="static/Images/profiles/me.jpg" />
@@ -38,7 +37,7 @@ export default class notification extends Component {
           <Segment inverted>Alireza started following you</Segment>
         </SegmentGroup>
 
-        <SegmentGroup style={{}}>
+        <SegmentGroup>
           <Segment.Group inverted horizontal>
             <Segment>
               <Image size="tiny" circular src="static/Images/profiles/me.jpg" />
