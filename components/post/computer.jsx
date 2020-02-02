@@ -38,12 +38,15 @@ const Info = styled.p`
   opacity: 0.6;
 `
 
-const Informations = ({ name, time, src, username }) => (
+const Informations = ({ name, date, src, username }) => (
   <Link href={`../profile/${username}`}>
     <Segment basic>
-      <ImageAvatar src={'../' + src} size='mini' />
+      <ImageAvatar
+        src={src ? '../' + src : '../static/Images/profiles/empty.png'}
+        size='mini'
+      />
       <Text>{name}</Text>
-      <Info>3 hours ago</Info>
+      <Info>{date}</Info>
     </Segment>
   </Link>
 )
@@ -65,6 +68,7 @@ class Post extends Component {
     this.handleDisLike = this.handleDisLike.bind(this)
     this.like = this.like.bind(this)
     this.dislike = this.dislike.bind(this)
+    this.getImage = this.getImage.bind(this)
   }
 
   componentDidMount () {
@@ -119,9 +123,14 @@ class Post extends Component {
     this.setState({ dislikes: dislikes - 1, colorD: '#fff' })
   }
 
+  getImage (src) {
+    if (src == '') return <></>
+    return <Image src={'../' + src} wrapped ui={false} />
+  }
+
   render () {
     const { display } = this.state
-    const { post, owner } = this.props
+    const { post, owner, date } = this.props
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
         <Grid.Column centered computer={7} mobile={16} tablet={13}>
@@ -131,12 +140,13 @@ class Post extends Component {
                 name={owner.name}
                 src={owner.profile ? owner.profile : ''}
                 username={owner.username}
+                date={date}
               />
               <Card.Description style={{ color: Theme.post.textColor }}>
                 {post.content}
               </Card.Description>
             </Card.Content>
-            <Image src={'../' + post.image} wrapped ui={false} />
+            {this.getImage(post.image)}
             <FooterMenu
               handleLike={this.handleLike}
               {...this.state}

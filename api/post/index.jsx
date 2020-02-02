@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
-import { CREATE_POST_ADDRESS, GET_POST, LIKE } from '../urls/post'
+import {
+  CREATE_POST_ADDRESS,
+  GET_POST,
+  LIKE,
+  GET_HOME_PAGE
+} from '../urls/post'
 const axios = require('axios')
 
 export const createPostAPI = params => {
@@ -29,6 +34,19 @@ export const likeAPI = (token, post_id, type) => {
   const res = axios.post(
     LIKE,
     { token, post_id, type },
+    {
+      headers: {
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    }
+  )
+  return res
+}
+
+export const getHomePageAPI = token => {
+  const res = axios.post(
+    GET_HOME_PAGE,
+    { token },
     {
       headers: {
         'Access-Control-Allow-Methods': 'POST'

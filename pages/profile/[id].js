@@ -49,13 +49,23 @@ class Home extends Component {
       text: x.name,
       key: x.name,
       value: x.username,
-      image: { avatar: 'true', src: '../' + x.profile }
+      image: {
+        avatar: 'true',
+        src: x.profile
+          ? '../' + x.profile
+          : '../static/Images/profiles/empty.png'
+      }
     }))
     let folowing = followingsData.map(x => ({
       text: x.name,
       key: x.name,
       value: x.username,
-      image: { avatar: 'true', src: '../' + x.profile }
+      image: {
+        avatar: 'true',
+        src: x.profile
+          ? '../' + x.profile
+          : '../static/Images/profiles/empty.png'
+      }
     }))
     this.setState({ followers: folow, followings: folowing })
   }
