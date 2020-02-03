@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Router from 'next/router'
 import {
   CREATE_POST_ADDRESS,
   GET_POST,
   LIKE,
   GET_HOME_PAGE,
-  GET_HOMEPAGE_NEWS, 
-  GET_HOMEPAGE_HOTS
+  GET_HOMEPAGE_NEWS,
+  GET_HOMEPAGE_HOTS,
+  EDIT_POST
 } from '../urls/post'
 const axios = require('axios')
 
@@ -75,6 +75,20 @@ export const getHomePageHotsAPI = token => {
   const res = axios.post(
     GET_HOMEPAGE_HOTS,
     { token },
+    {
+      headers: {
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    }
+  )
+  return res
+}
+
+export const editPostAPI = (token, pid, content) => {
+  console.log({ token, pid, content })
+  const res = axios.post(
+    EDIT_POST,
+    { token, pid, content },
     {
       headers: {
         'Access-Control-Allow-Methods': 'POST'

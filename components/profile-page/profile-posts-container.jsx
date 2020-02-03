@@ -115,42 +115,6 @@ class NewPost extends Component {
     this.setState({ image: nameImg })
   }
 
-  getContentModal () {
-    return (
-      <Modal
-        open={this.state.contentModalOpen}
-        onClose={this.handleClose}
-        basic
-        size='small'
-      >
-        <Header content='Write The Content' />
-        <Modal.Content>
-          <Form inverted size='large'>
-            <Form.Field
-              control={TextArea}
-              label='Content'
-              name='content'
-              placeholder='...'
-              required
-              onChange={this.handleChange}
-              error={
-                this.state.content == '' ? "Content Can't Be Empty" : false
-              }
-            />
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color='red' inverted onClick={this.handleClose}>
-            Cancel
-          </Button>
-          <Button color='green' inverted onClick={this.handleSubmit}>
-            Done
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    )
-  }
-
   getImageModal () {
     return (
       <Modal
