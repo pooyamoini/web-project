@@ -13,7 +13,14 @@ import HeaderData from '../public/headerSample'
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = { suggestions: '', posts: [] }
+    this.state = {
+      suggestions: '',
+      posts: [],
+      hot: [],
+      news: [],
+      follow: [],
+      x: {}
+    }
   }
   async componentDidMount () {
     const token = localStorage.getItem('token')
@@ -35,7 +42,14 @@ class Home extends Component {
         }
         suggests.push(obj)
       })
-      this.setState({ suggestions: suggests })
+      const header = res2.data.msg.header
+      this.setState({
+        suggestions: suggests,
+        hot: header['hot'],
+        news: header['new'],
+        follow: header['follow'],
+        x: header['new']
+      })
       return
     } catch (e) {
       Router.push('/')
@@ -44,11 +58,12 @@ class Home extends Component {
   }
 
   render () {
+    const { hot, news, follow, x } = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
-        <Header data={HeaderData} />
+        <Header {...{ hot, news, follow, x }} />
         <MainContainer {...this.state} />
       </>
     )

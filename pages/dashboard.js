@@ -58,12 +58,12 @@ class Home extends Component {
   }
 
   render () {
-    const {hot, news, follow, x} = this.state
+    const { hot, news, follow, x } = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
-        <Header {...{hot, news, follow, x}} />
+        <Header {...{ hot, news, follow, x }} />
         <MainContainer {...this.state} />
       </>
     )

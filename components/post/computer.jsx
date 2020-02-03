@@ -69,6 +69,7 @@ class Post extends Component {
     this.like = this.like.bind(this)
     this.dislike = this.dislike.bind(this)
     this.getImage = this.getImage.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount () {
@@ -128,9 +129,15 @@ class Post extends Component {
     return <Image src={'../' + src} wrapped ui={false} />
   }
 
+  handleClick () {
+    const {mine} = this.props
+    if (mine) alert('HELL YEAH')
+  }
+
   render () {
     const { display } = this.state
     const { post, owner, date } = this.props
+    console.log(this.props)
     return (
       <Grid centered style={{ marginTop: '7rem' }}>
         <Grid.Column centered computer={7} mobile={16} tablet={13}>
@@ -143,7 +150,7 @@ class Post extends Component {
                 date={date}
               />
               <Card.Description style={{ color: Theme.post.textColor }}>
-                {post.content}
+                <p onClick={this.handleClick}>{post.content}</p>
               </Card.Description>
             </Card.Content>
             {this.getImage(post.image)}
