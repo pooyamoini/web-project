@@ -3,6 +3,7 @@ import Router from "next/router";
 import "semantic-ui-css/semantic.min.css";
 import styled from "styled-components";
 import { signupAPI, loginAPI } from "../../api/account-action/";
+import { forgetPasswordAPI } from "../../api/account-action/";
 import {
   Grid,
   Image,
@@ -44,6 +45,7 @@ class ForgotPasswordModal extends Component {
       sentEmailModalOpen: false,
       emailError: false
     };
+    this.openSentEmailModal = this.openSentEmailModal.bind(this);
   }
 
   handleClose = () => {
@@ -55,10 +57,15 @@ class ForgotPasswordModal extends Component {
 
   handleOpen = () => this.setState({ modalOpen: true });
 
-  openSentEmailModal = () => {
+  async openSentEmailModal() {
     if (this.state.emailError) return;
-    this.setState({ sentEmailModalOpen: true });
-  };
+    try {
+      const result = await forgetPasswordAPI(this.state.email);
+      this.setState({ sentEmailModalOpen: true });
+    } catch (e) {
+      alert("error");
+    }
+  }
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
@@ -164,33 +171,27 @@ export default class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleSubmit = () =>{
+  handleSubmit = () => {
     this.validateInput();
-    const {
-      name,
-      username,
-      password,
-      emailError,
-      mode,
-      agreed,
-    } = this.state;
-    if(mode == 'login'){
-      if (username == "" || password == "" ) return;
-      this.handleLogin()
+    const { name, username, password, emailError, mode, agreed } = this.state;
+    if (mode == "login") {
+      if (username == "" || password == "") return;
+      this.handleLogin();
     } else {
-      if (emailError || name== "" || username == "" || password == "" || !agreed)
-      return;
-      this.handleSignup()
+      if (
+        emailError ||
+        name == "" ||
+        username == "" ||
+        password == "" ||
+        !agreed
+      )
+        return;
+      this.handleSignup();
     }
-  }
+  };
 
   async handleSignup() {
-    const {
-      name,
-      username,
-      email,
-      password,
-    } = this.state;
+    const { name, username, email, password } = this.state;
     try {
       const res = await signupAPI({ name, username, password, email });
       this.setState({ open: true, msg: res.data["msg"], color: "green" });
@@ -201,7 +202,7 @@ export default class Login extends Component {
 
   async handleLogin() {
     try {
-      const { username, password, } = this.state;
+      const { username, password } = this.state;
       const res = await loginAPI({ username, password });
       const token = res.data["token"];
       const account = res.data["account"];
@@ -223,8 +224,7 @@ export default class Login extends Component {
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
-    if(name == 'email')
-      this.validateEmail()
+    if (name == "email") this.validateEmail();
   };
 
   handleAgree = () => {
@@ -236,11 +236,11 @@ export default class Login extends Component {
     this.setState({ open: false, msg: "", color: "black" });
   }
 
-  validateEmail(){
+  validateEmail() {
     const { email } = this.state;
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.setState({
-      emailError: !re.test(String(email).toLowerCase()),
+      emailError: !re.test(String(email).toLowerCase())
     });
   }
 

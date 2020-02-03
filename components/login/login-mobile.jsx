@@ -17,20 +17,20 @@ const Form = styled(Fo)`
   width: 50%;
 `
 
-function ShowMSG ({ msg, open, close, color }) {
+function ShowMSG({ msg, open, close, color }) {
   return (
-    <Modal open={open}>
-      <Header content='Your registration' />
+    <Modal size="tiny" open={open}>
+      <Header content="Your registration" />
       <Modal.Content>
-        <p style={{ color }}>{msg}</p>
+        <p style={{ color, fontSize: "1.2rem" }}>{msg}</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='green' onClick={close}>
+        <Button color="green" onClick={close}>
           Got it
         </Button>
       </Modal.Actions>
     </Modal>
-  )
+  );
 }
 
 class ForgotPasswordModal extends Component {
@@ -42,6 +42,7 @@ class ForgotPasswordModal extends Component {
       sentEmailModalOpen: false,
       emailError: false
     };
+    this.openSentEmailModal = this.openSentEmailModal.bind(this);
   }
 
   handleClose = () => {
@@ -53,10 +54,15 @@ class ForgotPasswordModal extends Component {
 
   handleOpen = () => this.setState({ modalOpen: true });
 
-  openSentEmailModal = () => {
+  async openSentEmailModal() {
     if (this.state.emailError) return;
-    this.setState({ sentEmailModalOpen: true });
-  };
+    try {
+      const result = await forgetPasswordAPI(this.state.email);
+      this.setState({ sentEmailModalOpen: true });
+    } catch (e) {
+      alert("error");
+    }
+  }
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
@@ -138,7 +144,6 @@ class ForgotPasswordModal extends Component {
     );
   }
 }
-
 export default class Login extends Component {
   constructor(props) {
     super(props);
