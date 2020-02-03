@@ -22,100 +22,70 @@ export default class Search extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeSection: name });
 
+  getAccounts() {
+    const list = this.props.accounts.map(account => (
+      <>
+        <Segment>
+          <Image size="tiny" circular centered src={account.src} />
+        </Segment>
+        <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
+          {account.name}
+        </Segment>
+      </>
+    ));
+    return list;
+  }
+
+  getPosts() {
+    const list = this.props.posts.map(post => (
+      <>
+        <Segment style={{ width: "70%", margin: "0 auto" }} textAlign="center">
+          <Post
+            src={post.src}
+            name={post.name}
+            date={post.date}
+            id={post.id}
+            image={post.image}
+            desc={post.desc}
+          />
+        </Segment>
+      </>
+    ));
+    return list;
+  }
+
+  getChannels() {
+    const list = this.props.channels.map(channel => (
+      <>
+        <Segment>
+          <Image size="tiny" circular centered src={channel.src} />
+        </Segment>
+        <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
+          {channel.name}
+        </Segment>
+      </>
+    ));
+    return list;
+  }
+
   getResults() {
     const { activeSection } = this.state;
 
     if (activeSection == "accounts") {
       return (
-        <>
-          <Segment>
-            <Image
-              size="tiny"
-              circular
-              centered
-              src="static/Images/profiles/me.jpg"
-            />
-          </Segment>
-          <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-            Alireza Mohammadian
-          </Segment>
-
-          <Segment>
-            <Image
-              size="tiny"
-              circular
-              centered
-              src="static/Images/profiles/me.jpg"
-            />
-          </Segment>
-          <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-            Alireza Mohammadian
-          </Segment>
-        </>
+        this.getAccounts()
       );
     }
 
     if (activeSection == "posts") {
       return (
-        <>
-          <Segment
-            style={{ width: "80%", margin: "0 auto" }}
-            textAlign="center"
-          >
-            <Post
-              src="static/Images/profiles/avatar0.jpg"
-              name="kain"
-              date="3 mins ago"
-              id="5"
-              image="static/Images/photos/test10.png"
-              desc="da da da la ba ba ba"
-            ></Post>
-          </Segment>
-
-          <Segment
-            style={{ width: "80%", margin: "0 auto" }}
-            textAlign="center"
-          >
-            <Post
-              src="static/Images/profiles/avatar0.jpg"
-              name="kain"
-              date="3 mins ago"
-              id="5"
-              image="static/Images/photos/p7.png"
-              desc="da da da la ba ba ba"
-            ></Post>
-          </Segment>
-        </>
+       this.getPosts()
       );
     }
 
     if (activeSection == "channels") {
       return (
-        <>
-          <Segment>
-            <Image
-              size="tiny"
-              circular
-              centered
-              src="static/Images/profiles/me.jpg"
-            />
-          </Segment>
-          <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-            Alireza Mohammadian
-          </Segment>
-
-          <Segment>
-            <Image
-              size="tiny"
-              circular
-              centered
-              src="static/Images/profiles/me.jpg"
-            />
-          </Segment>
-          <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-            Alireza Mohammadian
-          </Segment>
-        </>
+        this.getChannels()
       );
     }
   }
