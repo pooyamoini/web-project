@@ -112,7 +112,7 @@ export default class EditProfile extends Component {
   };
 
   handelChangePhoto = (e) =>{
-    this.setState({profile: e.target.files.item(0).name})
+    this.setState({profile: '../static/Images/profiles/' + e.target.files.item(0).name})
   }
 
   async handleSubmit() {
