@@ -4,11 +4,19 @@ import GloBalStyle from '../../components/global/globalStyle'
 import Navbar from '../../components/global/navbar-index'
 import Post from '../../components/post/computer'
 import { getPostAPI } from '../../api/post/'
+import { tokenIsValid } from '../../api/account-action/'
 
 class PostPage extends Component {
   constructor (props) {
     super(props)
-    this.state = { post: '', owner: '', isliked: '', isdisliked: '', date: '' }
+    this.state = {
+      post: '',
+      owner: '',
+      isliked: '',
+      isdisliked: '',
+      date: '',
+      mine: false
+    }
   }
 
   async componentDidMount () {
@@ -19,11 +27,14 @@ class PostPage extends Component {
       return
     }
     try {
+      const res0 = await tokenIsValid(token)
       const res = await getPostAPI(token, id)
       this.setState({
         post: res.data.msg['post'],
         owner: res.data.msg['account'],
         isliked: res.data.msg.isliked,
+        mine:
+          res.data.msg['account'].username === res0.data['account']['username'],
         isdisliked: res.data.msg.isDisliked,
         date: res.data.msg.date
       })
