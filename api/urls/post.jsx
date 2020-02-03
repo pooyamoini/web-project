@@ -13,3 +13,5 @@ export const GET_HOMEPAGE_NEWS = `${base_add}/post/homepage/news/`
 export const GET_HOMEPAGE_HOTS = `${base_add}/post/homepage/hots/`
 
 export const EDIT_POST = `${base_add}/post/editpost/`
+
+export const DELETE_POST = `${base_add}/post/delete/`

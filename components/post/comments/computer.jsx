@@ -8,7 +8,6 @@ import {
 } from 'semantic-ui-react'
 import GenerateComments from "./generate-comments"
 import samples from '../../../public/comments.json'
-import EditIcon from '@material-ui/icons/Edit'
 
 class CommentsPage extends Component {
   constructor (props) {

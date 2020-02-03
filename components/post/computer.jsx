@@ -153,7 +153,7 @@ class Post extends Component {
 
   render () {
     const { display, open } = this.state
-    const { post, owner, date } = this.props
+    const { post, owner, date, mine } = this.props
     console.log(post.content)
     return (
       <>
@@ -192,6 +192,8 @@ class Post extends Component {
                 like={this.like}
                 dislike={this.dislike}
                 pid={this.props.post.id_post}
+                mine={mine}
+                handleCommentClick={this.handleCommentClick}
               />
               <Comments display={display} />
             </Card>
