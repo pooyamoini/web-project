@@ -48,7 +48,7 @@ class CommentComp extends Component {
   }
 
   async submit () {
-    const { name, cid } = this.props
+    const { cid } = this.props
     const content = this.state.content
     const id = window.location.href.split('/')[4]
     const token = localStorage.getItem('token')
@@ -56,12 +56,12 @@ class CommentComp extends Component {
     window.location.reload()
   }
 
-  GenerateReplies ({ replies, addReply }) {
+  GenerateReplies ({ replies, addReply, cid }) {
     if (replies === undefined || replies.length === 0) return <></>
     return (
       <Comment.Group>
         {replies.map(x => (
-          <CommentG {...x} key={x} addReply={addReply} />
+          <CommentG {...x} key={x} addReply={addReply} cid={cid}/>
         ))}
       </Comment.Group>
     )
@@ -69,7 +69,7 @@ class CommentComp extends Component {
 
   render () {
     const { account, main, src, replies, cid } = this.props
-    const { display, reply } = this.state
+    const { display } = this.state
     const color = Theme.post.textColor
     const gStyle = { color }
     return (
@@ -84,7 +84,6 @@ class CommentComp extends Component {
             </Comment.Author>
           </Link>
           <Comment.Metadata style={{ color: 'grey' }}>
-            <div>12 hours age</div>
           </Comment.Metadata>
           <Comment.Text style={gStyle}>{main}</Comment.Text>
           <Comment.Actions>

@@ -29,6 +29,7 @@ class CommentG extends Component {
     this.toReply = this.toReply.bind(this)
     this.doneReply = this.doneReply.bind(this)
     this.submit = this.submit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   doneReply () {
@@ -46,14 +47,19 @@ class CommentG extends Component {
   }
 
   async submit () {
-    const { name, cid } = this.props
-    const value = document.getElementById('reply'.concat(name)).value
-    document.getElementById('reply'.concat(name)).value = ''
+    const { cid } = this.props
+    const { content } = this.state
+    // const value = document.getElementById('reply'.concat(name)).value
+    // document.getElementById('reply'.concat(name)).value = ''
     const token = localStorage.getItem('token')
     const pid = window.location.href.split('/')[4]
-    await replyCommentAPI(token, pid, cid, value)
+    await replyCommentAPI(token, pid, cid, content)
     window.location.reload()
-    this.doneReply()
+    // this.doneReply()
+  }
+
+  handleChange (e) {
+    this.setState({ content: e.target.value })
   }
 
   render () {
@@ -90,7 +96,7 @@ class CommentG extends Component {
           name={name}
           display={display}
           handle={this.submit}
-          handleChange={this.props.handleChange}
+          handleChange={this.handleChange}
         />
       </Comment>
     )
