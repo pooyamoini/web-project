@@ -1,117 +1,126 @@
-import React, { Component } from 'react'
-import Router from 'next/router'
+import React, { Component } from "react";
+import Router from "next/router";
 
-import { Menu as M, Image, Dropdown, Input } from 'semantic-ui-react'
-import Link from 'next/link'
-import styled from 'styled-components'
-import Theme from '../../public/Theme'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-import SearchIcon from '@material-ui/icons/Search'
-import MenuIcon from '@material-ui/icons/Menu'
-import { logout } from '../../api/account-action/'
-import ExitIcon from '@material-ui/icons/ExitToApp'
-
-
+import { Menu as M, Image, Dropdown, Input } from "semantic-ui-react";
+import Link from "next/link";
+import styled from "styled-components";
+import Theme from "../../public/Theme";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
+import { logout } from "../../api/account-action/";
+import ExitIcon from "@material-ui/icons/ExitToApp";
 
 const Menu = styled(M)`
   border-bottom: ${props =>
-    props.transparent ? '0' : '1px solid '} !important;
+    props.transparent ? "0" : "1px solid "} !important;
   border-color: ${Theme.navbar.borderColor} !important;
   background-color: ${Theme.navbar.backgroundColor} !important;
   margin-top: 0 !important;
-`
+`;
 
 const options = [
-  { key: 1, text: 'Hot', value: 1, route: 'hots' },
-  { key: 2, text: 'New', value: 2, route: 'news' },
-  { key: 3, text: 'Followed', value: 3, route: 'dashboard' },
-  { key: 4, text: 'Your Interest', value: 4, route:'dashboard' }
-]
-
-
+  { key: 1, text: "Hot", value: 1, route: "hots" },
+  { key: 2, text: "New", value: 2, route: "news" },
+  { key: 3, text: "Followed", value: 3, route: "dashboard" },
+  { key: 4, text: "Your Interest", value: 4, route: "dashboard" }
+];
 
 export default class MenuExampleVerticalText extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       open: false,
-      display: 'none',
+      display: "none",
       openI: false,
-      displayI: 'none',
+      displayI: "none",
       isProfile: false
-    }
-    this.handleDrp = this.handleDrp.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
+    };
+    this.handleDrp = this.handleDrp.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleClick = (e, data) => {
-    Router.push(`/${options[data.value-1].route}`)
+    Router.push(`/${options[data.value - 1].route}`);
+  };
+
+  handleSubmit = () => {
+    Router.push(`/search/${this.state.input}`);
+  };
+
+  handleChange = e => {
+    this.setState({ input: e.target.value });
+  };
+
+  logoutFunc() {
+    logout();
   }
 
-  logoutFunc () {
-    logout()
+  handleDrp = e => {
+    const { open } = this.state;
+    const result = open === true ? false : true;
+    const display = open === true ? "none" : "block";
+    this.setState({ open: result, display });
+  };
+
+  handleSearch() {
+    const { openI } = this.state;
+    const result = openI === true ? false : true;
+    const displayI = openI === true ? "none" : "block";
+    this.setState({ openI: result, displayI });
   }
 
-  handleDrp = (e) => {
-    const { open } = this.state
-    const result = open === true ? false : true
-    const display = open === true ? 'none' : 'block'
-    this.setState({ open: result, display })
-  }
-
-  handleSearch () {
-    const { openI } = this.state
-    const result = openI === true ? false : true
-    const displayI = openI === true ? 'none' : 'block'
-    this.setState({ openI: result, displayI })
-  }
-
-  componentDidMount () {
+  componentDidMount() {
     const url =
-      window.location.href.includes('profile/') ||
-      window.location.href.includes('post/')
-    this.setState({ isProfile: url })
+      window.location.href.includes("profile/") ||
+      window.location.href.includes("post/");
+    this.setState({ isProfile: url });
   }
 
-  render () {
-    const { open, display, openI, displayI, isProfile } = this.state
+  render() {
+    const { open, display, openI, displayI, isProfile } = this.state;
     return (
       <>
         <Menu text widths={5}>
           <Menu.Item>
-          <ExitIcon
-                fontSize='large'
-                style={{ marginTop: '0rem', marginRight: '1.5rem' , marginLeft: '1rem', color: 'dodgerBlue'}}
-                onClick={this.logoutFunc}
-              />
-          <Link href={isProfile ? '../dashboard' : './dashboard'}>
-              <Image src='/static/Images/global/logo1.png' avatar />
+            <ExitIcon
+              fontSize="large"
+              style={{
+                marginTop: "0rem",
+                marginRight: "1.5rem",
+                marginLeft: "1rem",
+                color: "dodgerBlue"
+              }}
+              onClick={this.logoutFunc}
+            />
+            <Link href={isProfile ? "../dashboard" : "./dashboard"}>
+              <Image src="/static/Images/global/logo1.png" avatar />
             </Link>
           </Menu.Item>
           <Menu.Item>
             <SearchIcon
-              fontSize='large'
+              fontSize="large"
               onClick={this.handleSearch}
-              style={{ color: 'white' }}
+              style={{ color: "white" }}
             />
           </Menu.Item>
           <Menu.Item>
-            <NotificationsIcon fontSize='large' style={{ color: 'white' }} />
+            <NotificationsIcon fontSize="large" style={{ color: "white" }} />
           </Menu.Item>
           <Menu.Item>
             <MenuIcon
-              fontSize='large'
+              fontSize="large"
               onClick={this.handleDrp}
-              style={{ color: 'white' }}
+              style={{ color: "white" }}
             />
           </Menu.Item>
           <Menu.Item>
-          <Link href='/profile/profile'>
+            <Link href="/profile/profile">
               <Image
                 src={
                   this.props.profile
                     ? this.props.profile
-                    : '/static/Images/profiles/empty.png'
+                    : "/static/Images/profiles/empty.png"
                 }
                 avatar
               />
@@ -119,7 +128,7 @@ export default class MenuExampleVerticalText extends Component {
           </Menu.Item>
         </Menu>
         <Dropdown
-          placeholder='Select Category'
+          placeholder="Select Category"
           fluid
           selection
           options={options}
@@ -129,11 +138,30 @@ export default class MenuExampleVerticalText extends Component {
         />
         <Dropdown.Menu
           open={openI}
-          style={{ display: displayI, width: '100vw !important' }}
+          style={{ display: displayI, width: "100vw !important" }}
         >
-          <Input style={{ width: '100vw' }} />
+          <Input
+            icon={
+              <SearchIcon
+                fontSize="large"
+                style={{
+                  marginTop: "0.5rem",
+                  marginLeft: "-3.5rem",
+                  color: "black",
+                  cursor: "pointer"
+                }}
+                onClick={this.handleSubmit}
+              />
+            }
+            size="small"
+            placeholder="Search..."
+            style={{
+              width: "32rem"
+            }}
+            onChange={this.handleChange}
+          />
         </Dropdown.Menu>
       </>
-    )
+    );
   }
 }

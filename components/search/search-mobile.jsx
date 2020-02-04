@@ -8,6 +8,7 @@ import {
   Menu
 } from "semantic-ui-react";
 import Post from "../profile-page/profile-post";
+import Link from "next/link";
 
 const Segment = styled(Seg)`
   background: transparent !important;
@@ -23,13 +24,25 @@ export default class Search extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeSection: name });
 
   getAccounts() {
+    if (this.props.accounts.length == 0) return  <h1 style={{color: 'white'}}>No Match</h1>;
     const list = this.props.accounts.map(account => (
       <>
         <Segment>
-          <Image size="tiny" circular centered src={account.src} />
+          <Link href={`../profile/${account.username}`}>
+            <Image
+              size="tiny"
+              circular
+              centered
+              src={
+                account.profile
+                  ? "../" + account.profile
+                  : "../static/Images/profiles/empty.png"
+              }
+            />
+          </Link>
         </Segment>
         <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-          {account.name}
+          <Link href={`../profile/${account.username}`}>{account.name}</Link>
         </Segment>
       </>
     ));
@@ -37,16 +50,21 @@ export default class Search extends Component {
   }
 
   getPosts() {
+    if (this.props.posts.length == 0) return  <h1 style={{color: 'white'}}>No Match</h1>;
     const list = this.props.posts.map(post => (
       <>
         <Segment style={{ width: "70%", margin: "0 auto" }} textAlign="center">
           <Post
-            src={post.src}
-            name={post.name}
-            date={post.date}
-            id={post.id}
+            src={
+              post.account.profile
+                ? "../" + post.account.profile
+                : "../static/Images/profiles/empty.png"
+            }
+            name={post.account.name}
+            date={''}
+            id={post.id_post}
             image={post.image}
-            desc={post.desc}
+            desc={post.content}
           />
         </Segment>
       </>
@@ -55,13 +73,25 @@ export default class Search extends Component {
   }
 
   getChannels() {
-    const list = this.props.channels.map(channel => (
+    if (this.props.accounts.length == 0) return  <h1 style={{color: 'white'}}>No Match</h1>;
+    const list = this.props.accounts.map(account => (
       <>
         <Segment>
-          <Image size="tiny" circular centered src={channel.src} />
+          <Link href={`../profile/${account.username}`}>
+            <Image
+              size="tiny"
+              circular
+              centered
+              src={
+                account.profile
+                  ? "../" + account.profile
+                  : "../static/Images/profiles/empty.png"
+              }
+            />
+          </Link>
         </Segment>
         <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-          {channel.name}
+          <Link href={`../profile/${account.username}`}>{account.name}</Link>
         </Segment>
       </>
     ));
@@ -107,7 +137,7 @@ export default class Search extends Component {
           width={3}
           size="massive"
           style={{
-            marginTop: "-1.7rem",
+            marginTop: "1rem",
             marginBottom: "2rem"
           }}
         >

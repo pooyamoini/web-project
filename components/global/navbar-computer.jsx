@@ -200,7 +200,6 @@ class NavBar extends Component {
                   style={{
                     width: "32rem"
                   }}
-                  onSubmit={this.handleSubmit}
                   onChange={this.handleChange}
                 />
                 <NotificationsIcon
