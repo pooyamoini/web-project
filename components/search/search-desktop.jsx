@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Segment as Seg, Image, Divider } from "semantic-ui-react";
 import Post from "../profile-page/profile-post";
+import { searchAPI } from "../../api/search/";
+import Link from "next/link";
 
 const Segment = styled(Seg)`
   background: transparent !important;
@@ -15,13 +17,25 @@ export default class Search extends Component {
   }
 
   getAccounts() {
+    if (!this.props.accounts) return;
     const list = this.props.accounts.map(account => (
       <>
         <Segment>
-          <Image size="tiny" circular centered src={account.src} />
+          <Link href={`../profile/${account.username}`}>
+            <Image
+              size="tiny"
+              circular
+              centered
+              src={
+                account.profile
+                  ? "../" + account.profile
+                  : "../static/Images/profiles/empty.png"
+              }
+            />
+          </Link>
         </Segment>
         <Segment inverted style={{ borderBottom: "solid 0.5px darkgray" }}>
-          {account.name}
+          <Link href={`../profile/${account.username}`}>{account.name}</Link>
         </Segment>
       </>
     ));
@@ -33,12 +47,16 @@ export default class Search extends Component {
       <>
         <Segment style={{ width: "70%", margin: "0 auto" }} textAlign="center">
           <Post
-            src={post.src}
-            name={post.name}
-            date={post.date}
-            id={post.id}
+            src={
+              post.account.profile
+                ? "../" + post.account.profile
+                : "../static/Images/profiles/empty.png"
+            }
+            name={post.account.name}
+            date={''}
+            id={post.id_post}
             image={post.image}
-            desc={post.desc}
+            desc={post.content}
           />
         </Segment>
       </>
@@ -78,7 +96,6 @@ export default class Search extends Component {
         >
           <Segment inverted>Accounts</Segment>
           {this.getAccounts()}
-
         </Segment>
 
         <Segment
@@ -90,7 +107,6 @@ export default class Search extends Component {
         >
           <Segment inverted>Posts</Segment>
           {this.getPosts()}
-          
         </Segment>
 
         <Segment

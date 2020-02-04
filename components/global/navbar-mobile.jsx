@@ -46,7 +46,6 @@ export default class MenuExampleVerticalText extends Component {
 
   handleClick = (e, data) => {
     Router.push(`/${options[data.value-1].route}`)
-    return
   }
 
   logoutFunc () {
