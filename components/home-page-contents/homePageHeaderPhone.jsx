@@ -143,7 +143,6 @@ export default class HomePageHeaderPhone extends Component {
     this.setState({
       visibility: dic
     });
-    console.log(this.state.visibility);
   }
 
   componentWillUnmount() {

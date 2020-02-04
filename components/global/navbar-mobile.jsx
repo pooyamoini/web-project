@@ -22,10 +22,10 @@ const Menu = styled(M)`
 `
 
 const options = [
-  { key: 1, text: 'Hot', value: 1 },
-  { key: 2, text: 'New', value: 2 },
-  { key: 3, text: 'Followed', value: 3 },
-  { key: 4, text: 'Your Interest', value: 4 }
+  { key: 1, text: 'Hot', value: 1, route: 'hots' },
+  { key: 2, text: 'New', value: 2, route: 'news' },
+  { key: 3, text: 'Followed', value: 3, route: 'dashboard' },
+  { key: 4, text: 'Your Interest', value: 4, route:'dashboard' }
 ]
 
 
@@ -45,11 +45,7 @@ export default class MenuExampleVerticalText extends Component {
   }
 
   handleClick = (e, data) => {
-    if (data.text == 'Followings') {
-      Router.push(`/dashboard`)
-      return
-    }
-    Router.push(`/${data.text}`)
+    Router.push(`/${options[data.value-1].route}`)
     return
   }
 
@@ -130,7 +126,7 @@ export default class MenuExampleVerticalText extends Component {
           options={options}
           open={open}
           style={{ display }}
-          onClick={this.handleClick}
+          onChange={this.handleClick}
         />
         <Dropdown.Menu
           open={openI}
