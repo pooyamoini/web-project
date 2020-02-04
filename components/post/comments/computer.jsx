@@ -6,33 +6,33 @@ import {
   Divider,
   Comment as CMT
 } from 'semantic-ui-react'
-import GenerateComments from "./generate-comments"
+import GenerateComments from './generate-comments'
 import samples from '../../../public/comments.json'
+import { addCommentsAPI } from '../../../api/comment/'
 
 class CommentsPage extends Component {
   constructor (props) {
     super(props)
-    this.state = { comments: samples }
+    this.state = { comments: samples, id: '' }
     this.addComment = this.addComment.bind(this)
   }
 
-  addComment () {
+  componentDidMount () {
+    const id = window.location.href.split('/')[4]
+    this.setState({ id })
+  }
+
+  async addComment () {
     const content = document.getElementById('add-comment').value
     document.getElementById('add-comment').value = ''
-    if (content == '') return
-    const { comments } = this.state
-    comments.push({
-      name: 'Java Script',
-      content,
-      src: '/static/Images/global/avatar0.jpg',
-      reply: [],
-      date: '30 mins ago'
-    })
-    this.setState({ comments })
+    const id = window.location.href.split('/')[4]
+    const token = localStorage.getItem('token')
+    await addCommentsAPI(token, id, content)
+    window.location.reload()
   }
 
   render () {
-    const { display } = this.props
+    const { display, commentsData, id } = this.props
     const { comments } = this.state
     return (
       <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem', display }}>
@@ -55,7 +55,7 @@ class CommentsPage extends Component {
             add Comment
           </Button>
         </Form>
-        <GenerateComments data={comments}/>
+        <GenerateComments data={comments} comments={commentsData}/>
       </CMT.Group>
     )
   }

@@ -5,6 +5,7 @@ import Navbar from '../../components/global/navbar-index'
 import Post from '../../components/post/computer'
 import { getPostAPI } from '../../api/post/'
 import { tokenIsValid } from '../../api/account-action/'
+import { getCommentsAPI } from '../../api/comment'
 import Router from 'next/router'
 
 class PostPage extends Component {
@@ -16,7 +17,8 @@ class PostPage extends Component {
       isliked: '',
       isdisliked: '',
       date: '',
-      mine: false
+      mine: false,
+      comments: []
     }
   }
 
@@ -30,6 +32,7 @@ class PostPage extends Component {
     try {
       const res0 = await tokenIsValid(token)
       const res = await getPostAPI(token, id)
+      const res1 = await getCommentsAPI(token, id)
       this.setState({
         post: res.data.msg['post'],
         owner: res.data.msg['account'],
@@ -37,7 +40,8 @@ class PostPage extends Component {
         mine:
           res.data.msg['account'].username === res0.data['account']['username'],
         isdisliked: res.data.msg.isDisliked,
-        date: res.data.msg.date
+        date: res.data.msg.date,
+        comments: res1.data.msg
       })
     } catch (e) {
       Router.push('/')

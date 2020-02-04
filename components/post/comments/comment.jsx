@@ -3,6 +3,7 @@ import { Comment } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
 import { Reply } from './reply'
 import CommentG from './reply'
+import Link from 'next/link'
 
 class CommentComp extends Component {
   constructor (props) {
@@ -62,22 +63,24 @@ class CommentComp extends Component {
   }
 
   render () {
-    const { name, date, content, src } = this.props
+    const { account, main, src } = this.props
     const { display, reply } = this.state
     const color = Theme.post.textColor
     const gStyle = { color }
     return (
-      <>
+      <Link href={`/profile/${account}`}>
         <Comment style={{ marginLeft: '1rem' }}>
-          <Comment.Avatar src={src} />
+          <Comment.Avatar
+            src={src ? src : '../static/Images/profiles/empty.png'}
+          />
           <Comment.Content>
             <Comment.Author style={gStyle} as='a'>
-              {name}
+              {account}
             </Comment.Author>
             <Comment.Metadata style={{ color: 'grey' }}>
-              <div>{date}</div>
+              <div>12 hours age</div>
             </Comment.Metadata>
-            <Comment.Text style={gStyle}>{content}</Comment.Text>
+            <Comment.Text style={gStyle}>{main}</Comment.Text>
             <Comment.Actions>
               <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
                 Reply
@@ -87,7 +90,7 @@ class CommentComp extends Component {
           <Reply display={display} name={name} handle={this.submit} />
           <this.GenerateReplies replies={reply} addReply={this.addReply} />
         </Comment>
-      </>
+      </Link>
     )
   }
 }

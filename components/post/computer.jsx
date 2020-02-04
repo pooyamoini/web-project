@@ -153,7 +153,7 @@ class Post extends Component {
 
   render () {
     const { display, open } = this.state
-    const { post, owner, date, mine } = this.props
+    const { post, owner, date, mine, comments } = this.props
     console.log(post.content)
     return (
       <>
@@ -195,7 +195,7 @@ class Post extends Component {
                 mine={mine}
                 handleCommentClick={this.handleCommentClick}
               />
-              <Comments display={display} />
+              <Comments display={display} commentsData={comments} />
             </Card>
           </Grid.Column>
         </Grid>
