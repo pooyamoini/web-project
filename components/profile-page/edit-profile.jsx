@@ -35,13 +35,7 @@ class EditProfile extends Component {
     return (
       <Segment.Group basic>
         <NoSSR>
-          <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-            <Mobile data={data} />
-          </Responsive>
-          <Responsive
-            minWidth={Responsive.onlyTablet.minWidth}
-            maxWidth={Responsive.onlyTablet.maxWidth}
-          >
+          <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
             <Mobile data={data} />
           </Responsive>
           <Responsive

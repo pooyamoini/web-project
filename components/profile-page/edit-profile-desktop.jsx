@@ -111,9 +111,11 @@ export default class EditProfile extends Component {
     return action.bind(this);
   };
 
-  handelChangePhoto = (e) =>{
-    this.setState({profile: '../static/Images/profiles/' + e.target.files.item(0).name})
-  }
+  handelChangePhoto = e => {
+    this.setState({
+      profile: "../static/Images/profiles/" + e.target.files.item(0).name
+    });
+  };
 
   async handleSubmit() {
     try {
@@ -171,8 +173,6 @@ export default class EditProfile extends Component {
           <Label>Profile Photo</Label>
         </Grid.Column>
         <Grid.Column textAlign="left" width={12}>
-          {/* <Input value={this.state.profile}></Input> */}
-
           <Button
             fluid
             size="small"
@@ -185,12 +185,7 @@ export default class EditProfile extends Component {
             }}
           >
             <Button.Content visible>
-              <FileIcon
-                fontSize="large"
-                // color='primary'
-                // style={{ marginTop: '1.5rem', marginLeft: '3.5rem' }}
-                // onClick={this.logoutFunc}
-              />
+              <FileIcon fontSize="large" />
             </Button.Content>
             <Button.Content hidden>Choose a File</Button.Content>
           </Button>
@@ -202,7 +197,7 @@ export default class EditProfile extends Component {
           />
         </Grid.Column>
       </Grid.Row>
-    )
+    );
   }
 
   getEditProfileForm() {

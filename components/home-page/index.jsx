@@ -11,13 +11,13 @@ const HomePageContents = ({ suggestions, posts }) => {
     <Segment.Group basic>
       <NoSSR>
         <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-          <Mobile posts={homePagePostsJson} />
+          <Mobile posts={posts} />
         </Responsive>
         <Responsive
           minWidth={Responsive.onlyTablet.minWidth}
           maxWidth={Responsive.onlyTablet.maxWidth}
         >
-          <Tablet posts={homePagePostsJson} />
+          <Tablet posts={posts} />
         </Responsive>
         <Responsive
           minWidth={Responsive.onlyComputer.minWidth}

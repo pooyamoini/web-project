@@ -40,11 +40,11 @@ class Post extends Component {
           >
             <Image src={this.props.src} avatar />
             <Name>{this.props.name}</Name>
-            <Meta>30 mins ago</Meta>
+            <Meta>{this.props.date}</Meta>
           </Segment>
         </Grid.Row>
         <Grid.Row centered>
-          <Link href='/post'>
+          <Link href={`/post/${this.props.id}`}>
             <Card>
               <Image
                 src={this.props.image}
@@ -56,7 +56,7 @@ class Post extends Component {
               />
               <Card.Content textAlign = 'left'>
                 <Card.Description style={{ fontSize: "20px", color: Theme.post.textColor }}>
-                  {this.props.desc.substr(0, 100)}
+                  {this.props.content.substr(0, 100)}
                 </Card.Description>
               </Card.Content>
             </Card>

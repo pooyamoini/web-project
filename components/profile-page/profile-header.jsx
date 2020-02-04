@@ -1,21 +1,15 @@
-import React from 'react'
-import { Responsive, Segment } from 'semantic-ui-react'
-import NoSSR from 'react-no-ssr'
-import Mobile from './profile-header-mobile'
-import Computer from './profile-header-desktop'
+import React from "react";
+import { Responsive, Segment } from "semantic-ui-react";
+import NoSSR from "react-no-ssr";
+import Mobile from "./profile-header-mobile";
+import Computer from "./profile-header-desktop";
 
 const ProfileHeader = props => {
   return (
     <Segment.Group basic>
       <NoSSR>
         <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-          <Mobile data={props.data} type={props.type} />
-        </Responsive>
-        <Responsive
-          minWidth={Responsive.onlyTablet.minWidth}
-          maxWidth={Responsive.onlyTablet.maxWidth}
-        >
-          <Computer
+          <Mobile
             data={props.data}
             type={props.type}
             followers={props.followers}
@@ -23,7 +17,7 @@ const ProfileHeader = props => {
           />
         </Responsive>
         <Responsive
-          minWidth={Responsive.onlyComputer.minWidth}
+          minWidth={Responsive.onlyTablet.minWidth}
           maxWidth={Responsive.onlyComputer.maxWidth}
         >
           <Computer
@@ -35,6 +29,6 @@ const ProfileHeader = props => {
         </Responsive>
       </NoSSR>
     </Segment.Group>
-  )
-}
-export default ProfileHeader
+  );
+};
+export default ProfileHeader;

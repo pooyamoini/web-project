@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Router from 'next/router'
+
 import { Menu as M, Image, Dropdown, Input } from 'semantic-ui-react'
 import Link from 'next/link'
 import styled from 'styled-components'
@@ -6,6 +8,10 @@ import Theme from '../../public/Theme'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import SearchIcon from '@material-ui/icons/Search'
 import MenuIcon from '@material-ui/icons/Menu'
+import { logout } from '../../api/account-action/'
+import ExitIcon from '@material-ui/icons/ExitToApp'
+
+
 
 const Menu = styled(M)`
   border-bottom: ${props =>
@@ -22,6 +28,8 @@ const options = [
   { key: 4, text: 'Your Interest', value: 4 }
 ]
 
+
+
 export default class MenuExampleVerticalText extends Component {
   constructor (props) {
     super(props)
@@ -29,13 +37,27 @@ export default class MenuExampleVerticalText extends Component {
       open: false,
       display: 'none',
       openI: false,
-      displayI: 'none'
+      displayI: 'none',
+      isProfile: false
     }
     this.handleDrp = this.handleDrp.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
   }
 
-  handleDrp () {
+  handleClick = (e, data) => {
+    if (data.text == 'Followings') {
+      Router.push(`/dashboard`)
+      return
+    }
+    Router.push(`/${data.text}`)
+    return
+  }
+
+  logoutFunc () {
+    logout()
+  }
+
+  handleDrp = (e) => {
     const { open } = this.state
     const result = open === true ? false : true
     const display = open === true ? 'none' : 'block'
@@ -49,13 +71,25 @@ export default class MenuExampleVerticalText extends Component {
     this.setState({ openI: result, displayI })
   }
 
+  componentDidMount () {
+    const url =
+      window.location.href.includes('profile/') ||
+      window.location.href.includes('post/')
+    this.setState({ isProfile: url })
+  }
+
   render () {
-    const { open, display, openI, displayI } = this.state
+    const { open, display, openI, displayI, isProfile } = this.state
     return (
       <>
         <Menu text widths={5}>
           <Menu.Item>
-            <Link href='.'>
+          <ExitIcon
+                fontSize='large'
+                style={{ marginTop: '0rem', marginRight: '1.5rem' , marginLeft: '1rem', color: 'dodgerBlue'}}
+                onClick={this.logoutFunc}
+              />
+          <Link href={isProfile ? '../dashboard' : './dashboard'}>
               <Image src='/static/Images/global/logo1.png' avatar />
             </Link>
           </Menu.Item>
@@ -77,7 +111,7 @@ export default class MenuExampleVerticalText extends Component {
             />
           </Menu.Item>
           <Menu.Item>
-            <Link href='/profile'>
+          <Link href='/profile/profile'>
               <Image
                 src={
                   this.props.profile
@@ -96,7 +130,7 @@ export default class MenuExampleVerticalText extends Component {
           options={options}
           open={open}
           style={{ display }}
-          onClick={this.handleDrp}
+          onClick={this.handleClick}
         />
         <Dropdown.Menu
           open={openI}

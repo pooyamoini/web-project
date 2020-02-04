@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import 'semantic-ui-css/semantic.min.css'
-import styled from 'styled-components'
-import { signupAPI, loginAPI } from '../../api/account-action/'
+import React, { Component } from "react";
+import "semantic-ui-css/semantic.min.css";
+import styled from "styled-components";
+import { signupAPI, loginAPI } from "../../api/account-action/";
+import Router from "next/router";
+import { forgetPasswordAPI } from "../../api/account-action/";
 import {
   Grid,
   Modal,
@@ -10,12 +12,12 @@ import {
   Form as Fo,
   Checkbox,
   Input
-} from 'semantic-ui-react'
+} from "semantic-ui-react";
 
 const Form = styled(Fo)`
   margin: 1rem auto;
   width: 50%;
-`
+`;
 
 function ShowMSG({ msg, open, close, color }) {
   return (
@@ -167,33 +169,27 @@ export default class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleSubmit = () =>{
+  handleSubmit = () => {
     this.validateInput();
-    const {
-      name,
-      username,
-      password,
-      emailError,
-      mode,
-      agreed,
-    } = this.state;
-    if(mode == 'login'){
-      if (username == "" || password == "" ) return;
-      this.handleLogin()
+    const { name, username, password, emailError, mode, agreed } = this.state;
+    if (mode == "login") {
+      if (username == "" || password == "") return;
+      this.handleLogin();
     } else {
-      if (emailError || name== "" || username == "" || password == "" || !agreed)
-      return;
-      this.handleSignup()
+      if (
+        emailError ||
+        name == "" ||
+        username == "" ||
+        password == "" ||
+        !agreed
+      )
+        return;
+      this.handleSignup();
     }
-  }
+  };
 
   async handleSignup() {
-    const {
-      name,
-      username,
-      email,
-      password,
-    } = this.state;
+    const { name, username, email, password } = this.state;
     try {
       const res = await signupAPI({ name, username, password, email });
       this.setState({ open: true, msg: res.data["msg"], color: "green" });
@@ -204,7 +200,7 @@ export default class Login extends Component {
 
   async handleLogin() {
     try {
-      const { username, password, } = this.state;
+      const { username, password } = this.state;
       const res = await loginAPI({ username, password });
       const token = res.data["token"];
       const account = res.data["account"];
@@ -226,8 +222,7 @@ export default class Login extends Component {
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
-    if(name == 'email')
-      this.validateEmail()
+    if (name == "email") this.validateEmail();
   };
 
   handleAgree = () => {
@@ -239,11 +234,11 @@ export default class Login extends Component {
     this.setState({ open: false, msg: "", color: "black" });
   }
 
-  validateEmail(){
+  validateEmail() {
     const { email } = this.state;
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.setState({
-      emailError: !re.test(String(email).toLowerCase()),
+      emailError: !re.test(String(email).toLowerCase())
     });
   }
 
@@ -349,8 +344,8 @@ export default class Login extends Component {
       </Form>
     );
   }
-  render () {
-    const { open, msg, color } = this.state
+  render() {
+    const { open, msg, color } = this.state;
     return (
       <>
         <ShowMSG
@@ -362,40 +357,40 @@ export default class Login extends Component {
         <Grid
           columns={1}
           style={{
-            width: '100vw',
-            heigth: '100vh',
-            padding: '0',
-            margin: '0'
+            width: "100vw",
+            heigth: "100vh",
+            padding: "0",
+            margin: "0"
           }}
         >
           <Grid.Column
-            textAlign='center'
-            verticalAlign='top'
+            textAlign="center"
+            verticalAlign="top"
             style={{
-              paddingTop: '10rem'
+              paddingTop: "10rem"
             }}
           >
-            <Button.Group size='big'>
-              <Button name='login' size='big' onClick={this.handleClick}>
+            <Button.Group size="big">
+              <Button name="login" size="big" onClick={this.handleClick}>
                 Login
               </Button>
-              <Button.Or size='big' text='' />
+              <Button.Or size="big" text="" />
               <Button
-                name='signup'
-                color='blue'
-                size='big'
+                name="signup"
+                color="blue"
+                size="big"
                 onClick={this.handleClick}
               >
                 Sign Up
               </Button>
             </Button.Group>
 
-            {this.state.mode == 'login'
+            {this.state.mode == "login"
               ? this.getLoginForm()
               : this.getSignUpForm()}
           </Grid.Column>
         </Grid>
       </>
-    )
+    );
   }
 }

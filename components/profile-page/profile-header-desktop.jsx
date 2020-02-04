@@ -20,7 +20,6 @@ const Grid = styled(Gr)`
 `
 
 const Segment = styled(Seg)`
-  // border: none !important;
   color: white;
   background: transparent !important;
 `
@@ -113,7 +112,7 @@ export default class ProfileHeader extends Component {
               <Segment
                 style={{
                   'margin-top': '1rem',
-                  fontSize: '26px ',
+                  fontSize: '2rem ',
                   fontWeight: '700'
                 }}
               >
@@ -131,7 +130,7 @@ export default class ProfileHeader extends Component {
             <SegmentGroup horizontal>
               <Segment
                 style={{
-                  fontSize: '20px',
+                  fontSize: '1.5rem',
                   fontWeight: '700'
                 }}
               >
@@ -139,7 +138,7 @@ export default class ProfileHeader extends Component {
               </Segment>
               <Segment
                 style={{
-                  fontSize: '20px',
+                  fontSize: '1.5rem',
                   fontWeight: '0 !important'
                 }}
               >
@@ -160,7 +159,7 @@ export default class ProfileHeader extends Component {
               </Segment>
               <Segment
                 style={{
-                  fontSize: '20px'
+                  fontSize: '1.5rem'
                 }}
               >
                 <Dropdown
@@ -180,7 +179,7 @@ export default class ProfileHeader extends Component {
             </SegmentGroup>
             <Segment
               style={{
-                fontSize: '18px',
+                fontSize: '1.3rem',
                 fontWeight: '400'
               }}
             >

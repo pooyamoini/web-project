@@ -7,11 +7,12 @@ import {
   Icon as Ic
 } from "semantic-ui-react";
 import styled from "styled-components";
-import Theme from '../../public/theme'
+import Theme from "../../public/theme";
+import Link from "next/link";
 
 const Container = styled(Co)`
   width: 90% !important;
-  margin: -25% auto 0!important;
+  margin: -25% auto 0 !important;
 `;
 const Icon = styled(Ic)`
   visibility: hidden;
@@ -30,46 +31,89 @@ export default class HomePageHeaderPhone extends Component {
         New: false,
         Followed: false,
         YourInterest: false
-      }
+      },
+      nnews: ["", ""],
+      nhot: ["", ""],
+      nfollow: ["", ""],
+      nx: ["", ""]
     };
     this.isVisible = this.isVisible.bind(this);
     this.changeVisibleCard = this.changeVisibleCard.bind(this);
     this.showNextCard = this.showNextCard.bind(this);
   }
 
-  getCard(type, title, date, votes, image) {
+  componentDidMount() {
+    this.timer = setInterval(() => this.changeVisibleCard(), 5000);
+    setTimeout(() => {
+      const { news, hot, follow, x } = this.props;
+      const nnews = this.getLikes(news);
+      const nhot = this.getLikes(hot);
+      const nfollow = this.getLikes(follow);
+      const nx = this.getLikes(x);
+      this.setState({ nnews, nhot, nfollow, nx });
+    }, 2000);
+  }
+
+  getLikes(list) {
+    try {
+      return [list.nlikes.length, list.ndislikes.length];
+    } catch (e) {
+      return ["", ""];
+    }
+  }
+
+  getCard(type, title, date, votes, comments, image, id) {
     return (
-      <Card
-        centered
-        style={{
-          width: "95vw",
-          marginTop: "8rem",
-          marginBottom: "8rem",
-          "background-color": Theme.post.backgroundColor,
-          "box-shadow": "none"
-        }}
-      >
-        <Image src={image} wrapped ui={false} size="big" />
-        <Card.Content>
-          <Card.Header style={{
-              color: Theme.post.headarColor
-            }}>{type}</Card.Header>
-          <Card.Meta style={{
+      <Link href={`/post/${id}`}>
+        <Card
+          centered
+          style={{
+            width: "95vw",
+            marginTop: "8rem",
+            marginBottom: "8rem",
+            "background-color": Theme.post.backgroundColor,
+            "box-shadow": "none"
+          }}
+        >
+          <Image src={image} wrapped ui={false} size="big" />
+          <Card.Content>
+            <Card.Header
+              style={{
+                color: Theme.post.headarColor
+              }}
+            >
+              {type}
+            </Card.Header>
+            <Card.Meta
+              style={{
+                color: Theme.post.dateColor
+              }}
+            >
+              {date}
+            </Card.Meta>
+            <Card.Description
+              style={{
+                color: Theme.post.textColor
+              }}
+            >
+              {title}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content
+            extra
+            style={{
               color: Theme.post.dateColor
-            }}>{date}</Card.Meta>
-          <Card.Description  style={{
-              color: Theme.post.textColor
-            }}>{title}</Card.Description>
-        </Card.Content>
-        <Card.Content extra  style={{
-              color: Theme.post.dateColor
-            }}>
-          <p>
-            <Icon name="thumbs up" />
-            {votes} Votes
-          </p>
-        </Card.Content>
-      </Card>
+            }}
+          >
+            <p>
+              <Icon name="thumbs up" />
+              {votes} Likes
+              <Icon name="thumbs up" />
+              {comments} Dislikes
+            </p>
+          </Card.Content>
+        </Card>
+      </Link>
     );
   }
 
@@ -99,10 +143,6 @@ export default class HomePageHeaderPhone extends Component {
     });
   }
 
-  componentDidMount() {
-    this.timer = setInterval(() => this.changeVisibleCard(), 5000);
-  }
-
   componentWillUnmount() {
     clearInterval(this.timer);
   }
@@ -117,10 +157,12 @@ export default class HomePageHeaderPhone extends Component {
         >
           {this.getCard(
             "Hot",
-            this.props.data.Hot.Title,
-            this.props.data.Hot.Date,
-            this.props.data.Hot.Votes,
-            this.props.data.Hot.Image
+            this.props.hot.content,
+            this.props.hot.account,
+            this.state.nhot[0],
+            this.state.nhot[1],
+            this.props.hot.image,
+            this.props.hot.id_post
           )}
         </Transition>
         <Transition
@@ -130,10 +172,12 @@ export default class HomePageHeaderPhone extends Component {
         >
           {this.getCard(
             "New",
-            this.props.data.New.Title,
-            this.props.data.New.Date,
-            this.props.data.New.Votes,
-            this.props.data.New.Image
+            this.props.news.content,
+            this.props.news.account,
+            this.state.nnews[0],
+            this.state.nnews[1],
+            this.props.news.image,
+            this.props.news.id_post
           )}
         </Transition>
         <Transition
@@ -143,10 +187,12 @@ export default class HomePageHeaderPhone extends Component {
         >
           {this.getCard(
             "Followed",
-            this.props.data.Followed.Title,
-            this.props.data.Followed.Date,
-            this.props.data.Followed.Votes,
-            this.props.data.Followed.Image
+            this.props.follow.content,
+            this.props.follow.account,
+            this.state.nfollow[0],
+            this.state.nfollow[1],
+            this.props.follow.image,
+            this.props.follow.id_post
           )}
         </Transition>
         <Transition
@@ -156,10 +202,12 @@ export default class HomePageHeaderPhone extends Component {
         >
           {this.getCard(
             "Your Interest",
-            this.props.data.YourInterest.Title,
-            this.props.data.YourInterest.Date,
-            this.props.data.YourInterest.Votes,
-            this.props.data.YourInterest.Image
+            this.props.x.content,
+            this.props.x.account,
+            this.state.nx[0],
+            this.state.nx[1],
+            this.props.x.image,
+            this.props.x.id_post
           )}
         </Transition>
       </Container>

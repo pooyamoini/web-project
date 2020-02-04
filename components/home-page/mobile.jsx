@@ -5,10 +5,11 @@ const Posts = props => {
   const posts = props.posts.map(x => (
     <Mobile
       name={x.title}
-      src={x.src}
+      src={x.profile}
       key={x.title}
-      desc={x.content}
+      content={x.content}
       image={x.image}
+      id={x.id}
     ></Mobile>
   ))
   return <>{posts}</>

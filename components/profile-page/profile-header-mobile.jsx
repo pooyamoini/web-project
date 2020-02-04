@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import Theme from '../../public/theme'
 import SettingsIcon from '@material-ui/icons/Settings'
 import IconButton from '@material-ui/core/IconButton'
-import Followers from '../../public/json-files/followers'
 import Link from 'next/link'
+import { followAPI } from '../../api/profile'
+import Router from 'next/router'
+
 import {
   Grid as Gr,
   Segment as Seg,
@@ -22,7 +24,6 @@ const Grid = styled(Gr)`
 `
 
 const Segment = styled(Seg)`
-  // border: none !important;
   color: white;
   background: transparent !important;
 `
@@ -36,9 +37,20 @@ export default class ProfileHeader extends Component {
   constructor (props) {
     super(props)
     this.state = { followed: false }
+    this.changeFollow = this.changeFollow.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  changeFollow = () => {
+  async changeFollow() {
+    const token = localStorage.getItem('token')
+    const username = this.props.data.username
+    try {
+      const res = await followAPI(token, username)
+      window.location.reload()
+    } catch (e) {
+      Router.push('../')
+      return
+    }
     this.setState(prevState => ({
       followed: !prevState.followed
     }))
@@ -54,7 +66,7 @@ export default class ProfileHeader extends Component {
             color: 'white'
           }}
         >
-          <Link href='edit-profile'>
+          <Link href='../edit-profile'>
             <SettingsIcon centered fontSize='large'></SettingsIcon>
           </Link>
         </IconButton>
@@ -75,6 +87,11 @@ export default class ProfileHeader extends Component {
     }
   }
 
+  handleChange = (e, { value }) => {
+    Router.push(`/profile/${value}`)
+    return
+  }
+
   render () {
     return (
       <SegmentGroup>
@@ -84,18 +101,22 @@ export default class ProfileHeader extends Component {
               size='small'
               centered
               circular
-              src={this.props.data.image}
+              src={
+                this.props.data.profile
+                  ? '../'.concat(this.props.data.profile)
+                  : '../static/Images/profiles/empty.png'
+              }
             ></Image>
           </Segment>
           <SegmentGroup>
             <Segment
               style={{
                 marginTop: '1rem',
-                fontSize: '22px',
+                fontSize: '1.5rem',
                 fontWeight: '800'
               }}
             >
-              {this.props.data.userName}
+              {this.props.data.name}
             </Segment>
             <Segment
               style={{
@@ -124,33 +145,36 @@ export default class ProfileHeader extends Component {
           <Segment
             textAlign='center'
             style={{
-              fontSize: '18px',
+              fontSize: '1.3rem',
               fontWeight: '700',
               marginLeft: '1rem'
             }}
           >
-            {this.props.data.postsNumber} <br></br>
+            {this.props.data.npost} <br></br>
             Posts
           </Segment>
           <Segment
             textAlign='center'
             style={{
-              fontSize: '18px',
+              fontSize: '1.3rem',
               fontWeight: '700'
             }}
           >
-            {this.props.data.followersNumber} <br />
+            {this.props.data.nfollowers} <br />
+            Followers
             <Dropdown
               inline
-              text=' Followers'
+              text=' '
               pointing={false}
-              options={Followers}
+              onChange={this.handleChange}
+              options={this.props.followers}
               scrolling
               fluid
               icon='none'
               style={{
                 width: '120%',
-                marginLeft: '1.5rem',
+                // marginLeft: '1.5rem',
+                marginTop: '-2rem',
                 fontWeight: '0 !important'
               }}
             />
@@ -158,22 +182,25 @@ export default class ProfileHeader extends Component {
           <Segment
             textAlign='center'
             style={{
-              fontSize: '18px',
+              fontSize: '1.3rem',
               fontWeight: '700'
             }}
           >
-            {this.props.data.followingNumber} <br />
+            {this.props.data.nfollowings} <br />
+            Followings
             <Dropdown
               inline
-              text=' Following'
+              text=' '
               pointing={false}
-              options={Followers}
+              onChange={this.handleChange}
+              options={this.props.followings}
               scrolling
               fluid
               icon='none'
               style={{
                 width: '120%',
-                marginLeft: '1.5rem',
+                // marginLeft: '1.5rem',
+                marginTop: '-2rem',
                 fontWeight: '0 !important'
               }}
             />

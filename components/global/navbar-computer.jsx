@@ -156,8 +156,7 @@ class NavBar extends Component {
               </Link>
               <ExitIcon
                 fontSize='large'
-                color='primary'
-                style={{ marginTop: '1rem', marginLeft: '3.5rem' }}
+                style={{ marginTop: '1rem', marginLeft: '3.5rem', color: 'dodgerBlue' }}
                 onClick={this.logoutFunc}
               />
               <DropDown />
@@ -188,7 +187,6 @@ class NavBar extends Component {
                     style={{ marginLeft: '2rem', marginRight: '15rem' }}
                   />
                 </Link>
-                Î
               </Menu.Item>
             </Menu.Menu>
           </Menu>

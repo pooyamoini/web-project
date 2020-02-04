@@ -8,7 +8,7 @@ const HomePageHeaders = props => (
   <Segment.Group basic>
     <NoSSR>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Mobile data={props.data} />
+        <Mobile {...props} />
       </Responsive>
       <Responsive
         minWidth={Responsive.onlyTablet.minWidth}
