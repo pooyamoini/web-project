@@ -12,6 +12,7 @@ import Theme from "../../public/Theme";
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 import Link from "next/link";
 import ExitIcon from '@material-ui/icons/ExitToApp'
+import SearchIcon from "@material-ui/icons/Search";
 import { logout } from '../../api/account-action/'
 
 
@@ -136,6 +137,14 @@ class NavBar extends Component {
     this.setState({ visibility: "visible", offset: offsetNow });
   }
 
+  handleSubmit = () => {
+    Router.push(`/search/${this.state.input}`);
+  };
+
+  handleChange = (e) => {
+    this.setState({ input: e.target.value });
+  };
+
   hoverNotifEnter() {
     this.setState({ notifOpacity: "1" });
   }
@@ -174,7 +183,27 @@ class NavBar extends Component {
           </Menu.Menu>
           <Menu.Menu position="right">
             <Menu.Item>
-              <Input size="mini" placeholder="Search..." />
+            <Input
+                  icon={
+                    <SearchIcon
+                      fontSize="large"
+                      style={{
+                        marginTop: "0.5rem",
+                        marginLeft: "-3.5rem",
+                        color: "black",
+                        cursor: 'pointer'
+                        
+                      }}
+                      onClick={this.handleSubmit}
+                    />
+                  }
+                  size="small"
+                  placeholder="Search..."
+                  style={{
+                    width: "32rem"
+                  }}
+                  onChange={this.handleChange}
+                />
               <Im
                 src={notifImg}
                 size="mini"
