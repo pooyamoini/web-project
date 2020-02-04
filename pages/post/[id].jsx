@@ -5,6 +5,7 @@ import Navbar from '../../components/global/navbar-index'
 import Post from '../../components/post/computer'
 import { getPostAPI } from '../../api/post/'
 import { tokenIsValid } from '../../api/account-action/'
+import Router from 'next/router'
 
 class PostPage extends Component {
   constructor (props) {

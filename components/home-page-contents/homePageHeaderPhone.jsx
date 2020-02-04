@@ -9,6 +9,7 @@ import {
 import styled from "styled-components";
 import Theme from "../../public/theme";
 import Link from "next/link";
+import Router from 'next/router'
 
 const Container = styled(Co)`
   width: 90% !important;
@@ -37,9 +38,9 @@ export default class HomePageHeaderPhone extends Component {
       nfollow: ["", ""],
       nx: ["", ""]
     };
-    this.isVisible = this.isVisible.bind(this);
     this.changeVisibleCard = this.changeVisibleCard.bind(this);
     this.showNextCard = this.showNextCard.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -62,20 +63,26 @@ export default class HomePageHeaderPhone extends Component {
     }
   }
 
+  handleClick(id){
+    return function name() {
+      Router.push(`/post/${id}`)
+    }
+  }
+
   getCard(type, title, date, votes, comments, image, id) {
     return (
-      <Link href={`/post/${id}`}>
-        <Card
-          centered
-          style={{
-            width: "95vw",
-            marginTop: "8rem",
-            marginBottom: "8rem",
-            "background-color": Theme.post.backgroundColor,
-            "box-shadow": "none"
-          }}
-        >
-          <Image src={image} wrapped ui={false} size="big" />
+      <Card
+        centered
+        style={{
+          width: "95vw",
+          marginTop: "8rem",
+          marginBottom: "8rem",
+          "background-color": Theme.post.backgroundColor,
+          "box-shadow": "none"
+        }}
+        onClick={this.handleClick(id)}
+      >
+          <Image src={image} wrapped ui={false} size="big"/>
           <Card.Content>
             <Card.Header
               style={{
@@ -112,13 +119,8 @@ export default class HomePageHeaderPhone extends Component {
               {comments} Dislikes
             </p>
           </Card.Content>
-        </Card>
-      </Link>
+      </Card>
     );
-  }
-
-  isVisible(name) {
-    return this.state.visibility[name];
   }
 
   changeVisibleCard() {
@@ -141,6 +143,7 @@ export default class HomePageHeaderPhone extends Component {
     this.setState({
       visibility: dic
     });
+    console.log(this.state.visibility);
   }
 
   componentWillUnmount() {
@@ -151,7 +154,7 @@ export default class HomePageHeaderPhone extends Component {
     return (
       <Container>
         <Transition
-          visible={this.isVisible("Hot")}
+          visible={this.state.visibility["Hot"]}
           animation="fade up"
           duration={this.state.duration}
         >
@@ -166,7 +169,7 @@ export default class HomePageHeaderPhone extends Component {
           )}
         </Transition>
         <Transition
-          visible={this.isVisible("New")}
+          visible={this.state.visibility["New"]}
           animation="fade up"
           duration={this.state.duration}
         >
@@ -181,7 +184,7 @@ export default class HomePageHeaderPhone extends Component {
           )}
         </Transition>
         <Transition
-          visible={this.isVisible("Followed")}
+          visible={this.state.visibility["Followed"]}
           animation="fade up"
           duration={this.state.duration}
         >
@@ -196,7 +199,7 @@ export default class HomePageHeaderPhone extends Component {
           )}
         </Transition>
         <Transition
-          visible={this.isVisible("YourInterest")}
+          visible={this.state.visibility["YourInterest"]}
           animation="fade up"
           duration={this.state.duration}
         >
