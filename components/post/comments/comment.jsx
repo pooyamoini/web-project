@@ -65,6 +65,8 @@ class CommentComp extends Component {
   render () {
     const { account, main, src } = this.props
     const { display, reply } = this.state
+    const { replies } = this.props
+    console.log(replies)
     const color = Theme.post.textColor
     const gStyle = { color }
     return (
@@ -88,7 +90,7 @@ class CommentComp extends Component {
             </Comment.Actions>
           </Comment.Content>
           <Reply display={display} name={name} handle={this.submit} />
-          <this.GenerateReplies replies={reply} addReply={this.addReply} />
+          <this.GenerateReplies replies={replies} addReply={this.addReply} />
         </Comment>
       </Link>
     )

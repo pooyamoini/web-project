@@ -51,16 +51,23 @@ class CommentG extends Component {
   }
 
   render () {
-    const { name, content, src, date } = this.props
+    const { name, content, account, date } = this.props
     const { display } = this.state
     const color = Theme.post.textColor
+    console.log('--------------------------------')
+    console.log(this.props)
+    console.log('--------------------------------')
     const gStyle = { color }
     return (
       <Comment style={{ marginLeft: '1rem' }}>
-        <Comment.Avatar src={src} />
+        <Comment.Avatar
+          src={
+            account.profile ? '../' + account.profile : '../static/Images/profiles/empty.png'
+          }
+        />
         <Comment.Content>
           <Comment.Author style={gStyle} as='a'>
-            {name}
+            {account.name}
           </Comment.Author>
           <Comment.Metadata style={{ color: 'grey' }}>
             <div>{date}</div>

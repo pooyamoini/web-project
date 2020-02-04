@@ -17,7 +17,7 @@ class GenerateComments extends Component {
           return i.name
         })
         .indexOf(x.name)
-      return <Comment {...x} key={x} index={index} id={id} />
+      return <Comment {...x} key={x} index={index} />
     })
   }
 }
