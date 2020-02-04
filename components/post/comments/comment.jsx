@@ -4,6 +4,7 @@ import Theme from '../../../public/theme'
 import { Reply } from './reply'
 import CommentG from './reply'
 import Link from 'next/link'
+import { replyCommentAPI } from '../../../api/comment'
 
 class CommentComp extends Component {
   constructor (props) {
@@ -13,8 +14,9 @@ class CommentComp extends Component {
     this.doneReply = this.doneReply.bind(this)
     this.GenerateReplies = this.GenerateReplies.bind(this)
     this.submit = this.submit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     const { reply } = this.props
-    this.state = { display: 'none', reply }
+    this.state = { display: 'none', reply, content: '' }
   }
 
   doneReply () {
@@ -41,14 +43,17 @@ class CommentComp extends Component {
     this.setState({ reply })
   }
 
-  submit () {
-    const { name } = this.props
-    const nameW = 'pooya'
-    const src = 'static/Images/global/avater3.jpg'
-    const content = document.getElementById('reply'.concat(name)).value
-    document.getElementById('reply'.concat(name)).value = ''
-    this.addReply(nameW, content, src)
-    this.doneReply()
+  handleChange (e) {
+    this.setState({ content: e.target.value })
+  }
+
+  async submit () {
+    const { name, cid } = this.props
+    const content = this.state.content
+    const id = window.location.href.split('/')[4]
+    const token = localStorage.getItem('token')
+    await replyCommentAPI(token, id, cid, content)
+    window.location.reload()
   }
 
   GenerateReplies ({ replies, addReply }) {
@@ -63,36 +68,44 @@ class CommentComp extends Component {
   }
 
   render () {
-    const { account, main, src } = this.props
+    const { account, main, src, replies, cid } = this.props
     const { display, reply } = this.state
-    const { replies } = this.props
-    console.log(replies)
     const color = Theme.post.textColor
     const gStyle = { color }
     return (
-      <Link href={`/profile/${account}`}>
-        <Comment style={{ marginLeft: '1rem' }}>
-          <Comment.Avatar
-            src={src ? src : '../static/Images/profiles/empty.png'}
-          />
-          <Comment.Content>
+      <Comment style={{ marginLeft: '1rem' }}>
+        <Comment.Avatar
+          src={src ? src : '../static/Images/profiles/empty.png'}
+        />
+        <Comment.Content>
+          <Link href={`/profile/${account}`}>
             <Comment.Author style={gStyle} as='a'>
               {account}
             </Comment.Author>
-            <Comment.Metadata style={{ color: 'grey' }}>
-              <div>12 hours age</div>
-            </Comment.Metadata>
-            <Comment.Text style={gStyle}>{main}</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
-                Reply
-              </Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-          <Reply display={display} name={name} handle={this.submit} />
-          <this.GenerateReplies replies={replies} addReply={this.addReply} />
-        </Comment>
-      </Link>
+          </Link>
+          <Comment.Metadata style={{ color: 'grey' }}>
+            <div>12 hours age</div>
+          </Comment.Metadata>
+          <Comment.Text style={gStyle}>{main}</Comment.Text>
+          <Comment.Actions>
+            <Comment.Action style={{ color: 'grey' }} onClick={this.toReply}>
+              Reply
+            </Comment.Action>
+          </Comment.Actions>
+        </Comment.Content>
+        <Reply
+          display={display}
+          name={name}
+          handle={this.submit}
+          cid={cid}
+          handleChange={this.handleChange}
+        />
+        <this.GenerateReplies
+          replies={replies}
+          addReply={this.addReply}
+          cid={cid}
+        />
+      </Comment>
     )
   }
 }

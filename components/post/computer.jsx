@@ -154,7 +154,6 @@ class Post extends Component {
   render () {
     const { display, open } = this.state
     const { post, owner, date, mine, comments } = this.props
-    console.log(post.content)
     return (
       <>
         <Edit

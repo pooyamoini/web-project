@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { Comment, Form, Button } from 'semantic-ui-react'
 import Theme from '../../../public/theme'
+import Link from 'next/link'
+import { replyCommentAPI } from '../../../api/comment/'
 
-export const Reply = ({ display, name, handle }) => (
+export const Reply = ({ display, name, handle, handleChange }) => (
   <Form reply style={{ display }}>
     <Form.TextArea
       style={{ marginLeft: '5%', width: '90%', height: '20%' }}
       id={'reply'.concat(name)}
+      onChange={handleChange}
     />
     <Button
       secondary
@@ -42,11 +45,14 @@ class CommentG extends Component {
     this.setState({ display: 'block' })
   }
 
-  submit () {
-    const { addReply, name, src } = this.props
+  async submit () {
+    const { name, cid } = this.props
     const value = document.getElementById('reply'.concat(name)).value
     document.getElementById('reply'.concat(name)).value = ''
-    addReply(name, value, src)
+    const token = localStorage.getItem('token')
+    const pid = window.location.href.split('/')[4]
+    await replyCommentAPI(token, pid, cid, value)
+    window.location.reload()
     this.doneReply()
   }
 
@@ -54,21 +60,22 @@ class CommentG extends Component {
     const { name, content, account, date } = this.props
     const { display } = this.state
     const color = Theme.post.textColor
-    console.log('--------------------------------')
-    console.log(this.props)
-    console.log('--------------------------------')
     const gStyle = { color }
     return (
       <Comment style={{ marginLeft: '1rem' }}>
         <Comment.Avatar
           src={
-            account.profile ? '../' + account.profile : '../static/Images/profiles/empty.png'
+            account.profile
+              ? '../' + account.profile
+              : '../static/Images/profiles/empty.png'
           }
         />
         <Comment.Content>
-          <Comment.Author style={gStyle} as='a'>
-            {account.name}
-          </Comment.Author>
+          <Link href={`/profile/${account.username}`}>
+            <Comment.Author style={gStyle} as='a'>
+              {account.name}
+            </Comment.Author>
+          </Link>
           <Comment.Metadata style={{ color: 'grey' }}>
             <div>{date}</div>
           </Comment.Metadata>
@@ -79,7 +86,12 @@ class CommentG extends Component {
             </Comment.Action>
           </Comment.Actions>
         </Comment.Content>
-        <Reply name={name} display={display} handle={this.submit} />
+        <Reply
+          name={name}
+          display={display}
+          handle={this.submit}
+          handleChange={this.props.handleChange}
+        />
       </Comment>
     )
   }

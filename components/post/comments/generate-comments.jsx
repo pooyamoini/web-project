@@ -10,14 +10,14 @@ class GenerateComments extends Component {
 
   render () {
     const { data } = this.state
-    const { comments, id } = this.props
+    const { comments } = this.props
     return comments.map(x => {
       const index = data
         .map(function (i) {
           return i.name
         })
         .indexOf(x.name)
-      return <Comment {...x} key={x} index={index} />
+      return <Comment {...x} key={x} index={index} cid={x.cid} />
     })
   }
 }
