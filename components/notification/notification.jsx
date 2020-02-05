@@ -41,7 +41,7 @@ export default class notification extends Component {
 
   getFollows() {
     const list = this.state.follows.map((follow, index) => {
-      if (Math.floor(index / 10) != this.state.page - 1) return;
+      if (Math.floor(index / 3) != this.state.page - 1) return;
       return (
         <Link href={`../profile/${follow.username}`}>
           <SegmentGroup>
@@ -68,7 +68,7 @@ export default class notification extends Component {
 
   getLikes() {
     const list = this.state.likes.map((like, index) => {
-      if (Math.floor(index / 10) != this.state.page - 1) return;
+      if (Math.floor(index / 3) != this.state.page - 1) return;
       return (
         <Link href={`../post/${like.post.id_post}`}>
           <SegmentGroup>
@@ -95,7 +95,7 @@ export default class notification extends Component {
 
   getDisikes() {
     const list = this.state.dislikes.map((dislike, index) => {
-      if (Math.floor(index / 10) != this.state.page - 1) return;
+      if (Math.floor(index / 3) != this.state.page - 1) return;
       return (
         <Link href={`../post/${dislike.post.id_post}`}>
           <SegmentGroup>
@@ -119,10 +119,10 @@ export default class notification extends Component {
     });
     return list;
   }
-  
+
   getComments() {
     const list = this.state.comments.map((comment, index) => {
-      if (Math.floor(index / 10) != this.state.page - 1) return;
+      if (Math.floor(index / 3) != this.state.page - 1) return;
       return (
         <Link href={`../post/${comment.post.id_post}`}>
           <SegmentGroup>
@@ -155,7 +155,7 @@ export default class notification extends Component {
   render() {
     const { follows, comments, likes, dislikes } = this.state;
     return (
-      <Segment
+      <Segment.Group
         style={{
           margin: "5rem auto",
           paddingTop: "4rem",
@@ -166,28 +166,30 @@ export default class notification extends Component {
         {this.getLikes()}
         {this.getDisikes()}
         {this.getComments()}
-        <Pagination
-          boundaryRange={0}
-          defaultActivePage={1}
-          ellipsisItem={null}
-          firstItem={null}
-          lastItem={null}
-          siblingRange={1}
-          totalPages={Math.ceil(
-            (follows.length +
-              comments.length +
-              likes.length +
-              dislikes.length) /
-              10
-          )}
-          inverted
-          onPageChange={this.handlePageChange}
-          style={{
-            marginRight: "15%",
-            marginBottom: "2rem"
-          }}
-        />
-      </Segment>
+        <Segment textAlign='center'>
+          <Pagination
+            boundaryRange={0}
+            defaultActivePage={1}
+            ellipsisItem={null}
+            firstItem={null}
+            lastItem={null}
+            siblingRange={1}
+            totalPages={Math.ceil(
+              (follows.length +
+                comments.length +
+                likes.length +
+                dislikes.length) /
+                10
+            )}
+            inverted
+            onPageChange={this.handlePageChange}
+            style={{
+              margin: "0 auto",
+              marginBottom: "2rem"
+            }}
+          />
+        </Segment>
+      </Segment.Group>
     );
   }
 }
