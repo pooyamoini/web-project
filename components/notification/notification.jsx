@@ -99,6 +99,28 @@ export default class notification extends Component {
     return list;
   }
 
+  getComments(){
+    const list = this.state.comments.map(comment => (
+      <Link href={`../post/${comment.post.id_post}`}>
+      <SegmentGroup>
+        <Segment>
+          <Image
+            size="tiny"
+            circular
+            src={
+              comment.account.profile
+                ? "../" + comment.account.profile
+                : "../static/Images/profiles/empty.png"
+            }
+          />
+        </Segment>
+        <Segment inverted>{dislike.account.name} made a comment on one of your posts</Segment>
+      </SegmentGroup>
+      </Link>
+    ));
+    return list;
+  }
+
   render() {
     return (
       <Segment
@@ -111,6 +133,7 @@ export default class notification extends Component {
         {this.getFollows()}
         {this.getLikes()}
         {this.getDisikes()}
+        {this.getComments()}
       </Segment>
     );
   }
