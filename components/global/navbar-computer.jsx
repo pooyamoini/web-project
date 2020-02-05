@@ -125,7 +125,8 @@ class NavBar extends Component {
     window.addEventListener('scroll', this.handleScroll)
     const url =
       window.location.href.includes('profile/') ||
-      window.location.href.includes('post/')
+      window.location.href.includes('post/') ||
+      window.location.href.includes('search/')
     this.setState({ isProfile: url })
   }
 
