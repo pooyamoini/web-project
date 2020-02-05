@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Segment as Seg, Image } from "semantic-ui-react";
+import { Segment as Seg, Image, Pagination } from "semantic-ui-react";
 import { notifAPI } from "../../api/notification/";
 import Link from "next/link";
 
@@ -24,7 +24,13 @@ const Time = styled.p`
 export default class notification extends Component {
   constructor(props) {
     super(props);
-    this.state = {'follows': [], 'comments': [], 'likes': [], 'dislikes': []}
+    this.state = {
+      follows: [],
+      comments: [],
+      likes: [],
+      dislikes: [],
+      page: 1
+    };
   }
 
   async componentDidMount() {
@@ -34,99 +40,124 @@ export default class notification extends Component {
   }
 
   getFollows() {
-    const list = this.state.follows.map(follow => (
-      <Link href={`../profile/${follow.username}`}>
-      <SegmentGroup>
-        <Segment>
-          <Image
-            size="tiny"
-            circular
-            src={
-              follow.profile
-                ? "../" + follow.profile
-                : "../static/Images/profiles/empty.png"
-            }
-          />
-        </Segment>
-        <Segment inverted style={{marginTop: '-1.5rem !important;'}}>{follow.name} started following you</Segment>
-      </SegmentGroup>
-      </Link>
-    ));
+    const list = this.state.follows.map((follow, index) => {
+      if (Math.floor(index / 10) != this.state.page - 1) return;
+      return (
+        <Link href={`../profile/${follow.username}`}>
+          <SegmentGroup>
+            <Segment>
+              <Image
+                size="tiny"
+                circular
+                src={
+                  follow.profile
+                    ? "../" + follow.profile
+                    : "../static/Images/profiles/empty.png"
+                }
+              />
+            </Segment>
+            <Segment inverted style={{ marginTop: "-1.5rem !important;" }}>
+              {follow.name} started following you
+            </Segment>
+          </SegmentGroup>
+        </Link>
+      );
+    });
     return list;
   }
 
   getLikes() {
-    const list = this.state.likes.map(like => (
-      <Link href={`../post/${like.post.id_post}`}>
-      <SegmentGroup>
-        <Segment>
-          <Image
-            size="tiny"
-            circular
-            src={
-              like.account.profile
-                ? "../" + like.account.profile
-                : "../static/Images/profiles/empty.png"
-            }
-          />
-        </Segment>
-        <Segment inverted>{like.account.name} liked one of your posts</Segment>
-      </SegmentGroup>
-      </Link>
-    ));
+    const list = this.state.likes.map((like, index) => {
+      if (Math.floor(index / 10) != this.state.page - 1) return;
+      return (
+        <Link href={`../post/${like.post.id_post}`}>
+          <SegmentGroup>
+            <Segment>
+              <Image
+                size="tiny"
+                circular
+                src={
+                  like.account.profile
+                    ? "../" + like.account.profile
+                    : "../static/Images/profiles/empty.png"
+                }
+              />
+            </Segment>
+            <Segment inverted>
+              {like.account.name} liked one of your posts
+            </Segment>
+          </SegmentGroup>
+        </Link>
+      );
+    });
     return list;
   }
 
   getDisikes() {
-    const list = this.state.dislikes.map(dislike => (
-      <Link href={`../post/${dislike.post.id_post}`}>
-      <SegmentGroup>
-        <Segment>
-          <Image
-            size="tiny"
-            circular
-            src={
-              dislike.account.profile
-                ? "../" + dislike.account.profile
-                : "../static/Images/profiles/empty.png"
-            }
-          />
-        </Segment>
-        <Segment inverted>{dislike.account.name} disliked one of your posts</Segment>
-      </SegmentGroup>
-      </Link>
-    ));
+    const list = this.state.dislikes.map((dislike, index) => {
+      if (Math.floor(index / 10) != this.state.page - 1) return;
+      return (
+        <Link href={`../post/${dislike.post.id_post}`}>
+          <SegmentGroup>
+            <Segment>
+              <Image
+                size="tiny"
+                circular
+                src={
+                  dislike.account.profile
+                    ? "../" + dislike.account.profile
+                    : "../static/Images/profiles/empty.png"
+                }
+              />
+            </Segment>
+            <Segment inverted>
+              {dislike.account.name} disliked one of your posts
+            </Segment>
+          </SegmentGroup>
+        </Link>
+      );
+    });
     return list;
   }
 
-  getComments(){
-    const list = this.state.comments.map(comment => (
-      <Link href={`../post/${comment.post.id_post}`}>
-      <SegmentGroup>
-        <Segment>
-          <Image
-            size="tiny"
-            circular
-            src={
-              comment.account.profile
-                ? "../" + comment.account.profile
-                : "../static/Images/profiles/empty.png"
-            }
-          />
-        </Segment>
-        <Segment inverted>{dislike.account.name} made a comment on one of your posts</Segment>
-      </SegmentGroup>
-      </Link>
-    ));
+  getComments() {
+    const list = this.state.comments.map((comment, index) => {
+      if (Math.floor(index / 10) != this.state.page - 1) return;
+      return (
+        <Link href={`../post/${comment.post.id_post}`}>
+          <SegmentGroup>
+            <Segment>
+              <Image
+                size="tiny"
+                circular
+                src={
+                  comment.account.profile
+                    ? "../" + comment.account.profile
+                    : "../static/Images/profiles/empty.png"
+                }
+              />
+            </Segment>
+            <Segment inverted>
+              {comment.account.name} made a comment on one of your posts
+            </Segment>
+          </SegmentGroup>
+        </Link>
+      );
+    });
     return list;
   }
+
+  handlePageChange = (e, data) => {
+    this.setState({ page: data.activePage });
+  };
 
   render() {
+    const { follows, comments, likes, dislikes } = this.state;
     return (
       <Segment
         style={{
           margin: "5rem auto",
-          paddingTop: '4rem',
+          paddingTop: "4rem",
           width: "60%"
         }}
       >
@@ -134,6 +165,27 @@ export default class notification extends Component {
         {this.getLikes()}
         {this.getDisikes()}
         {this.getComments()}
+        <Pagination
+          boundaryRange={0}
+          defaultActivePage={1}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          siblingRange={1}
+          totalPages={Math.ceil(
+            (follows.length +
+              comments.length +
+              likes.length +
+              dislikes.length) /
+              10
+          )}
+          inverted
+          onPageChange={this.handlePageChange}
+          style={{
+            marginRight: "15%",
+            marginBottom: "2rem"
+          }}
+        />
       </Segment>
     );
   }
