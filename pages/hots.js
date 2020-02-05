@@ -8,7 +8,6 @@ import Navbar from '../components/global/navbar-index'
 import GloBalStyle from '../components/global/globalStyle'
 import MainContainer from '../components/home-page/index'
 import Header from '../components/home-page-contents/home-header'
-import HeaderData from '../public/headerSample'
 
 class Home extends Component {
   constructor (props) {
@@ -19,7 +18,7 @@ class Home extends Component {
       hot: [],
       news: [],
       follow: [],
-      x: {}
+      interest: []
     }
   }
   async componentDidMount () {
@@ -48,7 +47,7 @@ class Home extends Component {
         hot: header['hot'],
         news: header['new'],
         follow: header['follow'],
-        x: header['new']
+        interest: header['interest']
       })
       return
     } catch (e) {
@@ -58,12 +57,12 @@ class Home extends Component {
   }
 
   render () {
-    const { hot, news, follow, x } = this.state
+    const { hot, news, follow, interest } = this.state
     return (
       <>
         <GloBalStyle />
         <Navbar />
-        <Header {...{ hot, news, follow, x }} />
+        <Header {...{ hot, news, follow, interest }} />
         <MainContainer {...this.state} />
       </>
     )

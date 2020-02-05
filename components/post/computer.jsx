@@ -193,6 +193,7 @@ class Post extends Component {
                 pid={this.props.post.id_post}
                 mine={mine}
                 handleCommentClick={this.handleCommentClick}
+                ncomments = {this.props.comments.length}
               />
               <Comments display={display} commentsData={comments} />
             </Card>
