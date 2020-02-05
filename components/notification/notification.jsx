@@ -114,7 +114,7 @@ export default class notification extends Component {
             }
           />
         </Segment>
-        <Segment inverted>{dislike.account.name} made a comment on one of your posts</Segment>
+        <Segment inverted>{comment.account.name} made a comment on one of your posts</Segment>
       </SegmentGroup>
       </Link>
     ));
