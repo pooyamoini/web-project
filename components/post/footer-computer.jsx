@@ -112,7 +112,7 @@ class FooterMenu extends Component {
           </Icon>
         </Menu>
         <Menu text widths={4}>
-          <Icon name='7 comments' />
+          <Icon name={`${this.props.ncomments}  comments`} />
           <Icon>{this.props.likes} likes</Icon>
           <Icon>{this.props.dislikes} dislikes</Icon>
           <Icon name='' />

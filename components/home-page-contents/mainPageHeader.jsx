@@ -33,11 +33,11 @@ export default class Header extends Component {
 
   componentDidMount () {
     setTimeout(() => {
-      const { news, hot, follow, x } = this.props
+      const { news, hot, follow, interest } = this.props
       const nnews = this.getLikes(news)
       const nhot = this.getLikes(hot)
       const nfollow = this.getLikes(follow)
-      const nx = this.getLikes(x)
+      const nx = this.getLikes(interest)
       this.setState({ nnews, nhot, nfollow, nx })
     }, 2000)
   }
@@ -110,7 +110,6 @@ export default class Header extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <Grid id='Grid' columns={4} divided>
         <GridColumn textAlign='center'>
@@ -149,12 +148,12 @@ export default class Header extends Component {
         <GridColumn textAlign='center'>
           {this.getCard(
             'Your Interest',
-            this.props.x.content,
-            this.props.x.account,
+            this.props.interest.content,
+            this.props.interest.account,
             this.state.nx[0],
             this.state.nx[1],
-            this.props.x.image,
-            this.props.x.id_post
+            this.props.interest.image,
+            this.props.interest.id_post
           )}
         </GridColumn>
       </Grid>
