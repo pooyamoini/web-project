@@ -119,7 +119,7 @@ export default class notification extends Component {
     });
     return list;
   }
-
+  
   getComments() {
     const list = this.state.comments.map((comment, index) => {
       if (Math.floor(index / 10) != this.state.page - 1) return;
@@ -144,6 +144,7 @@ export default class notification extends Component {
         </Link>
       );
     });
+
     return list;
   }
 

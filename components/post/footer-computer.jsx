@@ -106,7 +106,15 @@ class FooterMenu extends Component {
               trigger={<ShareIcon fontSize='large' style={handleStyle()} />}
             >
               <Modal.Content>
-                <p>http://www.localhost:3000/post/{this.props.pid}</p>
+                <p
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `localhost:3000/post/${this.props.pid}`
+                    )
+                  }}
+                >
+                  http://www.localhost:3000/post/{this.props.pid}
+                </p>
               </Modal.Content>
             </Modal>
           </Icon>
