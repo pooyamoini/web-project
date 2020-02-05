@@ -143,7 +143,7 @@ class NavBar extends Component {
     Router.push(`/search/${this.state.input}`);
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({ input: e.target.value });
   };
 
@@ -189,8 +189,7 @@ class NavBar extends Component {
                         marginTop: "0.5rem",
                         marginLeft: "-3.5rem",
                         color: "black",
-                        cursor: 'pointer'
-                        
+                        cursor: "pointer"
                       }}
                       onClick={this.handleSubmit}
                     />
@@ -202,10 +201,12 @@ class NavBar extends Component {
                   }}
                   onChange={this.handleChange}
                 />
-                <NotificationsIcon
-                  fontSize="large"
-                  style={{ marginLeft: "2rem", color: "white" }}
-                />
+                <Link href="/notification">
+                  <NotificationsIcon
+                    fontSize="large"
+                    style={{ marginLeft: "2rem", color: "white" }}
+                  />
+                </Link>
                 <Link href="/profile/profile">
                   <Im
                     src={
