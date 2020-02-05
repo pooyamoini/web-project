@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Router from 'next/router'
+import Router from "next/router";
 import React, { Component } from "react";
 import {
   Menu as M,
@@ -11,9 +11,10 @@ import {
 import Theme from "../../public/Theme";
 import TagOptions from "../../public/json-files/nav-bar/navbar-tags.json";
 import Link from "next/link";
-import ExitIcon from '@material-ui/icons/ExitToApp'
+import ExitIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
-import { logout } from '../../api/account-action/'
+import { logout } from "../../api/account-action/";
+import NotificationsIcon from '@material-ui/icons/Notifications'
 
 
 const imgSrc = "/Images/global/logo1.png";
@@ -141,7 +142,7 @@ class NavBar extends Component {
     Router.push(`/search/${this.state.input}`);
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({ input: e.target.value });
   };
 
@@ -171,11 +172,15 @@ class NavBar extends Component {
           style={{ visibility }}
         >
           <Menu.Menu position="left">
-          <ExitIcon
-                fontSize='large'
-                style={{ marginTop: '1rem', marginLeft: '1.5rem', color: 'dodgerBlue' }}
-                onClick={this.logoutFunc}
-              />
+            <ExitIcon
+              fontSize="large"
+              style={{
+                marginTop: "1rem",
+                marginLeft: "1.5rem",
+                color: "dodgerBlue"
+              }}
+              onClick={this.logoutFunc}
+            />
             <Link href={isProfile ? "../dashboard" : "./dashboard"}>
               <Image avatar src={imgSrc} />
             </Link>
@@ -183,43 +188,40 @@ class NavBar extends Component {
           </Menu.Menu>
           <Menu.Menu position="right">
             <Menu.Item>
-            <Input
-                  icon={
-                    <SearchIcon
-                      fontSize="large"
-                      style={{
-                        marginTop: "0.5rem",
-                        marginLeft: "-3.5rem",
-                        color: "black",
-                        cursor: 'pointer'
-                        
-                      }}
-                      onClick={this.handleSubmit}
-                    />
-                  }
-                  size="small"
-                  placeholder="Search..."
-                  style={{
-                    width: "32rem"
-                  }}
-                  onChange={this.handleChange}
-                />
-              <Im
-                src={notifImg}
-                size="mini"
-                style={{ marginLeft: "2rem", opacity: notifOpacity }}
-                className="notifications"
-                onMouseEnter={this.hoverNotifEnter}
-                onMouseOut={this.hoverNotifExit}
+              <Input
+                icon={
+                  <SearchIcon
+                    fontSize="large"
+                    style={{
+                      marginTop: "0.5rem",
+                      marginLeft: "-3.5rem",
+                      color: "black",
+                      cursor: "pointer"
+                    }}
+                    onClick={this.handleSubmit}
+                  />
+                }
+                size="small"
+                placeholder="Search..."
+                style={{
+                  width: "32rem"
+                }}
+                onChange={this.handleChange}
               />
-                <Link href='/profile/profile'>
+              <Link href="/notification">
+                <NotificationsIcon
+                  fontSize="large"
+                  style={{ marginLeft: "2rem", color: "white" }}
+                />
+              </Link>
+              <Link href="/profile/profile">
                 <Im
                   src={
                     this.props.profile
                       ? isProfile
-                        ? '../'.concat(this.props.profile)
+                        ? "../".concat(this.props.profile)
                         : this.props.profile
-                      : '/static/Images/profiles/empty.png'
+                      : "/static/Images/profiles/empty.png"
                   }
                   avatar
                   style={{ marginLeft: "2rem", marginRight: "1rem" }}

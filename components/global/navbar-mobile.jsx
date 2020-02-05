@@ -105,7 +105,9 @@ export default class MenuExampleVerticalText extends Component {
             />
           </Menu.Item>
           <Menu.Item>
-            <NotificationsIcon fontSize="large" style={{ color: "white" }} />
+            <Link href="/notification">
+              <NotificationsIcon fontSize="large" style={{ color: "white" }} />
+            </Link>
           </Menu.Item>
           <Menu.Item>
             <MenuIcon
